@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Order} from "../model/order";
-import {environment} from "../../environments/environment";
 import {Observable} from "rxjs/Observable";
+import {environment} from "../../environments/environment";
 
 @Injectable()
 export class OrderService {
@@ -12,6 +12,6 @@ export class OrderService {
   }
 
   sendOrder(): Observable<Order> {
-    return this._http.post<Order>(environment.baseUrl, this.orders);
+    return this._http.post<Order>(environment.orderUrl, this.orders);
   }
 }
