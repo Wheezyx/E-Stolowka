@@ -1,26 +1,13 @@
 <div class="row text-center">
   <div class="col-md-4">
     <div class="btn-group">
-      <div
-        class="btn btn-primary"
-        mwlCalendarPreviousView
-        [view]="view"
-        [(viewDate)]="viewDate"
-        (viewDateChange)="activeDayIsOpen = false">
+      <div class="btn btn-primary" mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate">
         Poprzedni
       </div>
-      <div
-        class="btn btn-outline-secondary"
-        mwlCalendarToday
-        [(viewDate)]="viewDate">
+      <div class="btn btn-outline-secondary" mwlCalendarToday [(viewDate)]="viewDate">
         Obecny
       </div>
-      <div
-        class="btn btn-primary"
-        mwlCalendarNextView
-        [view]="view"
-        [(viewDate)]="viewDate"
-        (viewDateChange)="activeDayIsOpen = false">
+      <div class="btn btn-primary" mwlCalendarNextView [view]="view" [(viewDate)]="viewDate">
         Następny
       </div>
     </div>
@@ -31,20 +18,18 @@
 </div>
 <br>
 <div>
-  <mwl-calendar-month-view
-    [viewDate]="viewDate"
-    [events]="events"
-    [refresh]="refresh"
-    [cellTemplate]="mealOptionsTemplate"
-    (dayClicked)="dayClicked($event.day)">
+  <mwl-calendar-month-view [viewDate]="viewDate" [cellTemplate]="mealOptionsTemplate">
   </mwl-calendar-month-view>
 </div>
-
 <ng-template #mealOptionsTemplate let-day="day" let-locale="locale">
   <div class="cal-cell-top">
-    <input type="checkbox" name="meal" value="breakfast"> Śniadanie<br>
-    <input type="checkbox" name="meal" value="dinner"> Obiad<br>
-    <input type="checkbox" name="meal" value="supper"> Kolacja
+    <form [formGroup]='form' (ngSubmit)='onSubmit()' novalidate method="post">
+      <div class='form-group'>
+        <div><input type='checkbox' [value]='breakfast'> śniadanie </div>
+        <div><input type='checkbox' [value]='breakfast'> obiad </div>
+        <div><input type='checkbox' [value]='breakfast'> kolacja </div>
+      </div>
+    </form>
     <span class="cal-day-number">{{ day.date | calendarDate:'monthViewDayNumber':locale }}</span>
   </div>
 </ng-template>
