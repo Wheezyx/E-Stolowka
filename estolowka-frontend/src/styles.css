@@ -1,1 +1,9 @@
 @import "../node_modules/angular-calendar/css/angular-calendar.css";
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import url("https://fonts.googleapis.com/css?family=Pacifico");
+
+body {
+  background: url("https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/4WKhOySOeijizxd3o/table-at-restaurant-blurred-background_hjsc5vbvx_thumbnail-full01.png")
+  no-repeat center;
+  background-size: cover;
+}

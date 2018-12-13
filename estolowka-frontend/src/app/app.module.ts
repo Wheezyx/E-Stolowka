@@ -9,11 +9,14 @@ import { AppComponent } from './app.component';
 import { CalendarComponent } from './calendar/calendar/calendar.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
+import { MainPageComponent } from './main-page/main-page.component';
+import {MatGridListModule} from "@angular/material";
 
 @NgModule({
   declarations: [
     AppComponent,
-    CalendarComponent
+    CalendarComponent,
+    MainPageComponent
   ],
   imports: [
     BrowserModule,
@@ -25,7 +28,8 @@ import { MatCardModule } from '@angular/material/card';
     CalendarModule.forRoot({
       provide: DateAdapter,
       useFactory: adapterFactory
-    })
+    }),
+    MatGridListModule
   ],
   providers: [OrderService],
   bootstrap: [AppComponent]
