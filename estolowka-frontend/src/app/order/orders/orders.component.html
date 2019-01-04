@@ -1,0 +1,17 @@
+<header>
+  <h1>Zamówienia</h1>
+</header>
+<div class="button-row">
+  <button 
+  mat-raised-button
+  class="basic-button"
+  (click)="addOrder()">Dodaj zamówienie</button>
+</div>
+<div>
+  <app-order-list [orders]="orders">
+  </app-order-list>
+</div>
+
+<pre>
+ Orders : {{ orders | json }}
+</pre>
