@@ -11,6 +11,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.time.LocalDate;
 
+import java.util.ArrayList;
+
 @Entity
 @Data
 @NoArgsConstructor
@@ -21,8 +23,6 @@ class Day {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private boolean breakfast;
-    private boolean dinner;
-    private boolean supper;
+    private ArrayList<Meal> meals;
     private LocalDate selectedDay;
 }
