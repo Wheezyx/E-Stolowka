@@ -15,4 +15,4 @@ ng update @angular/cli (again to change angular-cli.json to angular.json)
 #additional angular dependencies
 Required installations:
 npm install --save angular-calendar date-fns
-
+npm install --save @angular/material @angular/cdk @angular/animations

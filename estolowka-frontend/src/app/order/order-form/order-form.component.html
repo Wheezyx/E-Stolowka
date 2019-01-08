@@ -1,0 +1,20 @@
+<form [formGroup]="form">
+  <mat-form-field>
+    <input matInput
+    [matDatepicker]="orderDatePicker"
+    formControlName="dateOfOrder"
+    [(ngModel)]="order.selectedDate">
+    <mat-datepicker-toggle matSuffix [for]="orderDatePicker"></mat-datepicker-toggle>
+    <mat-datepicker #orderDatePicker></mat-datepicker>
+  </mat-form-field>
+  <div formArrayName="meals">
+    <div *ngFor="let meal of meals.controls; let i = index">
+      <mat-checkbox
+      [formControlName] = "i"
+      [(ngModel)] = "order.meals[i].Selected">
+        {{ order.meals[i].name }}         
+      </mat-checkbox>
+    </div>
+  </div>
+  <div class="invalid-info" *ngIf="!form.valid">Musisz wybrać datę i przynajmniej jeden posiłek</div>
+</form>

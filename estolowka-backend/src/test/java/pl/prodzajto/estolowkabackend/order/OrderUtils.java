@@ -11,9 +11,7 @@ class OrderUtils {
 
         for (int i = 0; i < 10; i++) {
             Day day = Day.builder()
-                    .breakfast(true)
-                    .dinner(true)
-                    .supper(false)
+                    .meals(new HashSet<>())
                     .selectedDay(LocalDate.now().plusDays(i))
                     .build();
             selectedDays.add(day);

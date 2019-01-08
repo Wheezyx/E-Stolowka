@@ -1,9 +1,43 @@
 @import "../node_modules/angular-calendar/css/angular-calendar.css";
-@import "~@angular/material/prebuilt-themes/indigo-pink.css";
 @import url("https://fonts.googleapis.com/css?family=Pacifico");
+@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
 
 body {
   background: url("https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/4WKhOySOeijizxd3o/table-at-restaurant-blurred-background_hjsc5vbvx_thumbnail-full01.png")
   no-repeat center;
   background-size: cover;
+  font-family: sans-serif;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.basic-button {
+  background-color: rgb(136, 86, 136);
+  opacity: .7;
+  color: white;
+  font-weight: bold;
+  margin-left: 20px;
+}
+
+button {
+  transition: all 0.5s ease-in-out;
+}
+
+button:hover {
+  transform: scale(1.05);
+}
+
+.button-row {
+  margin-left: 20px;
+}
+
+.delete-button {
+  background-color: rgb(70, 70, 70);
+  color: white;
+  font-weight: bold;
 }
