@@ -3,9 +3,9 @@ package pl.prodzajto.estolowkabackend.user;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.validator.constraints.UniqueElements;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 @Data
@@ -14,10 +14,13 @@ import javax.persistence.Id;
 class UserEntity {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(unique = true)
     private int index;
     private String name;
     private String surname;
+    @Column(unique = true)
     private String email;
     private String password;
 }
