@@ -25,7 +25,8 @@ class Day {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "day")
-    private Set<Meal> meals;
+    private boolean breakfast;
+    private boolean dinner;
+    private boolean supper;
     private LocalDate selectedDay;
 }
