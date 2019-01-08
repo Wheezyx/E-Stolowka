@@ -8,7 +8,7 @@ import javax.validation.constraints.NotBlank;
 class Credential {
 
     @NotBlank
-    private String username;
+    private String email;
     @NotBlank
     private String password;
 }
