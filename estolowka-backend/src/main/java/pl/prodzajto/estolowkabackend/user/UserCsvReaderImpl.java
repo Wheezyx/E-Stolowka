@@ -4,7 +4,6 @@ import com.opencsv.CSVReader;
 import lombok.AllArgsConstructor;
 import org.apache.commons.text.CharacterPredicates;
 import org.apache.commons.text.RandomStringGenerator;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -30,6 +29,7 @@ public class UserCsvReaderImpl implements UserCsvReader {
         } catch (IOException e) {
             return false;
         }
+        System.out.println(passwordEncoder.encode("admin"));
         return true;
     }
 

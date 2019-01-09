@@ -11,9 +11,5 @@ public class EstolowkaBackendApplication {
     public static void main(String[] args) {
         SpringApplication.run(EstolowkaBackendApplication.class, args);
     }
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
 }
 
