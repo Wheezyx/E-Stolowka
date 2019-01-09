@@ -33,9 +33,13 @@ public class UserCsvReaderImpl implements UserCsvReader {
     }
 
     private UserEntity createUser(String[] record) {
-        return UserEntity.builder().email(record[0]).
-                name(record[1]).surname(record[2]).index(Integer.parseInt(record[3]))
-                .password(passwordEncoder.encode(randomPassword())).build();
+        return UserEntity.builder()
+                .email(record[0])
+                .name(record[1])
+                .surname(record[2])
+                .index(Integer.parseInt(record[3]))
+                .password(passwordEncoder.encode(randomPassword()))
+                .build();
     }
 
     private String randomPassword() {
