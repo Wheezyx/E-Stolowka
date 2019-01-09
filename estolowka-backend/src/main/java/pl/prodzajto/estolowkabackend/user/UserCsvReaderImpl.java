@@ -29,18 +29,13 @@ public class UserCsvReaderImpl implements UserCsvReader {
         } catch (IOException e) {
             return false;
         }
-        System.out.println(passwordEncoder.encode("admin"));
         return true;
     }
 
     private UserEntity createUser(String[] record) {
-        UserEntity user = new UserEntity();
-        user.setEmail(record[0]);
-        user.setName(record[1]);
-        user.setSurname(record[2]);
-        user.setIndex(Integer.parseInt(record[3]));
-        user.setPassword(passwordEncoder.encode(randomPassword()));
-        return user;
+        return UserEntity.builder().email(record[0]).
+                name(record[1]).surname(record[2]).index(Integer.parseInt(record[3]))
+                .password(passwordEncoder.encode(randomPassword())).build();
     }
 
     private String randomPassword() {
