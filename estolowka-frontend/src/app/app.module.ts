@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from "@angular/common/http";
+import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
 import { OrderService } from "./order/service/order.service";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
@@ -13,11 +13,16 @@ import { OrderFormComponent } from './order/order-form/order-form.component';
 import { OrderListComponent } from './order/order-list/order-list.component';
 import { OrdersComponent } from './order/orders/orders.component';
 import { NgMaterialCollectionModule } from './ng-material-collection/ng-material-collection.module';
-import {RouterModule, Routes} from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
+import { LoginComponent } from './login/login/login.component';
+import { AuthGuard } from './auth/auth.guard';
+import { AuthenticationService } from './auth/authentication.service';
+import { TokenInterceptor } from './auth/token.interceptor';
 
 const appRoutes: Routes = [
-  { path: 'main', component: MainPageComponent },
-  { path: 'order', component: OrdersComponent},
+  { path: 'login', component: LoginComponent },
+  { path: 'main', component: MainPageComponent, canActivate: [AuthGuard]},
+  { path: 'order', component: OrdersComponent, canActivate: [AuthGuard]},
   { path: '**', redirectTo: 'main' }
 ];
 
@@ -28,7 +33,8 @@ const appRoutes: Routes = [
     MainPageComponent,
     OrderFormComponent,
     OrderListComponent,
-    OrdersComponent
+    OrdersComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -41,9 +47,18 @@ const appRoutes: Routes = [
       useFactory: adapterFactory
     }),
     NgMaterialCollectionModule,
-    RouterModule.forRoot(appRoutes),
+    RouterModule.forRoot(appRoutes)
   ],
-  providers: [OrderService],
+  providers: [
+    OrderService,
+    AuthGuard,
+    AuthenticationService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

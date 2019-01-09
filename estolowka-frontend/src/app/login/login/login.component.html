@@ -1,0 +1,25 @@
+<div class="login-container">
+<div class="form-container">
+  <mat-card-content>
+    <div class="login-top">
+      <div class="login-logo"><h3 mat-dialog-title>Zaloguj się do e-stołówki</h3></div>
+    </div>
+    <form (ngSubmit)="f.form.valid && login()" #f="ngForm" class="form-signin">
+      <div [ngClass]="{ 'has-error': f.submitted && !email.valid }">
+        <input type="text" class="form-control" name="email" [(ngModel)]="model.email" #email="ngModel"
+               required placeholder="E-mail"/>
+        <p class="error-message" *ngIf="f.submitted && !email.valid">Wprowadź prawidłowy e-mail!</p>
+      </div>
+      <div [ngClass]="{ 'has-error': f.submitted && !password.valid }">
+        <input type="password" class="form-control" name="password" [(ngModel)]="model.password" #password="ngModel"
+               required placeholder="Hasło"/>
+        <p class="error-message" *ngIf="f.submitted && !password.valid">Wprowadź hasło!</p>
+      </div>
+      <div>
+        <button class="login-button" [disabled]="loading">Login</button>
+      </div>
+      <div *ngIf="error" class="server-error-message">{{error}}</div>
+    </form>
+  </mat-card-content>
+ </div>
+</div>
