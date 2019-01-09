@@ -1,4 +1,4 @@
 export interface SessionUser {
-    username: string;
+    email: string;
     token: string;
  } 

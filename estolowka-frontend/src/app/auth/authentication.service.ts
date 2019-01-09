@@ -23,7 +23,7 @@ export class AuthenticationService {
  }
 
  getCurrentUserName(): string {
-   return this.getCurrentUser().username;
+   return this.getCurrentUser().email;
  }
 
  isAuthenticated(): boolean {
@@ -38,7 +38,7 @@ export class AuthenticationService {
        if (authHeader) {
          this.token = authHeader;
          localStorage.setItem('currentUser',
-           JSON.stringify(<SessionUser>{username: credentials.email, token: this.token}));
+           JSON.stringify(<SessionUser>{email: credentials.email, token: this.token}));
        }
        return callback && callback();
      }, error => {
