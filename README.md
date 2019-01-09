@@ -16,3 +16,8 @@ ng update @angular/cli (again to change angular-cli.json to angular.json)
 Required installations:
 npm install --save angular-calendar date-fns
 npm install --save @angular/material @angular/cdk @angular/animations
+
+#installations required for authentication
+npm install angular2-jwt
+npm install
+npm install --save rxjs-compat

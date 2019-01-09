@@ -5,5 +5,6 @@
 
 export const environment = {
   production: false,
-  orderUrl: "http://" + window.location.hostname + ":8080/order"
+  orderUrl: "http://" + window.location.hostname + ":8080/order",
+  loginUrl: "http://" + window.location.hostname + ':8080/login',
 };
