@@ -5,11 +5,13 @@ import {environment} from "../../../environments/environment";
 import {Order} from "../model/order";
 import {JsonDay} from "../model/json-day";
 import {Day} from "../model/day";
+import {AuthenticationService} from "../../auth/authentication.service";
 
 @Injectable()
 export class OrderService {
 
-  constructor(private _http: HttpClient) {
+  constructor(private _http: HttpClient,
+              private auth: AuthenticationService) {
   }
 
   sendOrder(days: Day[]): Observable<Day[]> {
@@ -28,6 +30,7 @@ export class OrderService {
   private createOrder(days: Day[]): Order {
     var order = new Order();
     order.selectedDays = days.map((day)=> this.convertDay(day));
+    order.email = this.auth.getCurrentUserEmail();
     return order;
   }
 }

@@ -12,4 +12,6 @@ class RawOrder {
 
     @NotEmpty
     private Set<Day> selectedDays;
+    @NotEmpty
+    private String userEmail;
 }

@@ -20,7 +20,7 @@ class OrderController {
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
-    public Order createOrder(@RequestBody @Valid RawOrder rawOrder) {
+    public OrderEntity createOrder(@RequestBody @Valid RawOrder rawOrder) {
         return orderService.saveOrder(rawOrder);
     }
 }
