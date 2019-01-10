@@ -18,11 +18,14 @@ import { LoginComponent } from './login/login/login.component';
 import { AuthGuard } from './auth/auth.guard';
 import { AuthenticationService } from './auth/authentication.service';
 import { TokenInterceptor } from './auth/token.interceptor';
+import { UploadFormComponent } from './upload/upload-form/upload-form.component';
+import {UploadService} from "./upload/upload.service";
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'main', component: MainPageComponent, canActivate: [AuthGuard]},
   { path: 'order', component: OrdersComponent, canActivate: [AuthGuard]},
+  { path: 'upload', component: UploadFormComponent, canActivate: [AuthGuard]},
   { path: '**', redirectTo: 'main' }
 ];
 
@@ -34,7 +37,8 @@ const appRoutes: Routes = [
     OrderFormComponent,
     OrderListComponent,
     OrdersComponent,
-    LoginComponent
+    LoginComponent,
+    UploadFormComponent
   ],
   imports: [
     BrowserModule,
@@ -51,6 +55,7 @@ const appRoutes: Routes = [
   ],
   providers: [
     OrderService,
+    UploadService,
     AuthGuard,
     AuthenticationService,
     {
