@@ -8,7 +8,6 @@ import {UploadService} from "../upload.service";
 })
 export class UploadFormComponent implements OnInit {
   fileToUpload: File = null;
-  progress: { percentage: number } = {percentage: 0};
 
   constructor(private uploadService: UploadService) {
   }
@@ -21,7 +20,6 @@ export class UploadFormComponent implements OnInit {
   }
 
   onUpload() {
-    this.progress.percentage = 0;
     this.uploadService.uploadFile(this.fileToUpload).subscribe(event=>{
       console.log(event);
     });
