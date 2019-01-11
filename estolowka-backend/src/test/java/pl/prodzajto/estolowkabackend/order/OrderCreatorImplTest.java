@@ -6,6 +6,8 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.junit4.SpringRunner;
+import pl.prodzajto.estolowkabackend.user.UserEntity;
+import pl.prodzajto.estolowkabackend.user.UserRepository;
 
 import java.util.Set;
 
@@ -21,11 +23,13 @@ public class OrderCreatorImplTest {
     private OrderRepository orderRepository;
     @Autowired
     private DayRepository dayRepository;
+    @Autowired
+    private UserRepository userRepository;
     private OrderCreator orderCreator;
 
     @Before
     public void setUp() {
-        orderCreator = new OrderCreatorImpl(orderRepository, dayRepository);
+        orderCreator = new OrderCreatorImpl(orderRepository, dayRepository, userRepository);
     }
 
     @Test
@@ -34,16 +38,18 @@ public class OrderCreatorImplTest {
         RawOrder rawOrder = OrderUtils.getDefaultRawOrder();
 
         //when
-        Order order = orderCreator.createOrder(rawOrder);
+        OrderEntity orderEntity = orderCreator.createOrder(rawOrder);
 
         //then
-        assertNotNull(order);
-        assertNotNull(order.getDateOfOrder());
-        assertEquals(1L, order.getId().longValue());
+        assertNotNull(orderEntity);
+        assertNotNull(orderEntity.getDateOfOrder());
+        assertEquals(1L, orderEntity.getId().longValue());
 
-        Set<Day> resultDays = order.getSelectedDays();
+        Set<Day> resultDays = orderEntity.getSelectedDays();
         assertNotNull(resultDays);
         assertEquals(rawOrder.getSelectedDays().size(), resultDays.size());
         assertTrue(resultDays.stream().noneMatch(day -> day.getId() == null));
     }
+
+
 }

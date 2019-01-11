@@ -10,7 +10,7 @@ class OrderServiceImpl implements OrderService {
     private final OrderCreator orderCreator;
 
     @Override
-    public Order saveOrder(RawOrder rawOrder) {
+    public OrderEntity saveOrder(RawOrder rawOrder) {
         return orderCreator.createOrder(rawOrder);
     }
 }

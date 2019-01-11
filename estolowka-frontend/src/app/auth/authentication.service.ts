@@ -22,7 +22,7 @@ export class AuthenticationService {
    return JSON.parse(localStorage.getItem('currentUser'));
  }
 
- getCurrentUserName(): string {
+ getCurrentUserEmail(): string {
    return this.getCurrentUser().email;
  }
 

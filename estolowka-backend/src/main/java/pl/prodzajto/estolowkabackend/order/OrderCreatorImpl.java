@@ -2,6 +2,9 @@ package pl.prodzajto.estolowkabackend.order;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import pl.prodzajto.estolowkabackend.user.UserEntity;
+import pl.prodzajto.estolowkabackend.user.UserNotFoundException;
+import pl.prodzajto.estolowkabackend.user.UserRepository;
 
 import java.time.OffsetDateTime;
 
@@ -11,15 +14,22 @@ class OrderCreatorImpl implements OrderCreator {
 
     private final OrderRepository orderRepository;
     private final DayRepository dayRepository;
+    private final UserRepository userRepository;
 
     @Override
-    public Order createOrder(RawOrder rawOrder) {
+    public OrderEntity createOrder(RawOrder rawOrder) {
 
-        Order order = Order.builder()
+        OrderEntity orderEntity = OrderEntity.builder()
                 .dateOfOrder(OffsetDateTime.now())
                 .selectedDays(dayRepository.saveAll(rawOrder.getSelectedDays()))
+                .user(getUser(rawOrder.getUserEmail()))
                 .build();
 
-        return orderRepository.save(order);
+        return orderRepository.save(orderEntity);
+    }
+
+    private UserEntity getUser(String email) {
+        return userRepository.findByEmail(email)
+                .orElseThrow(UserNotFoundException::new);
     }
 }

@@ -4,15 +4,17 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import pl.prodzajto.estolowkabackend.order.OrderEntity;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-class UserEntity {
+public class UserEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,4 +26,6 @@ class UserEntity {
     @Column(unique = true)
     private String email;
     private String password;
+    @OneToMany
+    private Set<OrderEntity> orders;
 }

@@ -23,7 +23,7 @@ class OrderUtils
         }
         RawOrder rawOrder = new RawOrder();
         rawOrder.setSelectedDays(selectedDays);
-        
+        rawOrder.setUserEmail("admin@admin.pl");
         return rawOrder;
     }
 }
