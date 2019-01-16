@@ -29,7 +29,7 @@ class OrderController {
         return orderService.saveOrder(rawOrder);
     }
 
-    @GetMapping("/{username}/orders")
+    @GetMapping("/{email}")
     public Set<OrderEntity> getUserOrders(HttpServletRequest request) {
         return orderService.getUserOrders(userTokenResolver.getUserEmailFromToken(request));
     }

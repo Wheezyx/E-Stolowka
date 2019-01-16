@@ -19,6 +19,7 @@ class OrderServiceImpl implements OrderService {
 
     @Override
     public Set<OrderEntity> getUserOrders(String email) {
-        return orderRepository.findAllByUser(email);
+        return orderRepository.findAllByUserEmail(email);
     }
+
 }

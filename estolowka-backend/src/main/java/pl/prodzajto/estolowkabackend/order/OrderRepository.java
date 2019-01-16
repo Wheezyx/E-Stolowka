@@ -8,5 +8,5 @@ import java.util.Set;
 @Repository
 interface OrderRepository extends CrudRepository<OrderEntity, Long> {
 
-    Set<OrderEntity> findAllByUser(String email);
+    Set<OrderEntity> findAllByUserEmail(String email);
 }

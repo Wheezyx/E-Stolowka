@@ -1,7 +1,5 @@
 package pl.prodzajto.estolowkabackend.order;
 
-import pl.prodzajto.estolowkabackend.user.UserEntity;
-
 import java.util.Set;
 
 interface OrderService {
