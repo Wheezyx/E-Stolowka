@@ -30,7 +30,7 @@ export class OrderService {
   private createOrder(days: Day[]): Order {
     var order = new Order();
     order.selectedDays = days.map((day)=> this.convertDay(day));
-    order.email = this.auth.getCurrentUserEmail();
+    order.userEmail = this.auth.getCurrentUserEmail();
     return order;
   }
 }
