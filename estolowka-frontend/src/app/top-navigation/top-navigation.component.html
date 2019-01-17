@@ -1,0 +1,13 @@
+<div *ngIf="isUserLoggedIn()" class="header">
+  <div class="container nav-container">
+    <div class="left-logo" style="padding: 5px">
+      <img src="../../assets/img/home64white.png"
+      class="logo" (click)="navigateToMainPage()"/>
+    </div>
+    <div class="menu-list">
+      <ul class="list">
+        <li (click)="logout()">Wyloguj się</li>
+      </ul>
+    </div>
+  </div>
+</div>

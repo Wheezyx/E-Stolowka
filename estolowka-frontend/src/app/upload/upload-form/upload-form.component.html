@@ -1,3 +1,11 @@
-<label for="singleFile">Upload csv file with users:</label>
-<input id="singleFile" type="file" (change)="onFileSelected($event)"/>
-<button type="button" (click)="onUpload()">Wyślij</button>
+<div class="file-container">
+    <div class="file-import">
+    <label class="import-component" for="singleFile">Dodaj plik z użytkownikami w formacie csv:</label>
+    <label class="file-search import-component">
+        Szukaj pliku
+        <input id="singleFile" type="file" (change)="onFileSelected($event)"/>
+    </label>
+    <label class="import-component" *ngIf="fileName">Wybrany plik: <span class="selected">{{fileName}}</span></label>
+    <button class="import-component" type="button" (click)="onUpload()">Wyślij</button>
+    </div>
+</div>
