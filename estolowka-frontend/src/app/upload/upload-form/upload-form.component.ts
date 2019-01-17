@@ -8,6 +8,7 @@ import {UploadService} from "../upload.service";
 })
 export class UploadFormComponent implements OnInit {
   fileToUpload: File = null;
+  fileName: string;
 
   constructor(private uploadService: UploadService) {
   }
@@ -17,6 +18,7 @@ export class UploadFormComponent implements OnInit {
 
   onFileSelected(event) {
     this.fileToUpload = event.target.files[0];
+    this.fileName = this.fileToUpload.name;
   }
 
   onUpload() {
