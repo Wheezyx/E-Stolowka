@@ -1,9 +1,8 @@
-package pl.prodzajto.estolowkabackend.user;
+package pl.prodzajto.estolowkabackend.user.passwordrecovery;
 
 import lombok.AllArgsConstructor;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Map;
@@ -13,8 +12,7 @@ import java.util.Map;
 public class UserPasswordRecoveryController {
     private UserPasswordRecoveryImpl userPasswordRecovery;
 
-
-    @RequestMapping(method = RequestMethod.POST, path = "/recoverPassword")
+    @PostMapping("/recoverPassword")
     public void recoverPassword(@RequestBody Map<String, String> email) {
         userPasswordRecovery.passwordRecoveryFlow(email.get("email"));
     }

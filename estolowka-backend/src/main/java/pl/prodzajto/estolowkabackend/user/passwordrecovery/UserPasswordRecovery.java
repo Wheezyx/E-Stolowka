@@ -1,4 +1,4 @@
-package pl.prodzajto.estolowkabackend.user;
+package pl.prodzajto.estolowkabackend.user.passwordrecovery;
 
 public interface UserPasswordRecovery {
     void passwordRecoveryFlow(String email);
