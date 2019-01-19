@@ -19,14 +19,15 @@ import { AuthGuard } from './auth/auth.guard';
 import { AuthenticationService } from './auth/authentication.service';
 import { TokenInterceptor } from './auth/token.interceptor';
 import { UploadFormComponent } from './upload/upload-form/upload-form.component';
-import {UploadService} from "./upload/upload.service";
+import { UploadService } from "./upload/upload.service";
+import { TopNavigationComponent } from './top-navigation/top-navigation.component';
+import {AdminGuard} from "./auth/admin.guard";
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
-  { path: 'main', component: MainPageComponent, canActivate: [AuthGuard]},
+  { path: '', component: MainPageComponent, canActivate: [AuthGuard]},
   { path: 'order', component: OrdersComponent, canActivate: [AuthGuard]},
-  { path: 'upload', component: UploadFormComponent, canActivate: [AuthGuard]},
-  { path: '**', redirectTo: 'main' }
+  { path: 'admin', component: UploadFormComponent, canActivate: [AdminGuard]}
 ];
 
 @NgModule({
@@ -38,7 +39,8 @@ const appRoutes: Routes = [
     OrderListComponent,
     OrdersComponent,
     LoginComponent,
-    UploadFormComponent
+    UploadFormComponent,
+    TopNavigationComponent
   ],
   imports: [
     BrowserModule,

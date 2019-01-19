@@ -1,9 +1,12 @@
 package pl.prodzajto.estolowkabackend.security;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 
@@ -12,6 +15,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.lang.reflect.Type;
+import java.util.Set;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static pl.prodzajto.estolowkabackend.security.Constants.HEADER_STRING;
@@ -55,8 +61,15 @@ class JwtAuthorizationFilter extends BasicAuthenticationFilter {
                 .getBody();
 
         String username = body.getIssuer();
+        String authorities = body.getSubject();
 
-        return new UsernamePasswordAuthenticationToken(username, null, null);
+        return new UsernamePasswordAuthenticationToken(username, null, getAuthorities(authorities));
+    }
 
+    private Set<GrantedAuthority> getAuthorities(String authorities) {
+        Gson gson = new Gson();
+        Type type = new TypeToken<Set<String>>(){}.getType();
+        Set<String> authoritiesStrings = gson.fromJson(authorities, type);
+        return authoritiesStrings.stream().map(s -> (GrantedAuthority) () -> s).collect(Collectors.toSet());
     }
 }

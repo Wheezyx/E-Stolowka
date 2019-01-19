@@ -8,28 +8,37 @@ import {SessionUser} from './sessionUser';
 @Injectable()
 export class AuthenticationService {
 
- public token: string;
+  public token: string;
 
- constructor(private http: HttpClient) {
- }
+  constructor(private http: HttpClient) {
+  }
 
- getToken(): string {
-   const currentUser = this.getCurrentUser();
-   return currentUser && currentUser.token;
- }
+  getToken(): string {
+    const currentUser = this.getCurrentUser();
+    return currentUser && currentUser.token;
+  }
 
- getCurrentUser(): SessionUser {
-   return JSON.parse(localStorage.getItem('currentUser'));
- }
+  getCurrentUser(): SessionUser {
+    return JSON.parse(localStorage.getItem('currentUser'));
+  }
 
- getCurrentUserEmail(): string {
-   return this.getCurrentUser().email;
- }
+  getCurrentUserEmail(): string {
+    return this.getCurrentUser().email;
+  }
 
- isAuthenticated(): boolean {
-   const token = this.getToken();
-   return token && tokenNotExpired(null, token);
- }
+  getUserRoles(): string[] {
+    const jwtPayload = JSON.parse(atob(this.getCurrentUser().token.split('.')[1])) as JWTPayload;
+    return JSON.parse(jwtPayload.sub) as string[];
+  }
+
+  isAuthenticated(): boolean {
+    const token = this.getToken();
+    return token && tokenNotExpired(null, token);
+  }
+
+  isAdmin(): boolean {
+    return this.getUserRoles().includes('ADMIN');
+  }
 
  login(credentials, callback, errorCallback): void {
    this.getLoginResponse(credentials).subscribe(
@@ -46,19 +55,19 @@ export class AuthenticationService {
      });
  }
 
- getLoginResponse(credentials): Observable<HttpResponse<any>> {
-   var data = {email: credentials.email, password: credentials.password};
-   return this.http.post(environment.loginUrl, data, {observe: 'response'});
- }
+  getLoginResponse(credentials): Observable<HttpResponse<any>> {
+    var data = {email: credentials.email, password: credentials.password};
+    return this.http.post(environment.loginUrl, data, {observe: 'response'});
+  }
 
- logout(): void {
-   this.token = null;
-   localStorage.removeItem('currentUser');
- }
+  logout(): void {
+    this.token = null;
+    localStorage.removeItem('currentUser');
+  }
 }
 
 export interface JWTPayload {
- exp: number;
- iss: string;
- sub: string;
+  exp: number;
+  iss: string;
+  sub: string;
 }

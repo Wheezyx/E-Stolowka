@@ -11,11 +11,13 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
+import java.util.HashSet;
 
 @Service
 @AllArgsConstructor
 public class UserCsvReaderImpl implements UserCsvReader {
     private final UserRepository userRepository;
+    private final UserRoleRepository userRoleRepository;
     private final PasswordEncoder passwordEncoder;
 
     @Override
@@ -33,12 +35,16 @@ public class UserCsvReaderImpl implements UserCsvReader {
     }
 
     private UserEntity createUser(String[] record) {
+        HashSet<UserRole> defaultRole = new HashSet<>();
+        defaultRole.add(userRoleRepository.findByRole("USER"));
+
         return UserEntity.builder()
                 .email(record[0])
                 .name(record[1])
                 .surname(record[2])
                 .index(Integer.parseInt(record[3]))
                 .password(passwordEncoder.encode(randomPassword()))
+                .roles(defaultRole)
                 .build();
     }
 

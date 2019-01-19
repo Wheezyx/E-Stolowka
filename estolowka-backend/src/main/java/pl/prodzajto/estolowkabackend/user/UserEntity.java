@@ -28,4 +28,6 @@ public class UserEntity {
     private String password;
     @OneToMany
     private Set<OrderEntity> orders;
+    @ManyToMany
+    private Set<UserRole> roles;
 }
