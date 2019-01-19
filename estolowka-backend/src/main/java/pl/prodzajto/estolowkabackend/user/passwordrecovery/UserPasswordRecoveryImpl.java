@@ -1,4 +1,4 @@
-package pl.prodzajto.estolowkabackend.user.password_recovery;
+package pl.prodzajto.estolowkabackend.user.passwordrecovery;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -6,6 +6,7 @@ import pl.prodzajto.estolowkabackend.email.EmailServiceImpl;
 import pl.prodzajto.estolowkabackend.user.UserEntity;
 import pl.prodzajto.estolowkabackend.user.UserRepository;
 
+import javax.transaction.Transactional;
 import java.util.Optional;
 
 
@@ -19,9 +20,13 @@ public class UserPasswordRecoveryImpl implements UserPasswordRecovery {
     private static final String RECOVERY_LINK_SCHEMA = "localhost:8080/recoverPassword/link?token=";
 
     @Override
+    @Transactional
     public void passwordRecoveryFlow(String email) {
         Optional<UserEntity> userEntity = getUserByEmail(email);
         if (userEntity.isPresent()) {
+            if (passwordRecoveryRepository.existsByUserEntity(userEntity.get())) {
+                passwordRecoveryRepository.deleteByUserEntity(userEntity.get());
+            }
             UserPasswordRecoveryEntity userPasswordRecoveryEntity = UserPasswordRecoveryEntityCreator.createUserPasswordRecoveryEntity(userEntity.get());
             String link = RECOVERY_LINK_SCHEMA + userPasswordRecoveryEntity.getToken();
             passwordRecoveryRepository.save(userPasswordRecoveryEntity);

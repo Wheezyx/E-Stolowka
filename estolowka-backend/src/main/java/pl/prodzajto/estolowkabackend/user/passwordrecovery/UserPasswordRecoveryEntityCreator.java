@@ -1,4 +1,4 @@
-package pl.prodzajto.estolowkabackend.user.password_recovery;
+package pl.prodzajto.estolowkabackend.user.passwordrecovery;
 
 import pl.prodzajto.estolowkabackend.user.UserEntity;
 

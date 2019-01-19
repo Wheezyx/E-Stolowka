@@ -1,4 +1,4 @@
-package pl.prodzajto.estolowkabackend.user.password_recovery;
+package pl.prodzajto.estolowkabackend.user.passwordrecovery;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
