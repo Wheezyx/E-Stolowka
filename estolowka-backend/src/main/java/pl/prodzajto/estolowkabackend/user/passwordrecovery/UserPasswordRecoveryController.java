@@ -18,7 +18,14 @@ public class UserPasswordRecoveryController {
 
     @GetMapping("/recoverPassword/link")
     @ResponseStatus(HttpStatus.OK)
-    public boolean getRecoveryPasswordView(@RequestParam String token) {
-        return userPasswordRecovery.validatePasswordRecoverToken(token);
+    public void getRecoveryPasswordView(@RequestParam String token) {
+        if (!userPasswordRecovery.validatePasswordRecoverToken(token)) throw new TokenNotFoundException();
     }
+
+    @PostMapping("/recoverPassword/reset")
+    @ResponseStatus(HttpStatus.OK)
+    public void resetPassword(@RequestBody Map<String, String> form) {
+        userPasswordRecovery.changeUserPassword(form.get("password"), form.get("token"));
+    }
+
 }
