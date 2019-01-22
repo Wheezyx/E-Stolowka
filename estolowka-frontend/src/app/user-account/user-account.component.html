@@ -1,0 +1,12 @@
+<div class="order" *ngFor="let order of orders; let i = index" value="order">
+  <div class="orders-section">
+    <div class="comment-info">
+      <div *ngIf="order.meals?.Selected">
+        {{order.meals.name}}
+      </div>
+      <div>
+        {{order.selectedDate | date:"MMM d, y"}}
+      </div>
+    </div>
+  </div>
+</div>

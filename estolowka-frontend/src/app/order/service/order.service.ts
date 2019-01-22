@@ -18,6 +18,10 @@ export class OrderService {
     return this._http.post<Day[]>(environment.orderUrl, this.createOrder(days));
   }
 
+  getOrdersList(email: string): Observable<Day[]> {
+    return this._http.get<Day[]>(environment.orderUrl + email);
+  }
+
   private convertDay(day: Day): JsonDay {
     var singleDay = new JsonDay();
     singleDay.selectedDay = day.selectedDate;
