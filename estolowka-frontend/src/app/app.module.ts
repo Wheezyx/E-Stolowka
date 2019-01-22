@@ -29,7 +29,7 @@ const appRoutes: Routes = [
   { path: '', component: MainPageComponent, canActivate: [AuthGuard]},
   { path: 'order', component: OrdersComponent, canActivate: [AuthGuard]},
   { path: 'admin', component: UploadFormComponent, canActivate: [AdminGuard]},
-  { path: 'account', component: UserAccountComponent, canActivate: [AdminGuard]}
+  { path: 'account', component: UserAccountComponent, canActivate: [AuthGuard]}
 ];
 
 @NgModule({

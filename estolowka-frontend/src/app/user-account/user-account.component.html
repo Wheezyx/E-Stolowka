@@ -1,11 +1,11 @@
-<div class="order" *ngFor="let order of orders; let i = index" value="order">
-  <div class="orders-section">
-    <div class="comment-info">
-      <div *ngIf="order.meals?.Selected">
-        {{order.meals.name}}
-      </div>
-      <div>
-        {{order.selectedDate | date:"MMM d, y"}}
+<button (click)="getOrders()">Moje zamówienia</button>
+<div class="order" *ngFor="let dayArray of days; let i = index" value="order">
+  <div *ngFor="let singleDay of dayArray">
+    <div>{{singleDay.selectedDate | date}}
+      <div *ngFor="let meal of singleDay.meals">
+        <div *ngIf="meal.Selected">
+        {{meal.name}}
+        </div>
       </div>
     </div>
   </div>

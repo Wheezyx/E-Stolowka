@@ -6,6 +6,7 @@ import {Order} from "../model/order";
 import {JsonDay} from "../model/json-day";
 import {Day} from "../model/day";
 import {AuthenticationService} from "../../auth/authentication.service";
+import {v4 as uuid} from 'uuid';
 
 @Injectable()
 export class OrderService {
@@ -18,8 +19,8 @@ export class OrderService {
     return this._http.post<Day[]>(environment.orderUrl, this.createOrder(days));
   }
 
-  getOrdersList(email: string): Observable<Day[]> {
-    return this._http.get<Day[]>(environment.orderUrl + email);
+  getOrdersList(email: string): Observable<Order[]> {
+    return this._http.get<Order[]>(environment.orderUrl + '/' + email);
   }
 
   private convertDay(day: Day): JsonDay {
@@ -36,5 +37,14 @@ export class OrderService {
     order.selectedDays = days.map((day)=> this.convertDay(day));
     order.userEmail = this.auth.getCurrentUserEmail();
     return order;
+  }
+
+  convertJsonDayToDay(jsonDay: JsonDay): Day {
+    var day = new Day(uuid());
+    day.selectedDate = jsonDay.selectedDay;
+    day.meals[0].Selected = jsonDay.breakfast;
+    day.meals[1].Selected = jsonDay.dinner;
+    day.meals[2].Selected = jsonDay.supper;
+    return day;
   }
 }
