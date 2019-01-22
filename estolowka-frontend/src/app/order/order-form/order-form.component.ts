@@ -10,6 +10,9 @@ import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 export class OrderFormComponent implements OnInit {
 
   @Input() order: Day;
+  
+  minDate = this.getTomorrowDate();
+  maxDate = this.getLastDayOfMonth();
 
   form: FormGroup;
 
@@ -24,5 +27,15 @@ export class OrderFormComponent implements OnInit {
     })
 
     console.log(this.form)
+  }
+
+  getTomorrowDate() {
+    let today = new Date();
+    return new Date(today.getFullYear(), today.getMonth(), today.getDate()+1);
+  }
+
+  getLastDayOfMonth() {
+    let today = new Date();
+    return new Date(today.getFullYear(), today.getMonth()+1, 0);
   }
 }
