@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Day } from '../model/day';
 import { OrderService } from '../service/order.service';
-import { queueComponentIndexForCheck } from '@angular/core/src/render3/instructions';
+import { MatSnackBar, MatSnackBarConfig } from '@angular/material';
 
 @Component({
   selector: 'app-order-list',
@@ -11,14 +11,23 @@ import { queueComponentIndexForCheck } from '@angular/core/src/render3/instructi
 export class OrderListComponent {
   @Input() orders: Day[] = []
 
-  constructor(private orderService: OrderService) {}
+  constructor(private orderService: OrderService,
+              private snackBar: MatSnackBar) {}
 
   sendOrder() {
+    const config = new MatSnackBarConfig;
+    config.duration = 2000;
+
     this.orderService.sendOrder(this.orders).subscribe(() => {
       console.log("Order added");
+      this.refreshPage();
+      config.panelClass = ['success-msg'];
+      this.snackBar.open('Zamówienie zostało wysłane!', '', config);
     },
     err => {
       console.log('error occurred: ' + err.message);
+      config.panelClass = ['error-msg'];
+      this.snackBar.open('Wystąpił błąd ' + err.message, '', config);
     }
   );
   }
@@ -30,6 +39,10 @@ export class OrderListComponent {
     for (let i = indexOfNextElementAfterDeletedOne; i < this.orders.length; i++) {
       this.orders[i].id = i+1;
     } 
+  }
+
+  refreshPage() {
+    location.reload();
   }
   
 }
