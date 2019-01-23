@@ -16,6 +16,10 @@
     flex: 25%;
 }
 
+.send-order-button {
+    margin: 1em 0 1em;
+}
+
 ::ng-deep snack-bar-container.success-msg {
     background-color: rgb(89, 168, 89);
     color: black;

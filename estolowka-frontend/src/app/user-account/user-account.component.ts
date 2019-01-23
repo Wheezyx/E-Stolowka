@@ -3,6 +3,7 @@ import { OrderService } from '../order/service/order.service';
 import { JsonDay } from "../order/model/json-day";
 import { Day } from '../order/model/day';
 import { Order } from '../order/model/order';
+import { AuthenticationService } from '../auth/authentication.service';
 
 @Component({
   selector: 'app-user-account',
@@ -12,8 +13,10 @@ import { Order } from '../order/model/order';
 export class UserAccountComponent implements OnInit {
   orders: Order[];
   days: any;
+  userEmail = this.getUserEmail();
 
-  constructor(private orderService: OrderService) { }
+  constructor(private orderService: OrderService,
+              private authService: AuthenticationService) { }
 
   ngOnInit() {
   }
@@ -24,15 +27,18 @@ export class UserAccountComponent implements OnInit {
   }
 
   getOrders(): void {
-    this.orderService.getOrdersList("user@gmail.com").subscribe((jsonOrders) => {
+    this.orderService.getOrdersList(this.userEmail).subscribe((jsonOrders) => {
       this.orders = jsonOrders;
-      //array of day arrays
       this.days = jsonOrders.map(order => {
         console.log(this.createConvertedOrders(order.selectedDays));
         return this.createConvertedOrders(order.selectedDays);
       });
       console.log(this.days);
     })
+  }
+
+  getUserEmail() {
+    return this.authService.getCurrentUserEmail();
   }
   
 }

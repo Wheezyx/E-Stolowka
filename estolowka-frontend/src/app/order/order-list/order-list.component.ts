@@ -15,19 +15,14 @@ export class OrderListComponent {
               private snackBar: MatSnackBar) {}
 
   sendOrder() {
-    const config = new MatSnackBarConfig;
-    config.duration = 2000;
-
     this.orderService.sendOrder(this.orders).subscribe(() => {
       console.log("Order added");
-      this.refreshPage();
-      config.panelClass = ['success-msg'];
-      this.snackBar.open('Zamówienie zostało wysłane!', '', config);
+      this.cleanOrdersPage();
+      this.openSuccessMessage();
     },
     err => {
       console.log('error occurred: ' + err.message);
-      config.panelClass = ['error-msg'];
-      this.snackBar.open('Wystąpił błąd ' + err.message, '', config);
+      this.openErrorMessage(err);
     }
   );
   }
@@ -41,8 +36,22 @@ export class OrderListComponent {
     } 
   }
 
-  refreshPage() {
-    location.reload();
+  openSuccessMessage() {
+    const config = new MatSnackBarConfig;
+    config.duration = 2000;
+    config.panelClass = ['success-msg'];
+    this.snackBar.open('Zamówienie zostało wysłane!', '', config);
+  }
+
+  openErrorMessage(error: any) {
+    const config = new MatSnackBarConfig;
+    config.duration = 2000;
+    config.panelClass = ['error-msg'];
+    this.snackBar.open('Wystąpił błąd ' + error.message, '', config);
+  }
+
+  cleanOrdersPage() {
+    this.orders.splice(0, this.orders.length);
   }
   
 }
