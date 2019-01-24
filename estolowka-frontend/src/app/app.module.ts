@@ -23,12 +23,18 @@ import { UploadService } from "./upload/upload.service";
 import { TopNavigationComponent } from './top-navigation/top-navigation.component';
 import {AdminGuard} from "./auth/admin.guard";
 import { UserAccountComponent } from './user-account/user-account.component';
+import {PasswordComponent} from "./login/recover/password/password.component";
+import {RecoverGuard} from "./auth/recover.guard";
+import {EmailDialogComponent} from "./login/recover/email-form/email-dialog/email-dialog.component";
+import {EmailFormComponent} from "./login/recover/email-form/email-form.component";
+import {MatFormFieldModule, MatInputModule} from "@angular/material";
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: '', component: MainPageComponent, canActivate: [AuthGuard]},
   { path: 'order', component: OrdersComponent, canActivate: [AuthGuard]},
   { path: 'admin', component: UploadFormComponent, canActivate: [AdminGuard]},
+  { path: 'reset', component: PasswordComponent, canActivate: [RecoverGuard]},
   { path: 'account', component: UserAccountComponent, canActivate: [AuthGuard]}
 ];
 
@@ -43,6 +49,9 @@ const appRoutes: Routes = [
     LoginComponent,
     UploadFormComponent,
     TopNavigationComponent,
+    EmailDialogComponent,
+    EmailFormComponent,
+    PasswordComponent,
     UserAccountComponent
   ],
   imports: [
@@ -51,6 +60,8 @@ const appRoutes: Routes = [
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
     CalendarModule.forRoot({
       provide: DateAdapter,
       useFactory: adapterFactory
@@ -69,6 +80,7 @@ const appRoutes: Routes = [
       multi: true
     }
   ],
+  entryComponents: [EmailFormComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule {

@@ -1,0 +1,10 @@
+<form method="post" #form="ngForm">
+  <mat-form-field>
+    <input matInput [(ngModel)]="email" name="email" type="email" placeholder="Email" required/>
+  </mat-form-field>
+  <div>
+    <button mat-raised-button color="primary" type="submit"
+            (click)="sendRecoverLink()" [disabled]="!form.valid">Wyślij link
+    </button>
+  </div>
+</form>
