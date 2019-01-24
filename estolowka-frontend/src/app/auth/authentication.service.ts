@@ -4,15 +4,13 @@ import {HttpClient, HttpResponse} from '@angular/common/http';
 import {environment} from '../../environments/environment';
 import {Observable} from 'rxjs';
 import {SessionUser} from './sessionUser';
-import {ActivatedRoute} from "@angular/router";
 
 @Injectable()
 export class AuthenticationService {
 
   public token: string;
 
-  constructor(private http: HttpClient,
-              private route: ActivatedRoute) {
+  constructor(private http: HttpClient) {
   }
 
   getToken(): string {
@@ -65,12 +63,6 @@ export class AuthenticationService {
   logout(): void {
     this.token = null;
     localStorage.removeItem('currentUser');
-  }
-
-  getTokenFromUrl(): string {
-    const token = null;
-     this.route.queryParams.subscribe(params=> this.token = params['token']);
-     return token;
   }
 }
 
