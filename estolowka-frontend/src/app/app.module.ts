@@ -22,18 +22,20 @@ import { UploadFormComponent } from './upload/upload-form/upload-form.component'
 import { UploadService } from "./upload/upload.service";
 import { TopNavigationComponent } from './top-navigation/top-navigation.component';
 import {AdminGuard} from "./auth/admin.guard";
+import { UserAccountComponent } from './user-account/user-account.component';
+import {PasswordComponent} from "./login/recover/password/password.component";
+import {RecoverGuard} from "./auth/recover.guard";
 import {EmailDialogComponent} from "./login/recover/email-form/email-dialog/email-dialog.component";
 import {EmailFormComponent} from "./login/recover/email-form/email-form.component";
 import {MatFormFieldModule, MatInputModule} from "@angular/material";
-import {PasswordComponent} from "./login/recover/password/password.component";
-import {RecoverGuard} from "./auth/recover.guard";
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: '', component: MainPageComponent, canActivate: [AuthGuard]},
   { path: 'order', component: OrdersComponent, canActivate: [AuthGuard]},
   { path: 'admin', component: UploadFormComponent, canActivate: [AdminGuard]},
-  { path: 'reset', component: PasswordComponent, canActivate: [RecoverGuard]}
+  { path: 'reset', component: PasswordComponent, canActivate: [RecoverGuard]},
+  { path: 'account', component: UserAccountComponent, canActivate: [AuthGuard]}
 ];
 
 @NgModule({
@@ -49,7 +51,8 @@ const appRoutes: Routes = [
     TopNavigationComponent,
     EmailDialogComponent,
     EmailFormComponent,
-    PasswordComponent
+    PasswordComponent,
+    UserAccountComponent
   ],
   imports: [
     BrowserModule,

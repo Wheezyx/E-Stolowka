@@ -17,4 +17,8 @@ export class MainPageComponent implements OnInit {
     this.router.navigateByUrl('/order');
   }
 
+  navigateToAccountPage(): void {
+    this.router.navigateByUrl('/account');
+  }
+
 }

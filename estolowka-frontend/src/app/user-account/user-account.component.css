@@ -1,0 +1,41 @@
+mat-expansion-panel {
+    background-color: white;
+    opacity: .7;
+    width: 25%;
+    margin: 1% auto 0 2%;
+}
+
+mat-expansion-panel-header {
+    background-color: rgb(235, 235, 235);
+}
+
+mat-panel-title {
+    font-weight: bold;
+    font-size: 1.5em;
+}
+
+.mat-expansion-panel-body {
+    padding: 0 !important;
+}
+
+.date {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.singleDay {
+    padding: 10px 0 10px 8px;
+}
+
+.singleDay:nth-child(odd) {
+    height: auto;
+    background-color: rgb(241, 241, 241);
+}
+
+.singleDay:hover {
+    background-color: rgb(209, 206, 206);
+}
+
+.singleDay:nth-child(odd):hover {
+    background-color: rgb(228, 222, 222);
+}

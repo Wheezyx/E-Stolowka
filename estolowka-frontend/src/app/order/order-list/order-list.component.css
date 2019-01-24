@@ -13,4 +13,42 @@
 .mat-card {
     width: 100%;
     opacity: .8;
+    flex: 25%;
 }
+
+.send-order-button {
+    margin: 1em 0 1em;
+}
+
+::ng-deep snack-bar-container.success-msg {
+    background-color: rgb(89, 168, 89);
+    color: black;
+    font-weight: bold;
+}
+
+::ng-deep snack-bar-container.error-msg {
+    color: rgb(190, 15, 15);
+    font-weight: bold;
+}
+
+@media (max-width: 1100px) {
+    .orders-container {
+        flex: 50%;
+    }
+
+    .order {
+        width: 50%;
+    }
+}
+
+@media (max-width: 600px) {
+    .orders-container {
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .order {
+        width: 80%;
+    }
+}
+

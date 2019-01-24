@@ -5,7 +5,7 @@ export class Day {
       {name: 'Obiad', Selected: false},
       {name: 'Kolacja', Selected: false}
     ]
-    selectedDate: String = ""
+    selectedDate: string = ""
   
     constructor(id: number) {
       this.id = id;

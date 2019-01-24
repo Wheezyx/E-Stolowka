@@ -28,6 +28,6 @@ public class UserEntity {
     private String password;
     @OneToMany
     private Set<OrderEntity> orders;
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     private Set<UserRole> roles;
 }
