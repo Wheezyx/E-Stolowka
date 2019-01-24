@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthenticationService } from '../../auth/authentication.service';
+import {EmailDialogComponent} from "../recover/email-form/email-dialog/email-dialog.component";
 
 @Component({
  selector: 'app-login',
@@ -8,6 +9,8 @@ import { AuthenticationService } from '../../auth/authentication.service';
  styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+
+  @ViewChild(EmailDialogComponent) emailDialog: EmailDialogComponent;
 
  model: any = {};
  loading = false;
@@ -41,5 +44,9 @@ export class LoginComponent implements OnInit {
        }
        this.loading = false;
      });
+ }
+
+ openDialog() {
+   this.emailDialog.openDialog();
  }
 }

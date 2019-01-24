@@ -19,7 +19,9 @@
         <button class="login-button" [disabled]="loading">Login</button>
       </div>
       <div *ngIf="error" class="server-error-message">{{error}}</div>
+      <div (click)="openDialog()" class="recover-link">Odzyskaj hasło</div>
     </form>
   </mat-card-content>
  </div>
 </div>
+<app-email-dialog></app-email-dialog>
