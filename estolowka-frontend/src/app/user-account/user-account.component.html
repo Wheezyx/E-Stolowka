@@ -1,0 +1,15 @@
+<mat-expansion-panel>
+  <mat-expansion-panel-header class="orders-button" (click)="getOrders()">
+    <mat-panel-title>Moje zamówienia</mat-panel-title>
+  </mat-expansion-panel-header>
+
+  <div class="dayArray" *ngFor="let dayArray of days; let i = index" value="order">
+    <div class="singleDay" *ngFor="let singleDay of dayArray">
+      <div><span class="date">{{singleDay.selectedDate | date}}</span>
+        <div class="meal" *ngFor="let meal of singleDay.meals">
+          <div *ngIf="meal.Selected">{{meal.name}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</mat-expansion-panel>

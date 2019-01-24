@@ -2,6 +2,7 @@
   <mat-form-field>
     <input matInput
     [matDatepicker]="orderDatePicker"
+    [min]="minDate" [max]="maxDate"
     formControlName="dateOfOrder"
     [(ngModel)]="order.selectedDate">
     <mat-datepicker-toggle matSuffix [for]="orderDatePicker"></mat-datepicker-toggle>
