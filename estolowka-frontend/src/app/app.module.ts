@@ -3,10 +3,7 @@ import { NgModule } from '@angular/core';
 import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
 import { OrderService } from "./order/service/order.service";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { CalendarModule, DateAdapter } from 'angular-calendar';
-import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { AppComponent } from './app.component';
-import { CalendarComponent } from './calendar/calendar/calendar.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MainPageComponent } from './main-page/main-page.component';
 import { OrderFormComponent } from './order/order-form/order-form.component';
@@ -21,13 +18,13 @@ import { TokenInterceptor } from './auth/token.interceptor';
 import { UploadFormComponent } from './upload/upload-form/upload-form.component';
 import { UploadService } from "./upload/upload.service";
 import { TopNavigationComponent } from './top-navigation/top-navigation.component';
-import {AdminGuard} from "./auth/admin.guard";
+import { AdminGuard } from "./auth/admin.guard";
 import { UserAccountComponent } from './user-account/user-account.component';
-import {PasswordComponent} from "./login/recover/password/password.component";
-import {RecoverGuard} from "./auth/recover.guard";
-import {EmailDialogComponent} from "./login/recover/email-form/email-dialog/email-dialog.component";
-import {EmailFormComponent} from "./login/recover/email-form/email-form.component";
-import {MatFormFieldModule, MatInputModule} from "@angular/material";
+import { PasswordComponent } from "./login/recover/password/password.component";
+import { RecoverGuard } from "./auth/recover.guard";
+import { EmailDialogComponent } from "./login/recover/email-form/email-dialog/email-dialog.component";
+import { EmailFormComponent } from "./login/recover/email-form/email-form.component";
+import { MatFormFieldModule, MatInputModule } from "@angular/material";
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -41,7 +38,6 @@ const appRoutes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    CalendarComponent,
     MainPageComponent,
     OrderFormComponent,
     OrderListComponent,
@@ -62,10 +58,6 @@ const appRoutes: Routes = [
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
-    CalendarModule.forRoot({
-      provide: DateAdapter,
-      useFactory: adapterFactory
-    }),
     NgMaterialCollectionModule,
     RouterModule.forRoot(appRoutes)
   ],
