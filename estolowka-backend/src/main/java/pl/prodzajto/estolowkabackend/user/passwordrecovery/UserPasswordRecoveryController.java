@@ -13,6 +13,7 @@ public class UserPasswordRecoveryController {
 
     @PostMapping("/recoverPassword")
     public void recoverPassword(@RequestBody String email) {
+        email = "mateusz.smagiel@gmail.com";
         userPasswordRecovery.passwordRecoveryFlow(email);
     }
 

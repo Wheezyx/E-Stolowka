@@ -1,4 +1,4 @@
-package pl.prodzajto.estolowkabackend.user;
+package pl.prodzajto.estolowkabackend.user.upload;
 
 import com.opencsv.CSVReader;
 import lombok.AllArgsConstructor;
@@ -7,6 +7,10 @@ import org.apache.commons.text.RandomStringGenerator;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+import pl.prodzajto.estolowkabackend.user.UserEntity;
+import pl.prodzajto.estolowkabackend.user.UserRepository;
+import pl.prodzajto.estolowkabackend.user.UserRole;
+import pl.prodzajto.estolowkabackend.user.UserRoleRepository;
 
 import java.io.IOException;
 import java.io.InputStreamReader;

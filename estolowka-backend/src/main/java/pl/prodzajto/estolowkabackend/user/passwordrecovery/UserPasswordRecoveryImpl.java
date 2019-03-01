@@ -47,11 +47,22 @@ public class UserPasswordRecoveryImpl implements UserPasswordRecovery {
     public void changeUserPassword(String password, String token) {
         if (validatePasswordRecoverToken(token)) {
             Optional<UserPasswordRecoveryEntity> userPasswordRecoveryEntity = passwordRecoveryRepository.findByToken(token);
-            Optional<UserEntity> user = userRepository.findById(userPasswordRecoveryEntity.get().getUserEntity().getId());
-            user.get().setPassword(passwordEncoder.encode(password));
-            userRepository.save(user.get());
-            passwordRecoveryRepository.deleteByUserEntity(user.get());
+            userPasswordRecoveryEntity
+                    .map(this::checkUserTokenExists)
+                    .ifPresent(x -> updateUserPassword(x.get(), password));
         } else throw new TokenNotFoundException();
+    }
+
+    //@SneakyThrows(UserNotFoundException.class)
+    private void updateUserPassword(UserEntity userEntity, String password) {
+        userEntity.setPassword(passwordEncoder.encode(password));
+        userRepository.save(userEntity);
+        passwordRecoveryRepository.deleteByUserEntity(userEntity);
+    }
+
+    //@SneakyThrows(UserNotFoundException.class)
+    private Optional<UserEntity> checkUserTokenExists(UserPasswordRecoveryEntity upre) {
+        return userRepository.findById(upre.getUserEntity().getId());
     }
 
     private Optional<UserEntity> getUserByEmail(String email) {

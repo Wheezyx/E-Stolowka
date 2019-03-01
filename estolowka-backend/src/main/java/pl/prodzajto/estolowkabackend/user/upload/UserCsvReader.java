@@ -1,4 +1,4 @@
-package pl.prodzajto.estolowkabackend.user;
+package pl.prodzajto.estolowkabackend.user.upload;
 
 import org.springframework.web.multipart.MultipartFile;
 
