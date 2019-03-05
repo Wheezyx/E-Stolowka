@@ -32,7 +32,7 @@ public class OrderCreatorImplTest {
         orderCreator = new OrderCreatorImpl(orderRepository, dayRepository, userRepository);
         userRepository.save(UserEntity.builder()
                                       .email("admin@admin.pl")
-                                      .password("test123")
+                                      .password("test1234")
                                       .build());
     }
 
