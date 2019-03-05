@@ -2,14 +2,14 @@ version: 2
 jobs:
   build:
     
-    working_directory: ~/estolowka
+    working_directory: ~/estolowka/estolowka-backend
 
     docker:
       - image: circleci/openjdk:8-jdk-browsers
 
     steps:
-      - checkout
-      - run: cd estolowka-backend
+      - checkout:
+          path: ~/estolowka
       - restore_cache:
           key: estolowka-{{ checksum "pom.xml" }}
       
@@ -24,4 +24,5 @@ jobs:
       
       - store_test_results:
           path: target/surefire-reports
+      - run: mvn test
       
