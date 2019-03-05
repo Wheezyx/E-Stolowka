@@ -2,13 +2,13 @@ version: 2
 jobs:
   build:
     
-    working_directory: ~/estolowka-backend
+    working_directory: ~/estolowka
 
     docker:
       - image: circleci/openjdk:8-jdk-browsers
 
     steps:
-
+      - run: cd estolowka-backend
       - checkout
 
       - restore_cache:
