@@ -9,7 +9,7 @@ jobs:
 
     steps:
       - checkout
-      - run: ls
+      - run: cd estolowka-backend
       - restore_cache:
           key: estolowka-{{ checksum "pom.xml" }}
       
