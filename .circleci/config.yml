@@ -8,9 +8,8 @@ jobs:
       - image: circleci/openjdk:8-jdk-browsers
 
     steps:
-      - run: ls
       - checkout
-
+      - run: ls
       - restore_cache:
           key: estolowka-{{ checksum "pom.xml" }}
       
