@@ -1,0 +1,37 @@
+version: '3'
+services:
+  db:
+   container_name: 'postgres_db'
+   image: postgres:9.5
+   environment:
+    POSTGRES_PASSWORD: root
+    POSTGRES_USER: root
+    POSTGRES_DB: estolowka
+   ports:
+   - "5432:5432"
+   volumes:
+   - postgres_db:/var/lib/postgresql/data
+   restart: always
+  
+  web:
+    restart: always
+    build: ./estolowka-backend
+    working_dir: /estolowka-backend
+    volumes:
+      - ./estolowka-backend:/estolowka-backend
+      - ~/.m2:/root/.m2
+    ports:
+      - "8080:8080"
+    command: mvn clean spring-boot:run
+    depends_on:
+      - db
+  angular:
+    restart: always
+    build: ./estolowka-frontend
+    ports:
+      - "4200:4200"
+    depends_on:
+      - web
+volumes:
+    postgres_db: {}
+    
