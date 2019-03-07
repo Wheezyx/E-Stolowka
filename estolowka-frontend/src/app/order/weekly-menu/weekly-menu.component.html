@@ -1,0 +1,22 @@
+<mat-drawer-container class="menu-container">
+  <mat-drawer #drawer class="menu-sidenav" mode="side" position="end">
+    <div *ngFor="let menuItem of menuItems; let i = index">
+        <p (click)="showFiller = !showFiller">{{menuItem.dayName}}, {{menuItem.date}}</p>
+        <ul>
+          <li class="break-word">{{menuItem.breakfast}}</li>
+          <li class="break-word">{{menuItem.dinner}}</li>
+          <li class="break-word">{{menuItem.supper}}</li>
+        </ul>
+    </div>
+  </mat-drawer>
+
+  <div class="menu-sidenav-content">
+    <button type="button" mat-button (click)="drawer.toggle()">
+      Menu
+    </button>
+    <div class="img-padding">
+        <img src="../../assets/img/cooking.png">
+    </div>
+  </div>
+
+</mat-drawer-container>

@@ -5,6 +5,7 @@ import { OrderService } from './service/order.service';
 import { OrderFormComponent } from './order-form/order-form.component';
 import { OrderListComponent } from './order-list/order-list.component';
 import { OrdersComponent } from './orders/orders.component';
+import { WeeklyMenuComponent } from './weekly-menu/weekly-menu.component';
 
 @NgModule({
   imports: [
@@ -16,7 +17,8 @@ import { OrdersComponent } from './orders/orders.component';
   declarations: [
     OrderFormComponent,
     OrderListComponent,
-    OrdersComponent
+    OrdersComponent,
+    WeeklyMenuComponent
   ],
   providers: [
     OrderService
