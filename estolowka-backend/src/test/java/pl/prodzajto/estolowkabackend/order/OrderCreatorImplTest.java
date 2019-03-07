@@ -30,6 +30,10 @@ public class OrderCreatorImplTest {
     @Before
     public void setUp() {
         orderCreator = new OrderCreatorImpl(orderRepository, dayRepository, userRepository);
+        userRepository.save(UserEntity.builder()
+                                      .email("admin@admin.pl")
+                                      .password("test1234")
+                                      .build());
     }
 
     @Test
