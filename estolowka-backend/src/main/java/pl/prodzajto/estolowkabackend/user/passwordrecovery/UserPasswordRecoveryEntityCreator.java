@@ -1,15 +1,18 @@
 package pl.prodzajto.estolowkabackend.user.passwordrecovery;
 
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 import pl.prodzajto.estolowkabackend.user.UserEntity;
 
 import java.util.Calendar;
 import java.util.Date;
 import java.util.UUID;
 
-public class UserPasswordRecoveryEntityCreator {
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
+class UserPasswordRecoveryEntityCreator {
     private static final int EXPIRATION = 60 * 24;
 
-    public static UserPasswordRecoveryEntity createUserPasswordRecoveryEntity(UserEntity userEntity) {
+    static UserPasswordRecoveryEntity createUserPasswordRecoveryEntity(UserEntity userEntity) {
         String token = UUID.randomUUID().toString();
         Date expirationDate = generateExpirationDate();
         return UserPasswordRecoveryEntity.builder()

@@ -11,9 +11,7 @@ import pl.prodzajto.estolowkabackend.user.UserRepository;
 
 import java.util.Set;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
@@ -31,7 +29,7 @@ public class OrderCreatorImplTest {
     public void setUp() {
         orderCreator = new OrderCreatorImpl(orderRepository, dayRepository, userRepository);
         userRepository.save(UserEntity.builder()
-                                      .email("admin@admin.pl")
+                .email("admin@gmail.com")
                                       .password("test1234")
                                       .build());
     }
