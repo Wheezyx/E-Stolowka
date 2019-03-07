@@ -1,12 +1,14 @@
 package pl.prodzajto.estolowkabackend.user.passwordrecovery;
 
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 import pl.prodzajto.estolowkabackend.user.UserEntity;
 
 import java.util.Calendar;
 import java.util.Date;
 import java.util.UUID;
 
-//@NoArgsConstructor(access = AccessLevel.PRIVATE)
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 class UserPasswordRecoveryEntityCreator {
     private static final int EXPIRATION = 60 * 24;
 

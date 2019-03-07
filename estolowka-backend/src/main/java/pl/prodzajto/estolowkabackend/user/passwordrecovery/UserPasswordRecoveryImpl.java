@@ -1,10 +1,12 @@
 package pl.prodzajto.estolowkabackend.user.passwordrecovery;
 
 import lombok.AllArgsConstructor;
+import lombok.SneakyThrows;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import pl.prodzajto.estolowkabackend.email.EmailService;
 import pl.prodzajto.estolowkabackend.user.UserEntity;
+import pl.prodzajto.estolowkabackend.user.UserNotFoundException;
 import pl.prodzajto.estolowkabackend.user.UserRepository;
 
 import javax.transaction.Transactional;
@@ -53,14 +55,14 @@ public class UserPasswordRecoveryImpl implements UserPasswordRecovery {
         } else throw new TokenNotFoundException();
     }
 
-    //@SneakyThrows(UserNotFoundException.class)
+    @SneakyThrows(UserNotFoundException.class)
     private void updateUserPassword(UserEntity userEntity, String password) {
         userEntity.setPassword(passwordEncoder.encode(password));
         userRepository.save(userEntity);
         passwordRecoveryRepository.deleteByUserEntity(userEntity);
     }
 
-    //@SneakyThrows(UserNotFoundException.class)
+    @SneakyThrows(UserNotFoundException.class)
     private Optional<UserEntity> checkUserTokenExists(UserPasswordRecoveryEntity upre) {
         return userRepository.findById(upre.getUserEntity().getId());
     }

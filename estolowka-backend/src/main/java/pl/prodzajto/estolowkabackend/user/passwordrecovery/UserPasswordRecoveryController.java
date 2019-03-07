@@ -12,9 +12,8 @@ public class UserPasswordRecoveryController {
     private UserPasswordRecovery userPasswordRecovery;
 
     @PostMapping("/recoverPassword")
-    public void recoverPassword(@RequestBody String email) {
-        email = "mateusz.smagiel@gmail.com";
-        userPasswordRecovery.passwordRecoveryFlow(email);
+    public void recoverPassword(@RequestBody Map<String, String> email) {
+        userPasswordRecovery.passwordRecoveryFlow(email.get("email"));
     }
 
     @GetMapping("/recoverPassword/link")
