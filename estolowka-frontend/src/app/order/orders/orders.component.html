@@ -1,8 +1,11 @@
 <header>
   <h1>Zamówienia</h1>
 </header>
-<div class="order-page-container flex-container">
-  <div class="make-order-utils flex-sub-container">
+<div class="order-page-container">
+  <aside class="display-menu">
+    <app-weekly-menu></app-weekly-menu>
+  </aside>
+  <div class="make-order-utils">
     <div class="button-row">
       <button 
       mat-raised-button
@@ -14,7 +17,4 @@
       </app-order-list>
     </div>
   </div>
-  <aside class="display-menu">
-    <app-weekly-menu></app-weekly-menu>
-  </aside>
 </div>
