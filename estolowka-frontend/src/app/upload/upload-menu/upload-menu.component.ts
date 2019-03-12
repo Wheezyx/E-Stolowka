@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit, Input } from '@angular/core';
 import { UploadService } from "../upload.service";
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material';
 import { WeeklyMenuItem } from '../../order/model/weekly-menu-item';
@@ -11,28 +10,13 @@ import { WeeklyMenuItem } from '../../order/model/weekly-menu-item';
 })
 export class UploadMenuComponent implements OnInit {
 
-  form: FormGroup;
-  menuItems: WeeklyMenuItem[] = [];
+  @Input() menuItems: WeeklyMenuItem[] = [];
 
-  minDate = this.getTomorrowDate();
-  maxDate = this.getLastDayOfMonth();
-
-  constructor(private formBuilder: FormBuilder,
-              private uploadService: UploadService,
+  constructor(private uploadService: UploadService,
               private snackBar: MatSnackBar) { }
 
   ngOnInit() {
     this.menuItems = this.generateMenuMeals();
-    this.form = this.buildMenuForm();
-  }
-
-  buildMenuForm() {
-    return this.formBuilder.group({
-      date: ['', Validators.required],
-      breakfast: ['', Validators.required],
-      dinner: ['', Validators.required],
-      supper: ['', Validators.required],
-    });
   }
 
   generateMenuMeals(): WeeklyMenuItem[] {
@@ -44,23 +28,13 @@ export class UploadMenuComponent implements OnInit {
   }
 
   sendMenu() {
-    this.uploadService.sendMenu(this.form.value).subscribe(event => {
+    this.uploadService.sendMenu(this.menuItems).subscribe(event => {
         this.openSuccessMessage();
       },
       err => {
         console.log('error occurred: ' + err.message);
         this.openErrorMessage(err);
       });
-  }
-
-  getTomorrowDate() {
-    let today = new Date();
-    return new Date(today.getFullYear(), today.getMonth(), today.getDate()+1);
-  }
-
-  getLastDayOfMonth() {
-    let today = new Date();
-    return new Date(today.getFullYear(), today.getMonth()+1, 0);
   }
 
   openSuccessMessage() {

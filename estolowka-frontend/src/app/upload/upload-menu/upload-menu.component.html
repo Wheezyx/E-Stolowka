@@ -1,26 +1,10 @@
 <div class="menu-container">
-  <h2>Dodaj menu</h2>
+  <h2>Dodaj menu na najbliższy tydzień</h2>
   <section class="add-menu-container">
-    <form [formGroup]="form" *ngFor="let menuItem of menuItems">
-      <mat-form-field>
-        <input matInput [matDatepicker]="menuDatePicker" [min]="minDate" [max]="maxDate" formControlName="date"
-          [(ngModel)]="menuItem.date">
-        <mat-datepicker-toggle matSuffix [for]="menuDatePicker"></mat-datepicker-toggle>
-        <mat-datepicker #menuDatePicker></mat-datepicker>
-      </mat-form-field>
-      <div class="form-group">
-        <label>Śniadanie</label>
-        <input type="text">
-      </div>
-      <div class="form-group">
-        <label>Obiad</label>
-        <input type="text">
-      </div>
-      <div class="form-group">
-        <label>Kolacja</label>
-        <input type="text">
-      </div>
-    </form>
+    <div *ngFor="let menuItem of menuItems">
+      <app-upload-menu-form [menuItem] = "menuItem">
+      </app-upload-menu-form>
+    </div>
   </section>
   <button class="import-component" type="button" (click)="sendMenu()">Wyślij</button>
 </div>

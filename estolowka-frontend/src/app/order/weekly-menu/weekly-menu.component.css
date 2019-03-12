@@ -37,6 +37,14 @@ a {
 a:hover {
   border-bottom: 1px;
 }
+
+.text-center {
+  text-align: center;
+}
+
+.medium-size {
+  font-size: 1.3em;
+}
   
 button {
   font-size: 1.5em;

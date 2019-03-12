@@ -9,6 +9,7 @@ import { UploadService } from "../../upload/upload.service";
 })
 export class WeeklyMenuComponent implements OnInit {
   showFiller = false;
+  isEmpty: boolean = true;
 
   menuItems: WeeklyMenuItem[];
   /*menuItems: WeeklyMenuItem[] = [
@@ -23,12 +24,14 @@ export class WeeklyMenuComponent implements OnInit {
 
   constructor(private uploadService: UploadService) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   getMenuItems() {
     this.uploadService.getMenu().subscribe(data => {
       this.menuItems = data;
+      if (data.length > 0) {
+        this.isEmpty = false;
+      }
     })
   }
 

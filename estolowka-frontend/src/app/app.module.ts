@@ -27,6 +27,7 @@ import { EmailFormComponent } from "./login/recover/email-form/email-form.compon
 import { MatFormFieldModule, MatInputModule } from "@angular/material";
 import { WeeklyMenuComponent } from './order/weekly-menu/weekly-menu.component';
 import { UploadMenuComponent } from './upload/upload-menu/upload-menu.component';
+import { UploadMenuFormComponent } from './upload/upload-menu-form/upload-menu-form.component';
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -52,7 +53,8 @@ const appRoutes: Routes = [
     PasswordComponent,
     UserAccountComponent,
     WeeklyMenuComponent,
-    UploadMenuComponent
+    UploadMenuComponent,
+    UploadMenuFormComponent
   ],
   imports: [
     BrowserModule,

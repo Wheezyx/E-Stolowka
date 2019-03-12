@@ -1,5 +1,6 @@
 <mat-drawer-container class="menu-container">
   <mat-drawer #drawer class="menu-sidenav" mode="side" position="end">
+    <p class="text-center medium-size" *ngIf="isEmpty">Nie wprowadzono jeszcze menu na najbliższy tydzień</p>
     <div *ngFor="let menuItem of menuItems; let i = index">
         <p (click)="showFiller = !showFiller">{{menuItem.date}}</p>
         <ul>
@@ -9,7 +10,6 @@
         </ul>
     </div>
   </mat-drawer>
-
   <div class="menu-sidenav-content" (click)="drawer.toggle()">
     <button type="button" mat-button >
       Zobacz menu na najbliższy tydzień
@@ -18,5 +18,4 @@
         <img src="../../assets/img/cooking.png">
     </div>
   </div>
-
 </mat-drawer-container>
