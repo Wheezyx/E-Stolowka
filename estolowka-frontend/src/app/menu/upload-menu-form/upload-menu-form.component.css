@@ -1,0 +1,18 @@
+input {
+    font-size: 1em;
+    border-radius: 5px;
+    padding: .5em;
+    width: 100%;
+    margin-bottom: 3%;
+    height: 35px;
+}
+
+form {
+    width: 90%;
+    margin: 0 2%;
+}
+
+.form-group {
+    width: 100%;
+}
+
