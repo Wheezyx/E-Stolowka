@@ -10,7 +10,7 @@
         </ul>
     </div>
   </mat-drawer>
-  <div class="menu-sidenav-content" (click)="drawer.toggle()">
+  <div class="menu-sidenav-content" (click)="drawer.toggle(); getMenuItems()">
     <button type="button" mat-button >
       Zobacz menu na najbliższy tydzień
     </button>
