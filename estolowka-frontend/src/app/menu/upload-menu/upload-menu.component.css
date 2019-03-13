@@ -1,0 +1,43 @@
+.menu-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 90%;
+    background-color: rgb(122, 104, 139);
+    opacity: .85;
+    border-radius: 5px;
+    margin: 5% auto;
+}
+
+h2 {
+    text-align: center;
+}
+
+.add-menu-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    height: auto;
+    padding: 0 2% 2%;
+    font-size: 1.3em;
+}
+
+button {
+    font-size: 1em;
+    border-radius: 5px;
+    padding: .5em;
+    width: 30%;
+    margin: 0 auto 3%;
+}
+
+::ng-deep snack-bar-container.success-msg {
+    background-color: rgb(89, 168, 89);
+    color: black;
+    font-weight: bold;
+}
+
+::ng-deep snack-bar-container.error-msg {
+    color: rgb(190, 15, 15);
+    font-weight: bold;
+}
+
