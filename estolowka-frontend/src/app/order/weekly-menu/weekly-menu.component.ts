@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { WeeklyMenuItem } from '../model/weekly-menu-item';
-import { UploadService } from "../../upload/upload.service";
+import { WeeklyMenuItem } from '../../menu/model/weekly-menu-item';
+import { MenuService } from "../../menu/menu.service";
 
 @Component({
   selector: 'app-weekly-menu',
@@ -22,12 +22,12 @@ export class WeeklyMenuComponent implements OnInit {
     {date: "10/03/2019", breakfast: "Croissant z dżemem", dinner: "Kotlet schabowy", supper: "Tatar"},
   ]*/
 
-  constructor(private uploadService: UploadService) { }
+  constructor(private menuService: MenuService) { }
 
   ngOnInit() {}
 
   getMenuItems() {
-    this.uploadService.getMenu().subscribe(data => {
+    this.menuService.getMenu().subscribe(data => {
       this.menuItems = data;
       if (data.length > 0) {
         this.isEmpty = false;
