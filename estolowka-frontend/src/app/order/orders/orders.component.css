@@ -12,3 +12,25 @@ h1 {
     text-align: center;
     color: rgb(48, 47, 47);
 }
+
+.order-page-container {
+    width: 100%;
+    margin-right: 0;
+    padding-right: 20px;
+}
+
+.flex-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.flex-sub-container {
+    display: flex;
+    flex-direction: column;
+    width: 170%;
+}
+
+.display-menu {
+    width: 70%;
+    margin: 0 auto;
+}

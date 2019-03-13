@@ -25,6 +25,10 @@ import { RecoverGuard } from "./auth/recover.guard";
 import { EmailDialogComponent } from "./login/recover/email-form/email-dialog/email-dialog.component";
 import { EmailFormComponent } from "./login/recover/email-form/email-form.component";
 import { MatFormFieldModule, MatInputModule } from "@angular/material";
+import { WeeklyMenuComponent } from './order/weekly-menu/weekly-menu.component';
+import { UploadMenuComponent } from './menu/upload-menu/upload-menu.component';
+import { UploadMenuFormComponent } from './menu/upload-menu-form/upload-menu-form.component';
+import { MenuService } from './menu/menu.service';
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -48,7 +52,10 @@ const appRoutes: Routes = [
     EmailDialogComponent,
     EmailFormComponent,
     PasswordComponent,
-    UserAccountComponent
+    UserAccountComponent,
+    WeeklyMenuComponent,
+    UploadMenuComponent,
+    UploadMenuFormComponent
   ],
   imports: [
     BrowserModule,
@@ -64,6 +71,7 @@ const appRoutes: Routes = [
   providers: [
     OrderService,
     UploadService,
+    MenuService,
     AuthGuard,
     AuthenticationService,
     {

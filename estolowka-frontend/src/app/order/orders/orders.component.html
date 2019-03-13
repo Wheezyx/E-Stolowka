@@ -1,13 +1,20 @@
 <header>
   <h1>Zamówienia</h1>
 </header>
-<div class="button-row">
-  <button 
-  mat-raised-button
-  class="basic-button"
-  (click)="addOrder()">Dodaj zamówienie</button>
-</div>
-<div>
-  <app-order-list [orders]="orders">
-  </app-order-list>
+<div class="order-page-container">
+  <aside class="display-menu">
+    <app-weekly-menu></app-weekly-menu>
+  </aside>
+  <div class="make-order-utils">
+    <div class="button-row">
+      <button 
+      mat-raised-button
+      class="basic-button"
+      (click)="addOrder()">Dodaj zamówienie</button>
+    </div>
+    <div>
+      <app-order-list [orders]="orders">
+      </app-order-list>
+    </div>
+  </div>
 </div>
