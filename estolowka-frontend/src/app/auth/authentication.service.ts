@@ -66,12 +66,6 @@ export class AuthenticationService {
     this.token = null;
     localStorage.removeItem('currentUser');
   }
-
-  getTokenFromUrl(): string {
-    const token = null;
-    this.route.queryParams.subscribe(params=> this.token = params['token']);
-    return token;
-  }
 }
 
 export interface JWTPayload {

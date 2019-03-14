@@ -8,17 +8,23 @@ import {tokenNotExpired} from "angular2-jwt";
 })
 export class RecoverGuard implements CanActivate {
 
+  token: string;
+
   constructor(private authenticationService: AuthenticationService,
               private router: Router) {
 
   }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    var token = route.queryParams['token'];
-    if (token && tokenNotExpired(null, token)) {
+    this.token = route.queryParams['token'];
+    if (this.token && tokenNotExpired(null, this.token)) {
       return true;
     }
     this.router.navigate(['']);
     return false;
+  }
+
+  getToken(): string {
+    return this.token;
   }
 }
