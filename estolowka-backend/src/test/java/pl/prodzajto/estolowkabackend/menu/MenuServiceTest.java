@@ -6,6 +6,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.junit4.SpringRunner;
+import pl.prodzajto.estolowkabackend.menu.pricelist.PriceListRepository;
 
 import java.time.LocalDate;
 import java.util.HashSet;
@@ -19,11 +20,13 @@ public class MenuServiceTest {
 
     @Autowired
     private MealDayRepository mealDayRepository;
+    @Autowired
+    private PriceListRepository priceListRepository;
     private MenuService menuService;
 
     @Before
     public void setUp() {
-        menuService = new MenuService(mealDayRepository);
+        menuService = new MenuService(mealDayRepository, priceListRepository);
     }
 
     @Test

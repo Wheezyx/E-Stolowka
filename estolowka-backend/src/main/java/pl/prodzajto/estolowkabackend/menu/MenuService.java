@@ -2,6 +2,9 @@ package pl.prodzajto.estolowkabackend.menu;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import pl.prodzajto.estolowkabackend.menu.pricelist.PriceList;
+import pl.prodzajto.estolowkabackend.menu.pricelist.PriceListEntity;
+import pl.prodzajto.estolowkabackend.menu.pricelist.PriceListRepository;
 
 import java.time.LocalDate;
 import java.util.Set;
@@ -12,6 +15,7 @@ import java.util.stream.Collectors;
 public class MenuService {
 
     private final MealDayRepository mealDayRepository;
+    private final PriceListRepository priceListRepository;
 
     void saveMenu(Menu menu) {
         menu.getMeals().forEach(this::saveMealDay);
@@ -42,5 +46,20 @@ public class MenuService {
                 .build();
 
         return mealDayRepository.save(mealDayEntity);
+    }
+
+    public PriceListEntity getMealPrices() {
+        return priceListRepository.findTopByOrderByIdDesc();
+    }
+
+    public PriceListEntity savePriceList(PriceList priceList) {
+        PriceListEntity priceListEntity = PriceListEntity.builder()
+                .breakfastPrice(priceList.getBreakfastPrice())
+                .dinnerPrice(priceList.getDinnerPrice())
+                .supperPrice(priceList.getSupperPrice())
+                .updateDate(LocalDate.now())
+                .build();
+
+        return priceListRepository.save(priceListEntity);
     }
 }

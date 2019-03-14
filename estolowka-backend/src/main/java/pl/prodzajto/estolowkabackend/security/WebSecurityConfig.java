@@ -30,6 +30,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/order").authenticated()
                 .antMatchers("/uploadUsers").hasAuthority("ADMIN")
                 .antMatchers(HttpMethod.POST, "/menu").hasAuthority("ADMIN")
+                .antMatchers(HttpMethod.POST, "/menu/prices").hasAuthority("ADMIN")
                 .anyRequest().permitAll()
                 .and()
                 .addFilter(new JwtAuthenticationFilter(authenticationManager(), objectMapper))
