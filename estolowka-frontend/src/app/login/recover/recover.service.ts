@@ -13,7 +13,7 @@ export class RecoverService {
               private guard: RecoverGuard) { }
 
   recoverLink(email: string) {
-    return this.http.post(environment.recoverUrl, email);
+    return this.http.post(environment.recoverUrl, {email: email});
   }
 
   resetPassword(password: string) {
