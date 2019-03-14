@@ -40,20 +40,20 @@ export class AuthenticationService {
     return this.getUserRoles().includes('ADMIN');
   }
 
- login(credentials, callback, errorCallback): void {
-   this.getLoginResponse(credentials).subscribe(
-     res => {
-       let authHeader = res.headers.get('Authorization');
-       if (authHeader) {
-         this.token = authHeader;
-         localStorage.setItem('currentUser',
-           JSON.stringify(<SessionUser>{email: credentials.email, token: this.token}));
-       }
-       return callback && callback();
-     }, error => {
-       return errorCallback && errorCallback(error);
-     });
- }
+  login(credentials, callback, errorCallback): void {
+    this.getLoginResponse(credentials).subscribe(
+      res => {
+        let authHeader = res.headers.get('Authorization');
+        if (authHeader) {
+          this.token = authHeader;
+          localStorage.setItem('currentUser',
+            JSON.stringify(<SessionUser>{email: credentials.email, token: this.token}));
+        }
+        return callback && callback();
+      }, error => {
+        return errorCallback && errorCallback(error);
+      });
+  }
 
   getLoginResponse(credentials): Observable<HttpResponse<any>> {
     var data = {email: credentials.email, password: credentials.password};
