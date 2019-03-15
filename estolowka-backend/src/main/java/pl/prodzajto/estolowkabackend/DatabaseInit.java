@@ -35,7 +35,7 @@ public class DatabaseInit
         roleSet2.add(userRole);
         UserEntity user = UserEntity.builder()
                                     .index(212312)
-                                    .email("mateusz.wedel@gmail.com")
+                                    .email("admin@gmail.com")
                                     .roles(roleSet1)
                                     .password(passwordEncoder.encode("admin"))
                                     .build();
