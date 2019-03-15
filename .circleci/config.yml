@@ -59,7 +59,7 @@ jobs:
     - run:
         name: Create dir and certs file
         command: |
-          mkdir -p $DOCKER_CERT_PATH
+          mkdir $DOCKER_CERT_PATH
           echo "$CA" > $DOCKER_CERT_PATH/ca.pem
           echo "$CLIENT_CERT" > $DOCKER_CERT_PATH/cert.pem
           echo "$CLIENT_KEY" > $DOCKER_CERT_PATH/key.pem
@@ -72,4 +72,13 @@ jobs:
 workflows:
   version: 2
   test_app_deploy:
+    jobs:
+      - test_backend:
+          filters:
+            branches:
+              only: master
+      - test_frontend:
+          filters:
+            branches:
+              only: master
       - deployment
