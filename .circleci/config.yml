@@ -59,7 +59,7 @@ jobs:
     - run:
         name: Create dir and certs file
         command: |
-          mkdir $DOCKER_CERT_PATH
+          mkdir -p $DOCKER_CERT_PATH
           echo "$CA" > $DOCKER_CERT_PATH/ca.pem
           echo "$CLIENT_CERT" > $DOCKER_CERT_PATH/cert.pem
           echo "$CLIENT_KEY" > $DOCKER_CERT_PATH/key.pem
