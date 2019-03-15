@@ -1,22 +1,26 @@
-# base image
-FROM node:alpine
+### STAGE 1: Build ###
 
-# set working directory
-RUN mkdir -p /usr/src/app
-WORKDIR /usr/src/app
+FROM node:10-alpine as builder
 
-# add `/usr/src/app/node_modules/.bin` to $PATH
-ENV PATH /usr/src/app/node_modules/.bin:$PATH
+COPY package.json package-lock.json ./
 
-# install and cache app dependencies
-COPY package.json /usr/src/app/package.json
-RUN npm install
-RUN npm install -g @angular/cli@1.7.1
+RUN npm i && mkdir /ng-app && mv ./node_modules ./ng-app
 
-# add app
-COPY . /usr/src/app
+WORKDIR /ng-app
 
-EXPOSE 4200
+COPY . .
 
-# start app
-CMD ng serve --host 0.0.0.0
+RUN $(npm bin)/ng build --output-path=dist
+
+
+### STAGE 2: Setup ###
+
+FROM nginx:1.14.1-alpine
+
+COPY nginx/default.conf /etc/nginx/conf.d/
+
+RUN rm -rf /usr/share/nginx/html/*
+
+COPY --from=builder /ng-app/dist /usr/share/nginx/html
+
+CMD ["nginx", "-g", "daemon off;"]

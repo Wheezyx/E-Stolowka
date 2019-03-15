@@ -47,7 +47,7 @@ jobs:
     environment:
       DOCKER_TLS_VERIFY: "1"
       DOCKER_HOST: "tcp://142.93.77.76:2376"
-      DOCKER_CERT_PATH: "certs"
+      DOCKER_CERT_PATH: "estolowka-cert"
     steps:
     - run:
         name: Install Docker Compose
@@ -55,7 +55,6 @@ jobs:
           curl -L https://github.com/docker/compose/releases/download/1.19.0/docker-compose-`uname -s`-`uname -m` > ~/docker-compose
           chmod +x ~/docker-compose
           sudo mv ~/docker-compose /usr/local/bin/docker-compose
-    - setup_remote_docker
     - run:
         name: Create dir and certs file
         command: |
@@ -66,6 +65,15 @@ jobs:
     - run:
         name: Check docker-compose works
         command: docker-compose version
+    - run:
+        name: Build images
+        command: docker-compose build
+    - run:
+        name: Destroy current containers
+        command: docker-compose down
+    - run:
+        name: Deploy by docker-compose
+        command: docker-compose up -d --force-recreate
     -run:
         name: Remove cert dir
         command: rm -rf $DOCKER_CERT_PATH
