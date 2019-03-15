@@ -66,6 +66,9 @@ jobs:
         name: Check docker-compose works
         command: docker-compose version
     - run:
+        name: check dir
+        command: pwd
+    - run:
         name: Build images
         command: docker-compose build
     - run:
