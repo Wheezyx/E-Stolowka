@@ -40,9 +40,44 @@ jobs:
     - run:
         name: Testing
         command: npm run test -- --no-watch --no-progress
+  deployment:
+    working_directory: ~/estolowka
+    docker:
+    - image: circleci/openjdk:8u171-jdk
+    environment:
+      DOCKER_TLS_VERIFY: "1"
+      DOCKER_HOST: "tcp://142.93.77.76:2376"
+      DOCKER_CERT_PATH: "certs"
+    steps:
+    - run:
+        name: Install Docker Compose
+        command: |
+          curl -L https://github.com/docker/compose/releases/download/1.19.0/docker-compose-`uname -s`-`uname -m` > ~/docker-compose
+          chmod +x ~/docker-compose
+          sudo mv ~/docker-compose /usr/local/bin/docker-compose
+    - setup_remote_docker
+    - run:
+        name: Create dir and certs file
+        command: |
+          mkdir $DOCKER_CERT_PATH
+          echo "$CA" > $DOCKER_CERT_PATH/ca.pem
+          echo "$CLIENT_CERT" > $DOCKER_CERT_PATH/cert.pem
+          echo "$CLIENT_KEY" > $DOCKER_CERT_PATH/key.pem
+    - run:
+        name: Check docker-compose works
+        command: docker-compose version
+    -run:
+        name: Remove cert dir
+        command: rm -rf $DOCKER_CERT_PATH
+
+
 workflows:
   version: 2
   test_app:
     jobs:
       - test_backend
       - test_frontend
+      - deployment:
+        requires:
+          - test_backend
+          - test_frontend
