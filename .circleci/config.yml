@@ -72,7 +72,4 @@ jobs:
 workflows:
   version: 2
   test_app_deploy:
-      - deployment:
-          requires:
-            - test_backend
-            - test_frontend
+      - deployment
