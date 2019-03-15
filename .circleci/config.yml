@@ -52,8 +52,8 @@ jobs:
     - run:
         name: Install Docker Compose
         command: |
-          curl -L https://github.com/docker/compose/releases/download/1.19.0/docker-compose-`uname -s`-`uname -m` > ~/docker-compose
-          chmod +x ~/docker-compose
+          curl -L https://github.com/docker/compose/releases/download/1.23.2/docker-compose-`uname -s`-`uname -m` > ~/docker-compose
+          sudo chmod +x ~/docker-compose
           sudo mv ~/docker-compose /usr/local/bin/docker-compose
     - run:
         name: Create dir and certs file
@@ -67,7 +67,7 @@ jobs:
         command: docker-compose version
     - run:
         name: check dir
-        command: pwd
+        command: ls
     - run:
         name: Build images
         command: docker-compose build
