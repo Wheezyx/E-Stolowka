@@ -1,6 +1,6 @@
 version: 2
 jobs:
-  build:
+  test_backend:
     
     working_directory: ~/estolowka/estolowka-backend
 
@@ -12,13 +12,37 @@ jobs:
           path: ~/estolowka
       - restore_cache:
           key: estolowka-{{ checksum "pom.xml" }}
-      
       - run: mvn dependency:go-offline
-      
       - save_cache:
           paths:
             - ~/.m2
           key: estolowka-{{ checksum "pom.xml" }}
-          
       - run: mvn test
-      
+
+  test_frontend:
+    working_directory: ~/estolowka/estolowka-frontend
+    docker:
+      - image: circleci/node:10.15.3-browsers-legacy
+    steps:
+    - checkout:
+        path: ~/estolowka
+    - restore_cache:
+        keys:
+        - v1-dependencies-{{ checksum "package.json" }}
+        - v1-dependencies-
+    - run:
+        name: Install local dependencies
+        command: npm install
+    - save_cache:
+        key: v1-dependencies-{{ checksum "package.json" }}
+        paths:
+        - node_modules
+    - run:
+        name: Testing
+        command: npm run test -- --no-watch --no-progress
+workflows:
+  version: 2
+  test_app:
+    jobs:
+      - test_backend
+      - test_frontend
