@@ -42,8 +42,6 @@ jobs:
         command: npm run test -- --no-watch --no-progress
   deployment:
     working_directory: ~/estolowka
-    - checkout:
-        path: ~/estolowka
     docker:
     - image: circleci/openjdk:8u171-jdk
     environment:
@@ -51,6 +49,8 @@ jobs:
       DOCKER_HOST: "tcp://142.93.77.76:2376"
       DOCKER_CERT_PATH: "estolowka-cert"
     steps:
+    - checkout:
+        path: ~/estolowka
     - run:
         name: Install Docker Compose
         command: |
