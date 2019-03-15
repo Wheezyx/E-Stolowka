@@ -42,6 +42,8 @@ jobs:
         command: npm run test -- --no-watch --no-progress
   deployment:
     working_directory: ~/estolowka
+    - checkout:
+        path: ~/estolowka
     docker:
     - image: circleci/openjdk:8u171-jdk
     environment:
