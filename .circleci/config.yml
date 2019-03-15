@@ -69,15 +69,13 @@ jobs:
     -run:
         name: Remove cert dir
         command: rm -rf $DOCKER_CERT_PATH
-
-
 workflows:
   version: 2
-  test_app:
+  test_app_deploy:
     jobs:
       - test_backend
       - test_frontend
       - deployment:
-        requires:
-          - test_backend
-          - test_frontend
+          requires:
+            - test_backend
+            - test_frontend
