@@ -1,7 +1,6 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../environments/environment";
-import {AuthenticationService} from "../../auth/authentication.service";
 import {RecoverGuard} from "../../auth/recover.guard";
 
 @Injectable({
@@ -10,13 +9,14 @@ import {RecoverGuard} from "../../auth/recover.guard";
 export class RecoverService {
 
   constructor(private http: HttpClient,
-              private guard: RecoverGuard) { }
+              private guard: RecoverGuard) {
+  }
 
   recoverLink(email: string) {
-    return this.http.post(environment.recoverUrl, {email: email});
+    return this.http.post(environment.recoverUrl, email);
   }
 
   resetPassword(password: string) {
-    this.http.post(environment.recoverUrl + '/reset', {password: password, token: this.guard.getToken()})
+    this.http.post(environment.recoverUrl + '/reset', {password: password, token: this.guard.getToken()}).subscribe();
   }
 }
