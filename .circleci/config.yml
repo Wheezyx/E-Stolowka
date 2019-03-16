@@ -40,9 +40,54 @@ jobs:
     - run:
         name: Testing
         command: npm run test -- --no-watch --no-progress
+
+  deployment:
+    working_directory: ~/estolowka
+    docker:
+    - image: docker:dind
+    environment:
+      DOCKER_TLS_VERIFY: "1"
+      DOCKER_HOST: "tcp://142.93.77.76:2376"
+      DOCKER_CERT_PATH: "certs"
+    steps:
+    - checkout:
+        path: ~/estolowka
+    - run:
+        name: Install dependencies
+        command: |
+          apk add \
+            py-pip
+          pip install \
+            docker-compose \
+    - run:
+        name: Create dir and certs file
+        command: |
+          mkdir -p $DOCKER_CERT_PATH
+          echo "$CA" > $DOCKER_CERT_PATH/ca.pem
+          echo "$CLIENT_CERT" > $DOCKER_CERT_PATH/cert.pem
+          echo "$CLIENT_KEY" > $DOCKER_CERT_PATH/key.pem
+    - run:
+        name: Check docker-compose works
+        command: docker-compose version
+    - run:
+        name: Build images
+        command: docker-compose build"
+    - run:
+        name: Destroy current containers
+        command: docker-compose down
+    - run:
+        name: Deploy by docker-compose
+        command: docker-compose up -d --force-recreate
+    -run:
+        name: Remove cert dir
+        command: rm -rf $DOCKER_CERT_PATH
 workflows:
   version: 2
-  test_app:
+  test_app_deploy:
     jobs:
       - test_backend
       - test_frontend
+      - deployment:
+          filters:
+            branches:
+              only: deployment
