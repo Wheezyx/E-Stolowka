@@ -44,7 +44,7 @@ jobs:
   deployment:
     working_directory: ~/estolowka
     docker:
-    - image: docker:18.09.2-ce-git
+    - image: docker:18.09-dind
     environment:
       DOCKER_TLS_VERIFY: "1"
       DOCKER_HOST: "tcp://142.93.77.76:2376"
