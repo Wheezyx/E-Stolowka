@@ -52,6 +52,7 @@ jobs:
     steps:
     - checkout:
         path: ~/estolowka
+    - setup_remote_docker
     - run:
         name: Install dependencies
         command: |
@@ -66,6 +67,8 @@ jobs:
           echo "$CA" > $DOCKER_CERT_PATH/ca.pem
           echo "$CLIENT_CERT" > $DOCKER_CERT_PATH/cert.pem
           echo "$CLIENT_KEY" > $DOCKER_CERT_PATH/key.pem
+          echo $DOCKER_CERT_PATH
+          echo $DOCKER_HOST
     - run:
         name: Check docker-compose works
         command: docker-compose version
