@@ -80,10 +80,10 @@ jobs:
     - run:
         name: Build images
         command: docker-compose build
-      environment:
-        DOCKER_TLS_VERIFY: "1"
-        DOCKER_HOST: "tcp://142.93.77.76:2376"
-        DOCKER_CERT_PATH: "estolowka-cert"
+        environment:
+          DOCKER_TLS_VERIFY: "1"
+          DOCKER_HOST: "tcp://142.93.77.76:2376"
+          DOCKER_CERT_PATH: "estolowka-cert"
     - run:
         name: Destroy current containers
         command: docker-compose down
