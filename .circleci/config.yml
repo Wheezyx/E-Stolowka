@@ -43,8 +43,8 @@ jobs:
 
   deployment:
     working_directory: ~/estolowka
-    machine:
-      enabled: true
+    docker:
+    - image: circleci/openjdk:8u171-jdk
     environment:
       DOCKER_TLS_VERIFY: "1"
       DOCKER_HOST: "tcp://142.93.77.76:2376"
@@ -52,6 +52,7 @@ jobs:
     steps:
     - checkout:
         path: ~/estolowka
+    - setup_remote_docker
     - run:
         name: Create dir and certs file
         command: |
