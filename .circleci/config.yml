@@ -56,14 +56,12 @@ jobs:
         name: Create dir and certs file
         command: |
           mkdir -p $DOCKER_CERT_PATH
-          echo "$CAPEM" > $DOCKER_CERT_PATH/ca.pem
-          echo "$CAKEYPEM" > $DOCKER_CERT_PATH/ca-key.pem
-          echo "$CERTPEM" > $DOCKER_CERT_PATH/cert.pem
-          echo "$KEYPEM" > $DOCKER_CERT_PATH/key.pem
+          echo "$CA" > $DOCKER_CERT_PATH/ca.pem
+          echo "$CLIENT_CERT" > $DOCKER_CERT_PATH/cert.pem
+          echo "$CLIENT_KEY" > $DOCKER_CERT_PATH/key.pem
     - run:
         name: Check docker-compose works
         command: docker-compose version
-    - run: eval "$(docker-machine env dev)"
     - run:
         name: Build images
         command: docker-compose build
