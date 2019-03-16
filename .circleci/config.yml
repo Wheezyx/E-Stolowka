@@ -63,6 +63,7 @@ jobs:
     - run:
         name: Check docker-compose works
         command: docker-compose version
+    - run: eval "$(docker-machine env dev)"
     - run:
         name: Build images
         command: docker-compose build
