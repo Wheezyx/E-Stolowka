@@ -44,7 +44,7 @@ jobs:
   deployment:
     working_directory: ~/estolowka
     docker:
-    - image: docker:18.09.3-git
+    - image: docker:dind
     environment:
       DOCKER_TLS_VERIFY: "1"
       DOCKER_HOST: "tcp://142.93.77.76:2376"
@@ -55,10 +55,10 @@ jobs:
     - run:
         name: Install dependencies
         command: |
-          apk add --no-cache \
+          apk add \
             py-pip
           pip install \
-            docker-compose==1.23.2 \
+            docker-compose \
     - run:
         name: Create dir and certs file
         command: |
