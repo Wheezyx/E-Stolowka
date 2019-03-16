@@ -51,7 +51,6 @@ jobs:
     steps:
     - checkout:
         path: ~/estolowka
-    - setup_remote_docker
     - run:
         name: Install Docker Compose
         command: |
