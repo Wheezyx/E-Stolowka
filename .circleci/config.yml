@@ -44,7 +44,7 @@ jobs:
   deployment:
     working_directory: ~/estolowka
     docker:
-    - image: circleci/openjdk:8u171-jdk
+    - image: circleci/14.04-curl-browsers-legacy
     environment:
       DOCKER_TLS_VERIFY: "1"
       DOCKER_HOST: "tcp://142.93.77.76:2376"
