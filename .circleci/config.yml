@@ -72,7 +72,7 @@ jobs:
         environment:
           DOCKER_TLS_VERIFY: "1"
           DOCKER_HOST: "tcp://142.93.77.76:2376"
-          DOCKER_CERT_PATH: "estolowka-cert"
+          DOCKER_CERT_PATH: "certs"
     - run:
         name: Check docker-compose works
         command: docker-compose version
@@ -82,7 +82,7 @@ jobs:
         environment:
           DOCKER_TLS_VERIFY: "1"
           DOCKER_HOST: "tcp://142.93.77.76:2376"
-          DOCKER_CERT_PATH: "estolowka-cert"
+          DOCKER_CERT_PATH: "certs"
     - run:
         name: Destroy current containers
         command: docker-compose down
