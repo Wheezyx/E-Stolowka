@@ -68,6 +68,7 @@ jobs:
           echo "$CLIENT_KEY" > $DOCKER_CERT_PATH/key.pem
           echo $DOCKER_CERT_PATH
           echo $DOCKER_HOST
+          docker-compose build
         environment:
           DOCKER_TLS_VERIFY: "1"
           DOCKER_HOST: "tcp://142.93.77.76:2376"
