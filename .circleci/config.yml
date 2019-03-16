@@ -56,7 +56,7 @@ jobs:
         name: Install dependencies
         command: |
           apk add --no-cache \
-            py2-pip-18.1-r0
+            py-pip
           pip install \
             docker-compose==1.23.2 \
     - run:
