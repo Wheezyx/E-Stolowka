@@ -63,18 +63,27 @@ jobs:
     - run:
         name: Create dir and certs file
         command: |
+          echo 'export PATH=/path/to/foo/bin:$PATH' >> $BASH_ENV
           mkdir -p $DOCKER_CERT_PATH
           echo "$CA" > $DOCKER_CERT_PATH/ca.pem
           echo "$CLIENT_CERT" > $DOCKER_CERT_PATH/cert.pem
           echo "$CLIENT_KEY" > $DOCKER_CERT_PATH/key.pem
           echo $DOCKER_CERT_PATH
           echo $DOCKER_HOST
+        environment:
+          DOCKER_TLS_VERIFY: "1"
+          DOCKER_HOST: "tcp://142.93.77.76:2376"
+          DOCKER_CERT_PATH: "estolowka-cert"
     - run:
         name: Check docker-compose works
         command: docker-compose version
     - run:
         name: Build images
         command: docker-compose build
+      environment:
+        DOCKER_TLS_VERIFY: "1"
+        DOCKER_HOST: "tcp://142.93.77.76:2376"
+        DOCKER_CERT_PATH: "estolowka-cert"
     - run:
         name: Destroy current containers
         command: docker-compose down
