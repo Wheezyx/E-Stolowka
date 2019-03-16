@@ -49,6 +49,7 @@ jobs:
       DOCKER_TLS_VERIFY: "1"
       DOCKER_HOST: "tcp://142.93.77.76:2376"
       DOCKER_CERT_PATH: "certs"
+      NO_PROXY: "127.0.0.1,localhost,circleci-internal-outer-build-agent,142.93.77.76:2376"
     steps:
     - checkout:
         path: ~/estolowka
