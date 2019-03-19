@@ -22,7 +22,7 @@ public class UserPasswordRecoveryImpl implements UserPasswordRecovery {
     private final EmailService emailService;
     private final PasswordEncoder passwordEncoder;
     private static final String SUBJECT = "Password recovery link";
-    private static final String RECOVERY_LINK_SCHEMA = "localhost:8080/recoverPassword/link?token=";
+    private static final String RECOVERY_LINK_SCHEMA = "localhost:4200/reset?token=";
 
     @Override
     @Transactional
