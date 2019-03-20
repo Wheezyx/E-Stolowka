@@ -39,8 +39,8 @@ const appRoutes: Routes = [
   { path: 'admin', component: UploadFormComponent, canActivate: [AdminGuard]},
   { path: 'reset', component: PasswordComponent, canActivate: [RecoverGuard]},
   {path: 'account', component: UserAccountComponent, canActivate: [AuthGuard]},
-  {path: 'information', component: InformationPageComponent, canActivate: [AuthGuard]},
-  {path: 'price', component: UploadMenuPricesFormComponent}
+  {path: 'information', component: InformationPageComponent, canActivate: [AuthGuard]}
+  //{path: 'price', component: UploadMenuPricesFormComponent}
 ];
 
 @NgModule({
