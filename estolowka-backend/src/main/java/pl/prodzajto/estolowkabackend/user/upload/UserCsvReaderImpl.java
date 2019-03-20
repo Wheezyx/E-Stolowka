@@ -49,6 +49,7 @@ public class UserCsvReaderImpl implements UserCsvReader {
                 .index(Integer.parseInt(record[3]))
                 .password(passwordEncoder.encode(randomPassword()))
                 .roles(defaultRole)
+                .enabled(true)
                 .build();
     }
 
