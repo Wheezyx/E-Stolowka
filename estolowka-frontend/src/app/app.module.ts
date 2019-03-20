@@ -30,6 +30,7 @@ import { UploadMenuComponent } from './menu/upload-menu/upload-menu.component';
 import { UploadMenuFormComponent } from './menu/upload-menu-form/upload-menu-form.component';
 import { MenuService } from './menu/menu.service';
 import {InformationPageComponent} from './information-page/information-page.component';
+import {UploadMenuPricesFormComponent} from './menu/upload-menu-prices-form/upload-menu-prices-form.component';
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -38,7 +39,8 @@ const appRoutes: Routes = [
   { path: 'admin', component: UploadFormComponent, canActivate: [AdminGuard]},
   { path: 'reset', component: PasswordComponent, canActivate: [RecoverGuard]},
   {path: 'account', component: UserAccountComponent, canActivate: [AuthGuard]},
-  {path: 'information', component: InformationPageComponent, canActivate: [AuthGuard]}
+  {path: 'information', component: InformationPageComponent, canActivate: [AuthGuard]},
+  {path: 'price', component: UploadMenuPricesFormComponent}
 ];
 
 @NgModule({
@@ -58,7 +60,8 @@ const appRoutes: Routes = [
     WeeklyMenuComponent,
     UploadMenuComponent,
     UploadMenuFormComponent,
-    InformationPageComponent
+    InformationPageComponent,
+    UploadMenuPricesFormComponent
   ],
   imports: [
     BrowserModule,
