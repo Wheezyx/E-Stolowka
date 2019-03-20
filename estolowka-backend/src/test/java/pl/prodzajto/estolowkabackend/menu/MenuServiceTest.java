@@ -6,6 +6,8 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.junit4.SpringRunner;
+import pl.prodzajto.estolowkabackend.menu.pricelist.PriceList;
+import pl.prodzajto.estolowkabackend.menu.pricelist.PriceListEntity;
 import pl.prodzajto.estolowkabackend.menu.pricelist.PriceListRepository;
 
 import java.time.LocalDate;
@@ -45,7 +47,7 @@ public class MenuServiceTest {
     }
 
     @Test
-    public void shouldGetMenu(){
+    public void shouldGetMenu() {
         //given
         Menu menu = createMenuFromDate(LocalDate.now());
         menuService.saveMenu(menu);
@@ -72,6 +74,57 @@ public class MenuServiceTest {
         //then
         assertNotNull(meals);
         assertNotEquals(7, meals.size());
+    }
+
+    @Test
+    public void shouldGetLastPriceListOnly() {
+        //given
+        PriceListEntity oldPriceList = PriceListEntity.builder()
+                .breakfastPrice(5.2)
+                .dinnerPrice(13.3)
+                .supperPrice(6.8)
+                .updateDate(LocalDate.now().minusDays(2))
+                .build();
+        PriceListEntity newPriceList = PriceListEntity.builder()
+                .breakfastPrice(3.2)
+                .dinnerPrice(10.3)
+                .supperPrice(4.8)
+                .updateDate(LocalDate.now())
+                .build();
+
+        priceListRepository.save(oldPriceList);
+        priceListRepository.save(newPriceList);
+
+        //when
+        PriceListEntity result = menuService.getMealPrices();
+
+        //then
+        assertNotNull(result);
+        assertSame(newPriceList.getBreakfastPrice(), result.getBreakfastPrice());
+        assertSame(newPriceList.getDinnerPrice(), result.getDinnerPrice());
+        assertSame(newPriceList.getSupperPrice(), result.getSupperPrice());
+        assertSame(newPriceList.getUpdateDate(), result.getUpdateDate());
+    }
+
+    @Test
+    public void shouldSaveNewPricesWithProperDate() {
+        //given
+        PriceListEntity oldPriceList = PriceListEntity.builder()
+                .breakfastPrice(5.2)
+                .dinnerPrice(13.3)
+                .supperPrice(6.8)
+                .updateDate(LocalDate.now().minusDays(2))
+                .build();
+        priceListRepository.save(oldPriceList);
+
+        PriceList newPriceList = new PriceList(5.4, 3.2, 2.3);
+
+        //when
+        PriceListEntity result = menuService.savePriceList(newPriceList);
+
+        //then
+        assertEquals(2, priceListRepository.findAll().size());
+        assertTrue(result.getUpdateDate().isAfter(oldPriceList.getUpdateDate()));
     }
 
     private Menu createMenuFromDate(LocalDate date) {
