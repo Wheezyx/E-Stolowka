@@ -2,12 +2,9 @@ package pl.prodzajto.estolowkabackend.menu;
 
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import pl.prodzajto.estolowkabackend.menu.pricelist.PriceList;
+import pl.prodzajto.estolowkabackend.menu.pricelist.PriceListEntity;
 
 import java.util.Set;
 
@@ -19,15 +16,23 @@ public class MenuController {
     private final MenuService menuService;
 
     @GetMapping
-    public Set<MealDay> getMenu()
-    {
+    public Set<MealDay> getMenu() {
         return menuService.getCurrentMenu();
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public void saveMenu(@RequestBody Menu menu)
-    {
+    public void saveMenu(@RequestBody Menu menu) {
         menuService.saveMenu(menu);
+    }
+
+    @GetMapping("/prices")
+    public PriceListEntity getPriceList() {
+        return menuService.getMealPrices();
+    }
+
+    @PostMapping("/prices")
+    public PriceListEntity updatePriceList(@RequestBody PriceList priceList) {
+        return menuService.savePriceList(priceList);
     }
 }
