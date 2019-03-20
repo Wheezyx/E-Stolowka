@@ -100,10 +100,10 @@ public class MenuServiceTest {
 
         //then
         assertNotNull(result);
-        assertSame(newPriceList.getBreakfastPrice(), result.getBreakfastPrice());
-        assertSame(newPriceList.getDinnerPrice(), result.getDinnerPrice());
-        assertSame(newPriceList.getSupperPrice(), result.getSupperPrice());
-        assertSame(newPriceList.getUpdateDate(), result.getUpdateDate());
+        assertEquals(newPriceList.getBreakfastPrice(), result.getBreakfastPrice());
+        assertEquals(newPriceList.getDinnerPrice(), result.getDinnerPrice());
+        assertEquals(newPriceList.getSupperPrice(), result.getSupperPrice());
+        assertEquals(newPriceList.getUpdateDate(), result.getUpdateDate());
     }
 
     @Test
