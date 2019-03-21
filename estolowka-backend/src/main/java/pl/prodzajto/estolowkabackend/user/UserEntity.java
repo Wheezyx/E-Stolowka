@@ -30,4 +30,5 @@ public class UserEntity {
     private Set<OrderEntity> orders;
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<UserRole> roles;
+    private boolean enabled;
 }

@@ -21,7 +21,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String s) {
         return userRepository.findByEmail(s)
-                .map(user -> new User(user.getEmail(), user.getPassword(), convertAuthorities(user.getRoles())))
+                .map(user -> new User(user.getEmail(), user.getPassword(), user.isEnabled(), true, true, true, convertAuthorities(user.getRoles())))
                 .orElseThrow(() -> new UsernameNotFoundException(s));
     }
 
