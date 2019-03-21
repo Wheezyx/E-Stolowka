@@ -1,0 +1,54 @@
+header {
+    width: 100%;
+}
+
+.users-header {
+    text-align: center;
+    margin: 0;
+    padding: 1em;
+    font-size: 1.8em;
+    color: rgb(224, 224, 224);
+    font-weight: bold;
+}
+
+.mat-table, .mat-paginator {
+    width: 80%;
+    opacity: .8;
+}
+
+.mat-table {
+    margin: 2% auto 0;
+}
+
+.mat-paginator{
+    margin: 0 auto 3%;
+}
+
+.mat-row:hover, .mat-row:nth-child(odd):hover {
+    background-color: rgb(175, 167, 182);
+}
+
+.mat-row:nth-child(odd) {
+    background-color: rgb(234, 233, 235);
+}
+
+.green-text {
+    color: green;
+}
+
+.red-text {
+    color: rgb(124, 8, 8);
+}
+
+img {
+    width: 2em;
+    height: 2em;
+}
+
+button {
+    font-size: 1em;
+    background-color: white;
+    height: 2em;
+    width: 150px;
+    border-radius: 5px;
+}

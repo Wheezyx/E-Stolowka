@@ -29,14 +29,20 @@ import { WeeklyMenuComponent } from './order/weekly-menu/weekly-menu.component';
 import { UploadMenuComponent } from './menu/upload-menu/upload-menu.component';
 import { UploadMenuFormComponent } from './menu/upload-menu-form/upload-menu-form.component';
 import { MenuService } from './menu/menu.service';
+import { UserComponent } from './user/user.component';
+import { UserService } from './user/service/user.service';
+import { AdminComponent } from './admin/admin.component';
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: '', component: MainPageComponent, canActivate: [AuthGuard]},
   { path: 'order', component: OrdersComponent, canActivate: [AuthGuard]},
-  { path: 'admin', component: UploadFormComponent, canActivate: [AdminGuard]},
+  { path: 'admin', component: AdminComponent, canActivate: [AdminGuard]},
   { path: 'reset', component: PasswordComponent, canActivate: [RecoverGuard]},
-  { path: 'account', component: UserAccountComponent, canActivate: [AuthGuard]}
+  { path: 'account', component: UserAccountComponent, canActivate: [AuthGuard]},
+  { path: 'users', component: UserComponent, canActivate: [AdminGuard]},
+  { path: 'usersUpload', component: UploadFormComponent, canActivate: [AdminGuard]},
+  { path: 'menu', component: UploadMenuComponent, canActivate: [AdminGuard]}
 ];
 
 @NgModule({
@@ -55,7 +61,9 @@ const appRoutes: Routes = [
     UserAccountComponent,
     WeeklyMenuComponent,
     UploadMenuComponent,
-    UploadMenuFormComponent
+    UploadMenuFormComponent,
+    UserComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,
@@ -72,6 +80,7 @@ const appRoutes: Routes = [
     OrderService,
     UploadService,
     MenuService,
+    UserService,
     AuthGuard,
     AuthenticationService,
     {
