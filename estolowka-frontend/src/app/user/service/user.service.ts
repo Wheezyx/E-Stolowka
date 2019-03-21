@@ -10,8 +10,7 @@ import {Pageable} from '../../util/pageable';
 @Injectable()
 export class UserService {
 
-  constructor(private _http: HttpClient,
-              private auth: AuthenticationService) {
+  constructor(private _http: HttpClient) {
   }
 
   changeUserStatus(email: string): Observable<Object> {

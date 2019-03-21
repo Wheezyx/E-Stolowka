@@ -28,7 +28,7 @@
   <ng-container matColumnDef="block">
     <mat-header-cell *matHeaderCellDef mat-sort-header> Blokowanie </mat-header-cell>
     <mat-cell *matCellDef="let user">
-      <button click="changeUserStatus(user.email)" *ngIf="user.active else activate"> Zablokuj </button>
+      <button (click)="changeUserStatus(user.email)" *ngIf="user.active else activate"> Zablokuj </button>
     </mat-cell>
   </ng-container>
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
@@ -41,7 +41,7 @@
   </span>
 </ng-template>
 <ng-template #activate>
-  <button click="changeUserStatus(user.email)"> Aktywuj </button>
+  <button (click)="changeUserStatus(user.email)"> Aktywuj </button>
 </ng-template>
 <mat-paginator [length]="totalElements" [pageSize]="pageable.size" [pageSizeOptions]="pageSizeOptions">
 </mat-paginator>
