@@ -31,16 +31,23 @@ import { UploadMenuFormComponent } from './menu/upload-menu-form/upload-menu-for
 import { MenuService } from './menu/menu.service';
 import {InformationPageComponent} from './information-page/information-page.component';
 import {UploadMenuPricesFormComponent} from './menu/upload-menu-prices-form/upload-menu-prices-form.component';
+import { UserComponent } from './user/user.component';
+import { UserService } from './user/service/user.service';
+import { AdminComponent } from './admin/admin.component';
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: '', component: MainPageComponent, canActivate: [AuthGuard]},
   { path: 'order', component: OrdersComponent, canActivate: [AuthGuard]},
-  { path: 'admin', component: UploadFormComponent, canActivate: [AdminGuard]},
+  { path: 'admin', component: AdminComponent, canActivate: [AdminGuard]},
   { path: 'reset', component: PasswordComponent, canActivate: [RecoverGuard]},
   {path: 'account', component: UserAccountComponent, canActivate: [AuthGuard]},
-  {path: 'information', component: InformationPageComponent, canActivate: [AuthGuard]}
+  {path: 'information', component: InformationPageComponent, canActivate: [AuthGuard]},
   //{path: 'price', component: UploadMenuPricesFormComponent}
+  { path: 'account', component: UserAccountComponent, canActivate: [AuthGuard]},
+  { path: 'users', component: UserComponent, canActivate: [AdminGuard]},
+  { path: 'usersUpload', component: UploadFormComponent, canActivate: [AdminGuard]},
+  { path: 'menu', component: UploadMenuComponent, canActivate: [AdminGuard]}
 ];
 
 @NgModule({
@@ -61,7 +68,9 @@ const appRoutes: Routes = [
     UploadMenuComponent,
     UploadMenuFormComponent,
     InformationPageComponent,
-    UploadMenuPricesFormComponent
+    UploadMenuPricesFormComponent,
+    UserComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,
@@ -78,6 +87,7 @@ const appRoutes: Routes = [
     OrderService,
     UploadService,
     MenuService,
+    UserService,
     AuthGuard,
     AuthenticationService,
     {
