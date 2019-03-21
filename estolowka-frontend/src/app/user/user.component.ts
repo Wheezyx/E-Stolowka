@@ -12,26 +12,26 @@ import { merge } from "rxjs";
 })
 export class UserComponent implements OnInit {
   usersMock: User[] = [
-    {id: 1, index: 123123, name: "Mateusz", surname: "Wedeł", email: "email@wp.pl", active: false},
-    {id: 2, index: 123122, name: "Mateusz", surname: "Smagieł", email: "email@wp.pl", active: true},
-    {id: 3, index: 223122, name: "Dawid", surname: "Majorczyk", email: "email@wp.pl", active: true},
-    {id: 4, index: 113122, name: "Paulina", surname: "Mironiuk", email: "email@wp.pl", active: true},
-    {id: 5, index: 145123, name: "Ola", surname: "Nowak", email: "email@wp.pl", active: true},
-    {id: 6, index: 127622, name: "Kuba", surname: "Kowalski", email: "email@wp.pl", active: true},
-    {id: 7, index: 223134, name: "Tomek", surname: "Nowak", email: "email@wp.pl", active: true},
-    {id: 8, index: 145123, name: "Ola", surname: "Nowak", email: "email@wp.pl", active: true},
-    {id: 9, index: 127622, name: "Kuba", surname: "Kowalski", email: "email@wp.pl", active: true},
-    {id: 10, index: 223134, name: "Tomek", surname: "Nowak", email: "email@wp.pl", active: true},
-    {id: 1, index: 123123, name: "Mateusz", surname: "Wedeł", email: "email@wp.pl", active: true},
-    {id: 2, index: 123122, name: "Mateusz", surname: "Smagieł", email: "email@wp.pl", active: true},
-    {id: 3, index: 223122, name: "Dawid", surname: "Majorczyk", email: "email@wp.pl", active: true},
-    {id: 4, index: 113122, name: "Paulina", surname: "Mironiuk", email: "email@wp.pl", active: true},
-    {id: 5, index: 145123, name: "Ola", surname: "Nowak", email: "email@wp.pl", active: true},
-    {id: 6, index: 127622, name: "Kuba", surname: "Kowalski", email: "email@wp.pl", active: true},
-    {id: 7, index: 223134, name: "Tomek", surname: "Nowak", email: "email@wp.pl", active: true},
-    {id: 8, index: 145123, name: "Ola", surname: "Nowak", email: "email@wp.pl", active: true},
-    {id: 9, index: 127622, name: "Kuba", surname: "Kowalski", email: "email@wp.pl", active: true},
-    {id: 10, index: 223134, name: "Tomekaaa", surname: "Nowak", email: "email@wp.pl", active: true}
+    {index: 123123, name: "Mateusz", surname: "Wedeł", email: "email@wp.pl", active: false},
+    {index: 123122, name: "Mateusz", surname: "Smagieł", email: "email@wp.pl", active: true},
+    {index: 223122, name: "Dawid", surname: "Majorczyk", email: "email@wp.pl", active: true},
+    {index: 113122, name: "Paulina", surname: "Mironiuk", email: "email@wp.pl", active: true},
+    {index: 145123, name: "Ola", surname: "Nowak", email: "email@wp.pl", active: true},
+    {index: 127622, name: "Kuba", surname: "Kowalski", email: "email@wp.pl", active: true},
+    {index: 223134, name: "Tomek", surname: "Nowak", email: "email@wp.pl", active: true},
+    {index: 145123, name: "Ola", surname: "Nowak", email: "email@wp.pl", active: true},
+    {index: 127622, name: "Kuba", surname: "Kowalski", email: "email@wp.pl", active: true},
+    {index: 223134, name: "Tomek", surname: "Nowak", email: "email@wp.pl", active: true},
+    {index: 123123, name: "Mateusz", surname: "Wedeł", email: "email@wp.pl", active: true},
+    {index: 123122, name: "Mateusz", surname: "Smagieł", email: "email@wp.pl", active: true},
+    {index: 223122, name: "Dawid", surname: "Majorczyk", email: "email@wp.pl", active: true},
+    {index: 113122, name: "Paulina", surname: "Mironiuk", email: "email@wp.pl", active: true},
+    {index: 145123, name: "Ola", surname: "Nowak", email: "email@wp.pl", active: true},
+    {index: 127622, name: "Kuba", surname: "Kowalski", email: "email@wp.pl", active: true},
+    {index: 223134, name: "Tomek", surname: "Nowak", email: "email@wp.pl", active: true},
+    {index: 145123, name: "Ola", surname: "Nowak", email: "email@wp.pl", active: true},
+    {index: 127622, name: "Kuba", surname: "Kowalski", email: "email@wp.pl", active: true},
+    {index: 223134, name: "Tomekaaa", surname: "Nowak", email: "email@wp.pl", active: true}
   ]
 
   @ViewChild(MatSort) sort: MatSort;
