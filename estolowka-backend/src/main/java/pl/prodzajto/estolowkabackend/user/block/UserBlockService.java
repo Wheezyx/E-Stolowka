@@ -2,9 +2,10 @@ package pl.prodzajto.estolowkabackend.user.block;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import pl.prodzajto.estolowkabackend.user.UserEntity;
+import pl.prodzajto.estolowkabackend.user.UserNotFoundException;
 import pl.prodzajto.estolowkabackend.user.UserRepository;
 
 @Service
@@ -16,10 +17,10 @@ public class UserBlockService {
         this.userRepository = userRepository;
     }
 
-    public Page<UserMapper> getPageWithUsers(int page, int size) {
-        Page<UserMapper> getUsersToBlock = userRepository.findAll(PageRequest.of(page, size))
+    public Page<UserMapper> getPageWithUsers(Pageable pageable) {
+        Page<UserMapper> getUsersToBlock = userRepository.findAll(pageable)
                 .map(this::convertUserEntityToUserMapper);
-        if (page > getUsersToBlock.getTotalPages()) {
+        if (pageable.getPageNumber() > getUsersToBlock.getTotalPages()) {
             throw new MyResourceNotFoundException();
         }
         return getUsersToBlock;
@@ -29,8 +30,15 @@ public class UserBlockService {
         return UserMapper.builder()
                 .name(userEntity.getName())
                 .surname(userEntity.getSurname())
+                .index(userEntity.getIndex())
                 .email(userEntity.getEmail())
                 .enabled(userEntity.isEnabled())
                 .build();
+    }
+
+    public void blockUser(String email, boolean isEnabled) {
+        UserEntity userToBlock = userRepository.findByEmail(email).orElseThrow(UserNotFoundException::new);
+        userToBlock.setEnabled(isEnabled);
+        userRepository.save(userToBlock);
     }
 }

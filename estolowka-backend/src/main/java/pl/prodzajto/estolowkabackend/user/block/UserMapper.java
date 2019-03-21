@@ -12,6 +12,7 @@ import lombok.NoArgsConstructor;
 public class UserMapper {
     private String name;
     private String surname;
+    private int index;
     private String email;
     private boolean enabled;
 }
