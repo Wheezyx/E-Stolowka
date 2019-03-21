@@ -21,14 +21,17 @@
   <ng-container matColumnDef="active">
     <mat-header-cell *matHeaderCellDef mat-sort-header> Aktywny </mat-header-cell>
     <mat-cell *matCellDef="let user">
-      <span *ngIf="user.active else notActiveTag" class="green-text"><img src="../../assets/img/check.png">
+      <span *ngIf="user.enabled else notActiveTag" class="green-text"><img src="../../assets/img/check.png">
       </span> 
     </mat-cell>
   </ng-container>
   <ng-container matColumnDef="block">
     <mat-header-cell *matHeaderCellDef mat-sort-header> Blokowanie </mat-header-cell>
     <mat-cell *matCellDef="let user">
-      <button (click)="changeUserStatus(user.email)" *ngIf="user.active else activate"> Zablokuj </button>
+      <button (click)="changeUserStatus(user.email)" *ngIf="user.enabled else activate"> Zablokuj </button>
+      <ng-template #activate>
+          <button (click)="changeUserStatus(user.email)"> Aktywuj </button>
+      </ng-template>
     </mat-cell>
   </ng-container>
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
@@ -39,9 +42,6 @@
   <span class="red-text">
       <img src="../../assets/img/redx.png">
   </span>
-</ng-template>
-<ng-template #activate>
-  <button (click)="changeUserStatus(user.email)"> Aktywuj </button>
 </ng-template>
 <mat-paginator [length]="totalElements" [pageSize]="pageable.size" [pageSizeOptions]="pageSizeOptions">
 </mat-paginator>

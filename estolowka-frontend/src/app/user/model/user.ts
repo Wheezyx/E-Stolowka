@@ -1,8 +1,7 @@
 export class User {
-    index: number;
     name: string;
     surname: string;
+    index: number;
     email: string;
-    active: boolean;
+    enabled: boolean;
 }
-  
