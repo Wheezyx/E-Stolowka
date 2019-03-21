@@ -1,4 +1,4 @@
-package pl.prodzajto.estolowkabackend.user.block;
+package pl.prodzajto.estolowkabackend.user;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class UserMapper {
+class User {
     private String name;
     private String surname;
     private int index;
