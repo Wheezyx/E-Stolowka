@@ -2,9 +2,15 @@
   <h2>Dodaj menu na najbliższy tydzień</h2>
   <section class="add-menu-container">
     <div *ngFor="let menuItem of menuItems">
-      <app-upload-menu-form [menuItem] = "menuItem">
+      <app-upload-menu-form [menuItem]="menuItem">
       </app-upload-menu-form>
     </div>
   </section>
   <button class="import-component" type="button" (click)="sendMenu()">Wyślij</button>
+</div>
+<div class="menu-container">
+  <h2>Zaaktualizuj cennik posiłków</h2>
+  <section class="add-menu-container">
+    <app-upload-menu-prices-form></app-upload-menu-prices-form>
+  </section>
 </div>
