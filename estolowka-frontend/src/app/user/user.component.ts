@@ -46,6 +46,7 @@ export class UserComponent implements OnInit {
   constructor(private userService: UserService) { }
 
   ngOnInit() {
+    this.getUsers();
     //this.dataSource.paginator = this.paginator;
     this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
     merge(this.sort.sortChange, this.paginator.page).subscribe(() => {
