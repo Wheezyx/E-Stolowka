@@ -10,4 +10,5 @@ export const environment = {
   uploadUrl: "http://" + window.location.hostname + ':8080/uploadUsers',
   recoverUrl: "http://" + window.location.hostname + ":8080/recoverPassword",
   menuUrl: "http://" + window.location.hostname + ":8080/menu",
+  usersUrl: "http://" + window.location.hostname + ":8080/user"
 };

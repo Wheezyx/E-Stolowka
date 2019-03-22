@@ -67,9 +67,9 @@ import {
   // MatDialogModule,
   MatSnackBarModule,
   // MatTooltipModule,
-  // MatPaginatorModule,
-  // MatSortModule,
-  // MatTableModule,
+  MatPaginatorModule,
+  MatSortModule,
+  MatTableModule,
   MatNativeDateModule
 } from '@angular/material';
 
@@ -108,9 +108,9 @@ import {
     // MatDialogModule,
     MatSnackBarModule,
     // MatTooltipModule,
-    // MatPaginatorModule,
-    // MatSortModule,
-    // MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatTableModule,
     MatNativeDateModule
   ],
   exports: [
@@ -146,9 +146,9 @@ import {
     // MatDialogModule,
     MatSnackBarModule,
     // MatTooltipModule,
-    // MatPaginatorModule,
-    // MatSortModule,
-    // MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatTableModule,
     MatNativeDateModule
   ],
   declarations: []
