@@ -27,7 +27,7 @@ ul {
 }
   
 .list li {
-    margin-left: 10px;
+    margin-left: 20px;
     width: auto;
     color: white;
     transition: color .4s;
@@ -41,7 +41,21 @@ ul {
     color: rgb(170, 80, 255);
     cursor: pointer;
 }
-  
+
+.li-container {
+    display: flex;
+    align-items: center;
+    width: auto;
+}
+
+.li-text {
+    margin-left: 10px;
+}
+
+.li-img {
+    height: 16px;
+}
+
 @media (max-width: 730px) {
     .nav-container {
       flex-direction: column;

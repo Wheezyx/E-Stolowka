@@ -6,6 +6,9 @@
     </div>
     <div class="menu-list">
       <ul class="list">
+        <li *ngIf="isAdmin()" (click)="navigateToAdminPage()" class="li-container">
+          <img class="li-img" src="../../assets/img/settings24.png"><span class="li-text">Panel administracyjny</span>
+        </li>
         <li (click)="logout()">Wyloguj się</li>
       </ul>
     </div>

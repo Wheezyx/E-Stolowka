@@ -3,7 +3,6 @@ import {HttpClient, HttpParams} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {environment} from "../../../environments/environment";
 import {User} from "../model/user";
-import {AuthenticationService} from "../../auth/authentication.service";
 import {Page} from '../../util/page';
 import {Pageable} from '../../util/pageable';
 
@@ -14,7 +13,7 @@ export class UserService {
   }
 
   changeUserStatus(email: string): Observable<Object> {
-    return this._http.post<User>(environment.userStatusUrl, '/' + email);
+    return this._http.post<User>(environment.usersUrl + '/status', email);
   }
 
   getUsers(pageable: Pageable): Observable<Page<User>> {
@@ -22,6 +21,6 @@ export class UserService {
     .append('page', pageable.page.toString())
     .append('size', pageable.size.toString())
     .append('sort', pageable.sort + ',' + pageable.direction);
-    return this._http.get<Page<User>>(environment.usersUrl + {params: params});
+    return this._http.get<Page<User>>(environment.usersUrl, {params: params});
   }
 }
