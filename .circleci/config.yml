@@ -85,9 +85,4 @@ workflows:
   version: 2
   test_app_deploy:
     jobs:
-      - test_backend
-      - test_frontend
-      - deployment:
-          filters:
-            branches:
-              only: deployment
+      - deployment
