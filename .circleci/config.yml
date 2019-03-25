@@ -63,9 +63,9 @@ jobs:
         name: Create dir and certs file
         command: |
           mkdir $DOCKER_CERT_PATH
-          echo -e "$CA" > $DOCKER_CERT_PATH/ca.pem
-          echo -e "$CLIENT_CERT" > $DOCKER_CERT_PATH/cert.pem
-          echo -e "$CLIENT_KEY" > $DOCKER_CERT_PATH/key.pem
+          echo "$CA" | base64 -d  > $DOCKER_CERT_PATH/ca.pem
+          echo "$CLIENT_CERT" | base64 -d  > $DOCKER_CERT_PATH/cert.pem
+          echo "$CLIENT_KEY" | base64 -d  > $DOCKER_CERT_PATH/key.pem
     - run:
         name: Check docker-compose works
         command: docker-compose version
