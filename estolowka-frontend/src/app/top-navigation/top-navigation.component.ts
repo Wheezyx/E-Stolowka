@@ -27,6 +27,11 @@ export class TopNavigationComponent {
     return this.authenticationService.getCurrentUserEmail();
   }
 
+  isAdmin(): boolean {
+    let email = this.getCurrentUserEmail();
+    return email === "admin@gmail.com";
+  }
+
   navigateToMainPage(): void {
     this.router.navigateByUrl('');
   }

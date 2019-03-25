@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {UploadService} from "../upload.service";
-import { MatSnackBar, MatSnackBarConfig } from '@angular/material';
+import {MatSnackBar, MatSnackBarConfig}  from '@angular/material';
 
 @Component({
   selector: 'app-upload',
