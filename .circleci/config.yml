@@ -70,11 +70,11 @@ jobs:
         name: Check docker-compose works
         command: docker-compose version
     - run:
-        name: Build images
-        command: docker-compose build
-    - run:
         name: Destroy current containers
         command: docker-compose down
+    - run:
+        name: Build images
+        command: docker-compose build
     - run:
         name: Deploy by docker-compose
         command: docker-compose up -d --force-recreate
@@ -85,4 +85,15 @@ workflows:
   version: 2
   test_app_deploy:
     jobs:
-      - deployment
+    - test_backend:
+       branches:
+          ignore:
+            - deployment
+    - test_frontend:
+        branches:
+          ignore:
+          - deployment
+    - deployment:
+        filters:
+          branches:
+            only: deployment
