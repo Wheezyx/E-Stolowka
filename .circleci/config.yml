@@ -86,13 +86,15 @@ workflows:
   test_app_deploy:
     jobs:
     - test_backend:
-        branches:
-          ignore:
-            - deployment
+        filters:
+          branches:
+            ignore:
+              - deployment
     - test_frontend:
-        branches:
-          ignore:
-            - deployment
+        filters:
+          branches:
+            ignore:
+              - deployment
     - deployment:
         filters:
           branches:
