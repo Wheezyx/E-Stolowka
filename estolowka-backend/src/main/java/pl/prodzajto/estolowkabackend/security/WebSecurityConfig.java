@@ -27,7 +27,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.cors().and().csrf().disable().authorizeRequests()
-                .antMatchers("/order").authenticated()
+                .antMatchers("/order", "/user/change/password").authenticated()
                 .antMatchers("/uploadUsers").hasAuthority("ADMIN")
                 .antMatchers("/user").hasAuthority("ADMIN")
                 .antMatchers(HttpMethod.POST, "/menu", "/menu/prices").hasAuthority("ADMIN")
