@@ -27,10 +27,12 @@ public class EmailServiceImplTest
     @Test
     public void emailTest()
     {
+        //given
         String to = "test@gmail.com";
         String subject = "TestEmailWithCorrectName";
         String text = "Hello from testing";
-        
+    
+        //when
         emailServiceImpl.sendEmail(to, subject, text);
         
     }

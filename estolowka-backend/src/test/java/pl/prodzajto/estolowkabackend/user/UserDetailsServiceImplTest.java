@@ -40,10 +40,13 @@ public class UserDetailsServiceImplTest
     @Test
     public void shouldGetUserByUsername()
     {
+        //given
         String email = "admin@test.com";
-        
+    
+        //when
         UserDetails userDetails = userDetailsService.loadUserByUsername(email);
-        
+    
+        //then
         assertNotNull(userDetails);
     }
     
