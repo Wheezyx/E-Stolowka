@@ -3,11 +3,13 @@ package pl.prodzajto.estolowkabackend.user;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.junit.Assert.assertFalse;
@@ -22,10 +24,13 @@ public class UserServiceTest
     
     private UserService userService;
     
+    @Mock
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
+    
     @Before
     public void setUp()
     {
-        userService = new UserService(userRepository);
+        userService = new UserService(userRepository, bCryptPasswordEncoder);
         userRepository.save(UserEntity.builder()
                                       .email("admin@test.com")
                                       .enabled(true)
