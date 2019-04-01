@@ -7,6 +7,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.constraints.NotBlank;
+import java.util.Map;
 
 
 @RestController
@@ -27,6 +28,11 @@ public class UserController {
     @PostMapping(value = "/status")
     public void changeUserStatus(@RequestBody @NotBlank String email) {
         userService.changeUserStatus(email);
+    }
+
+    @PostMapping(value = "/change/password")
+    public void changePassword(@RequestBody Map<String, String> params) {
+        userService.changePassword(params.get("email"), params.get("oldPassword"), params.get("newPassword"));
     }
 
 }
