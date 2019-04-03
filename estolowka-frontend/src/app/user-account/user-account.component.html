@@ -2,7 +2,7 @@
   <mat-expansion-panel-header class="orders-button" (click)="getOrders()">
     <mat-panel-title>Moje zamówienia</mat-panel-title>
   </mat-expansion-panel-header>
-
+  <p *ngIf="isEmpty">Nie masz żadnych zamówień</p>
   <div class="dayArray" *ngFor="let dayArray of days; let i = index" value="order">
     <div class="singleDay" *ngFor="let singleDay of dayArray">
       <div><span class="date">{{singleDay.selectedDate | date}}</span>

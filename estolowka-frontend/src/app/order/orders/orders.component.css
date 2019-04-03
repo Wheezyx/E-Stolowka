@@ -34,3 +34,15 @@ h1 {
     width: 70%;
     margin: 0 auto;
 }
+
+@media (max-width: 1200px) {
+    .display-menu{
+      width: 90%;
+    }
+}
+
+@media (max-width: 900px) {
+    .display-menu{
+      width: 95%;
+    }
+}

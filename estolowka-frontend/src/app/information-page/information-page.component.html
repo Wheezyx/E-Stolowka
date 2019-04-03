@@ -1,5 +1,11 @@
-<h1>Cennik posiłków</h1>
-<h3>Cena sniadania: {{priceList.breakfastPrice}}zł</h3>
-<h3>Cena obiadu: {{priceList.dinnerPrice}}zł</h3>
-<h3>Cena kolacji: {{priceList.supperPrice}}zł</h3>
-<h4>Aktualizacja: {{priceList.updateDate}}</h4>
+<div class="info-container">
+    <div class="price-info-container">
+        <h1>Cennik posiłków</h1>
+        <ul class="prices">
+            <li><img src="../../assets/img/sandwich-with-fried-egg.png">Śniadanie: {{priceList.breakfastPrice}}zł</li>
+            <li><img src="../../assets/img/rice-bowl.png">Obiad: {{priceList.dinnerPrice}}zł</li>
+            <li><img src="../../assets/img/tapas.png">Kolacja: {{priceList.supperPrice}}zł</li>
+        </ul>
+        <h4>Aktualizacja: {{priceList.updateDate}}</h4>
+    </div>
+</div>
