@@ -4,6 +4,7 @@
     border: 1px solid rgba(0, 0, 0, 0.5);
     border-radius: 5px;
     opacity: .8;
+    margin-bottom: .8em;
   }
   
 .menu-sidenav-content {
@@ -52,4 +53,10 @@ button {
 
 .img-padding {
   padding: 5px;
+}
+
+@media (max-width: 750px) {
+  .mat-drawer {
+    width: 70%;
+  }
 }

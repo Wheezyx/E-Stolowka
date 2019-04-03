@@ -1,47 +1,47 @@
 <header>
   <h3 class="users-header">Lista użytkowników</h3>
-</header>
-<mat-table [dataSource]="users" matSort matSortDisableClear >
-  <ng-container matColumnDef="name">
+ </header>
+ <mat-table [dataSource]="dataSource" matSort matSortDisableClear matSortActive="surname" matSortDirection="asc">
+  <ng-container matColumnDef="name" >
     <mat-header-cell *matHeaderCellDef> Imię </mat-header-cell>
     <mat-cell *matCellDef="let user"> {{user.name}} </mat-cell>
   </ng-container>
   <ng-container matColumnDef="surname">
-    <mat-header-cell *matHeaderCellDef mat-sort-header> Nazwisko </mat-header-cell>
+    <mat-header-cell *matHeaderCellDef mat-sort-header (click)="reload()"> Nazwisko </mat-header-cell>
     <mat-cell *matCellDef="let user"> {{user.surname}} </mat-cell>
   </ng-container>
   <ng-container matColumnDef="index">
-    <mat-header-cell *matHeaderCellDef mat-sort-header> Nr indeksu </mat-header-cell>
+    <mat-header-cell *matHeaderCellDef> Nr indeksu </mat-header-cell>
     <mat-cell *matCellDef="let user"> {{user.index}}</mat-cell>
   </ng-container>
   <ng-container matColumnDef="email">
-    <mat-header-cell *matHeaderCellDef mat-sort-header> Email </mat-header-cell>
+    <mat-header-cell *matHeaderCellDef> Email </mat-header-cell>
     <mat-cell *matCellDef="let user"> {{user.email}} </mat-cell>
   </ng-container>
   <ng-container matColumnDef="active">
-    <mat-header-cell *matHeaderCellDef mat-sort-header> Aktywny </mat-header-cell>
-    <mat-cell *matCellDef="let user">
+    <mat-header-cell *matHeaderCellDef class="center-element">Aktywny</mat-header-cell>
+    <mat-cell *matCellDef="let user" class="center-element">
       <span *ngIf="user.enabled else notActiveTag" class="green-text"><img src="../../assets/img/check.png">
-      </span> 
+      </span>
     </mat-cell>
   </ng-container>
   <ng-container matColumnDef="block">
-    <mat-header-cell *matHeaderCellDef mat-sort-header> Blokowanie </mat-header-cell>
+    <mat-header-cell *matHeaderCellDef><span class="left-padding">Blokada / Aktywacja</span></mat-header-cell>
     <mat-cell *matCellDef="let user">
-      <button (click)="changeUserStatus(user.email)" *ngIf="user.enabled else activate"> Zablokuj </button>
+      <button (click)="changeUserStatus(user.email)" *ngIf="user.enabled else activate" class="left-margin"> Zablokuj </button>
       <ng-template #activate>
-          <button (click)="changeUserStatus(user.email)"> Aktywuj </button>
+          <button (click)="changeUserStatus(user.email)" class="left-margin"> Aktywuj </button>
       </ng-template>
     </mat-cell>
   </ng-container>
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
   <mat-row *matRowDef="let row; columns: displayedColumns;">
   </mat-row>
-</mat-table>
-<ng-template #notActiveTag>
+ </mat-table>
+ <ng-template #notActiveTag>
   <span class="red-text">
       <img src="../../assets/img/redx.png">
   </span>
-</ng-template>
-<mat-paginator [length]="totalElements" [pageSize]="pageable.size" [pageSizeOptions]="pageSizeOptions">
-</mat-paginator>
+ </ng-template>
+ <mat-paginator [length]="totalUsers" [pageSize]="pageable.size" [pageSizeOptions]="pageSizeOptions" (click)="reload()">
+ </mat-paginator>

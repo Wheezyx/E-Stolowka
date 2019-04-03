@@ -14,6 +14,7 @@ export class UserAccountComponent implements OnInit {
   orders: Order[];
   days: any;
   userEmail = this.getUserEmail();
+  isEmpty: boolean = true;
 
   constructor(private orderService: OrderService,
               private authService: AuthenticationService) { }
@@ -33,6 +34,9 @@ export class UserAccountComponent implements OnInit {
         console.log(this.createConvertedOrders(order.selectedDays));
         return this.createConvertedOrders(order.selectedDays);
       });
+      if (this.days.length > 0) {
+        this.isEmpty = false;
+      }
       console.log(this.days);
     })
   }
