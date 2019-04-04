@@ -39,3 +39,28 @@ mat-panel-title {
 .singleDay:nth-child(odd):hover {
     background-color: rgb(228, 222, 222);
 }
+
+.panels-container {
+    display: flex;
+}
+.error {
+  color: red;
+}
+
+@media (max-width: 1300px) {
+    .mat-expansion-panel {
+      width: 30%;
+    }
+}
+
+@media (max-width: 1100px) {
+    .mat-expansion-panel {
+      width: 40%;
+    }
+}
+
+@media (max-width: 750px) {
+    .mat-expansion-panel {
+      width: 70%;
+    }
+}

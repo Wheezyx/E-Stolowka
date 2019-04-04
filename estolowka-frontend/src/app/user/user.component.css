@@ -52,3 +52,32 @@ button {
     width: 150px;
     border-radius: 5px;
 }
+
+.left-margin {
+    margin-left: .8em;
+}
+
+.left-padding {
+    padding-left: .8em;
+}
+
+.center-element {
+    display: flex;
+    justify-content: center;
+}
+
+@media (max-width: 800px) {
+    .mat-table, .mat-paginator {
+        width: 95%;
+    }
+}
+
+@media (max-width: 650px) {
+    .mat-cell {
+        font-size: 10px;
+    }
+
+    .mat-header-row > .mat-header-cell {
+        font-size: 10px;
+    }
+}

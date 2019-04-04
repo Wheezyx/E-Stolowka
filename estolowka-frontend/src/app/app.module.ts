@@ -24,7 +24,7 @@ import { PasswordComponent } from "./login/recover/password/password.component";
 import { RecoverGuard } from "./auth/recover.guard";
 import { EmailDialogComponent } from "./login/recover/email-form/email-dialog/email-dialog.component";
 import { EmailFormComponent } from "./login/recover/email-form/email-form.component";
-import { MatFormFieldModule, MatInputModule } from "@angular/material";
+import {MatButtonModule, MatFormFieldModule, MatInputModule, MatSnackBarModule} from "@angular/material";
 import { WeeklyMenuComponent } from './order/weekly-menu/weekly-menu.component';
 import { UploadMenuComponent } from './menu/upload-menu/upload-menu.component';
 import { UploadMenuFormComponent } from './menu/upload-menu-form/upload-menu-form.component';
@@ -36,18 +36,18 @@ import { UserService } from './user/service/user.service';
 import { AdminComponent } from './admin/admin.component';
 
 const appRoutes: Routes = [
-  { path: 'login', component: LoginComponent },
-  { path: '', component: MainPageComponent, canActivate: [AuthGuard]},
-  { path: 'order', component: OrdersComponent, canActivate: [AuthGuard]},
-  { path: 'admin', component: AdminComponent, canActivate: [AdminGuard]},
-  { path: 'reset', component: PasswordComponent, canActivate: [RecoverGuard]},
+  {path: 'login', component: LoginComponent },
+  {path: '', component: MainPageComponent, canActivate: [AuthGuard]},
+  {path: 'order', component: OrdersComponent, canActivate: [AuthGuard]},
+  {path: 'reset', component: PasswordComponent, canActivate: [RecoverGuard]},
   {path: 'account', component: UserAccountComponent, canActivate: [AuthGuard]},
   {path: 'information', component: InformationPageComponent, canActivate: [AuthGuard]},
-  //{path: 'price', component: UploadMenuPricesFormComponent}
-  { path: 'account', component: UserAccountComponent, canActivate: [AuthGuard]},
-  { path: 'users', component: UserComponent, canActivate: [AdminGuard]},
-  { path: 'usersUpload', component: UploadFormComponent, canActivate: [AdminGuard]},
-  { path: 'menu', component: UploadMenuComponent, canActivate: [AdminGuard]}
+  {path: 'account', component: UserAccountComponent, canActivate: [AuthGuard]},
+  {path: 'admin', component: AdminComponent, canActivate: [AdminGuard]},
+  {path: 'admin/price', component: UploadMenuPricesFormComponent, canActivate: [AdminGuard]},
+  {path: 'admin/users', component: UserComponent, canActivate: [AdminGuard]},
+  {path: 'admin/usersUpload', component: UploadFormComponent, canActivate: [AdminGuard]},
+  {path: 'admin/menu', component: UploadMenuComponent, canActivate: [AdminGuard]}
 ];
 
 @NgModule({
@@ -79,6 +79,8 @@ const appRoutes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     MatFormFieldModule,
+    MatButtonModule,
+    MatSnackBarModule,
     MatInputModule,
     NgMaterialCollectionModule,
     RouterModule.forRoot(appRoutes)
