@@ -58,7 +58,7 @@ jobs:
           apk add \
             py-pip
           pip install \
-            docker-compose \
+            --quiet docker-compose~=1.23.0 \
     - run:
         name: Create dir and certs file
         command: |
