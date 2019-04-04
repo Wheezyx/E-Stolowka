@@ -18,9 +18,14 @@ export class UserService {
 
   getUsers(pageable: Pageable): Observable<Page<User>> {
     const params = new HttpParams()
-    .append('page', pageable.page.toString())
-    .append('size', pageable.size.toString())
-    .append('sort', pageable.sort + ',' + pageable.direction);
+      .append('page', pageable.page.toString())
+      .append('size', pageable.size.toString())
+      .append('sort', pageable.sort + ',' + pageable.direction);
     return this._http.get<Page<User>>(environment.usersUrl, {params: params});
+  }
+
+  changeUserPassword(email: string, oldPassword: string, newPassword: string): Observable<Object> {
+    return this._http.post(environment.usersUrl + '/change/password',
+      {email: email, oldPassword: oldPassword, newPassword: newPassword});
   }
 }
