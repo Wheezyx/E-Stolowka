@@ -1,9 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { OrderService } from '../order/service/order.service';
-import { JsonDay } from "../order/model/json-day";
-import { Day } from '../order/model/day';
-import { Order } from '../order/model/order';
-import { AuthenticationService } from '../auth/authentication.service';
+import {Component, OnInit} from '@angular/core';
+import {OrderService} from '../order/service/order.service';
+import {JsonDay} from "../order/model/json-day";
+import {Day} from '../order/model/day';
+import {Order} from '../order/model/order';
+import {AuthenticationService} from '../auth/authentication.service';
+import {UserService} from "../user/service/user.service";
+import {Router} from "@angular/router";
+import {MatSnackBar} from "@angular/material";
 
 @Component({
   selector: 'app-user-account',
@@ -15,9 +18,15 @@ export class UserAccountComponent implements OnInit {
   days: any;
   userEmail = this.getUserEmail();
   isEmpty: boolean = true;
+  model: any = {};
+  error: string = '';
 
   constructor(private orderService: OrderService,
-              private authService: AuthenticationService) { }
+              private authService: AuthenticationService,
+              private userService: UserService,
+              private router: Router,
+              private snackBar: MatSnackBar) {
+  }
 
   ngOnInit() {
   }
@@ -44,5 +53,16 @@ export class UserAccountComponent implements OnInit {
   getUserEmail() {
     return this.authService.getCurrentUserEmail();
   }
-  
+
+  changePassword() {
+    this.userService.changeUserPassword(this.getUserEmail(), this.model.oldPassword, this.model.newPassword)
+      .subscribe(() => {
+        this.authService.logout();
+        this.router.navigateByUrl('/login').then(() => {
+          this.snackBar.open("Hasło zostało zmienione!", '', {duration: 2000});
+        });
+      }, (error) => {
+        this.error = error.error.message;
+      });
+  }
 }

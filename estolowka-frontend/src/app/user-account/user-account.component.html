@@ -1,15 +1,37 @@
-<mat-expansion-panel>
-  <mat-expansion-panel-header class="orders-button" (click)="getOrders()">
-    <mat-panel-title>Moje zamówienia</mat-panel-title>
-  </mat-expansion-panel-header>
-  <p *ngIf="isEmpty">Nie masz żadnych zamówień</p>
-  <div class="dayArray" *ngFor="let dayArray of days; let i = index" value="order">
-    <div class="singleDay" *ngFor="let singleDay of dayArray">
-      <div><span class="date">{{singleDay.selectedDate | date}}</span>
-        <div class="meal" *ngFor="let meal of singleDay.meals">
-          <div *ngIf="meal.Selected">{{meal.name}}</div>
+<div class="panels-container">
+  <mat-expansion-panel>
+    <mat-expansion-panel-header class="orders-button" (click)="getOrders()">
+      <mat-panel-title>Moje zamówienia</mat-panel-title>
+    </mat-expansion-panel-header>
+    <p *ngIf="isEmpty">Nie masz żadnych zamówień</p>
+    <div class="dayArray" *ngFor="let dayArray of days; let i = index" value="order">
+      <div class="singleDay" *ngFor="let singleDay of dayArray">
+        <div><span class="date">{{singleDay.selectedDate | date}}</span>
+          <div class="meal" *ngFor="let meal of singleDay.meals">
+            <div *ngIf="meal.Selected">{{meal.name}}</div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</mat-expansion-panel>
+  </mat-expansion-panel>
+
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>Zmień hasło</mat-panel-title>
+    </mat-expansion-panel-header>
+    <mat-form-field>
+      <input matInput type="password" [(ngModel)]="model.oldPassword" placeholder="Old password"
+             name="oldPassword" required>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput type="password" [(ngModel)]="model.newPassword" placeholder="New password"
+             name="newPassword" required>
+    </mat-form-field>
+    <div>
+      <button mat-stroked-button (click)="changePassword()" [disabled]="!model.oldPassword||!model.newPassword">
+        Zmień hasło
+      </button>
+    </div>
+    <p class="error" *ngIf="error">{{error}}</p>
+  </mat-expansion-panel>
+</div>

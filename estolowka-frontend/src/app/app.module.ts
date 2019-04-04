@@ -24,7 +24,7 @@ import { PasswordComponent } from "./login/recover/password/password.component";
 import { RecoverGuard } from "./auth/recover.guard";
 import { EmailDialogComponent } from "./login/recover/email-form/email-dialog/email-dialog.component";
 import { EmailFormComponent } from "./login/recover/email-form/email-form.component";
-import { MatFormFieldModule, MatInputModule } from "@angular/material";
+import {MatButtonModule, MatFormFieldModule, MatInputModule, MatSnackBarModule} from "@angular/material";
 import { WeeklyMenuComponent } from './order/weekly-menu/weekly-menu.component';
 import { UploadMenuComponent } from './menu/upload-menu/upload-menu.component';
 import { UploadMenuFormComponent } from './menu/upload-menu-form/upload-menu-form.component';
@@ -79,6 +79,8 @@ const appRoutes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     MatFormFieldModule,
+    MatButtonModule,
+    MatSnackBarModule,
     MatInputModule,
     NgMaterialCollectionModule,
     RouterModule.forRoot(appRoutes)
