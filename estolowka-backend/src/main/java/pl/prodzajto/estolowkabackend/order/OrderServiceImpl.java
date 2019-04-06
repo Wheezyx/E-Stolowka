@@ -28,7 +28,7 @@ class OrderServiceImpl implements OrderService
                                                       .map(DuplicatedDayProjection::getDuplication)
                                                       .collect(Collectors.toSet());
         
-        if(noDuplicates(duplicatedDays))
+        if(isDuplicated(duplicatedDays))
         {
             return orderCreator.createOrder(rawOrder);
         }
@@ -42,7 +42,7 @@ class OrderServiceImpl implements OrderService
         return orderRepository.findAllByUserEmail(email);
     }
     
-    private boolean noDuplicates(Set<LocalDate> duplicatedDays)
+    private boolean isDuplicated(Set<LocalDate> duplicatedDays)
     {
         return duplicatedDays.size() == 0;
     }
