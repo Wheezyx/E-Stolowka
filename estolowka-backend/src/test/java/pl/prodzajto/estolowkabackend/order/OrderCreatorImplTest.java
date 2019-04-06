@@ -11,7 +11,9 @@ import pl.prodzajto.estolowkabackend.user.UserRepository;
 
 import java.util.Set;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
@@ -47,7 +49,7 @@ public class OrderCreatorImplTest {
         assertNotNull(orderEntity.getDateOfOrder());
         assertEquals(1L, orderEntity.getId().longValue());
 
-        Set<Day> resultDays = orderEntity.getSelectedDays();
+        Set<DayEntity> resultDays = orderEntity.getSelectedDays();
         assertNotNull(resultDays);
         assertEquals(rawOrder.getSelectedDays().size(), resultDays.size());
         assertTrue(resultDays.stream().noneMatch(day -> day.getId() == null));

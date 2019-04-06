@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import java.util.Set;
 
 @Repository
-interface DayRepository extends CrudRepository<Day, Long> {
+interface DayRepository extends CrudRepository<DayEntity, Long> {
     @Override
-    <S extends Day> Set<S> saveAll(Iterable<S> iterable);
+    <S extends DayEntity> Set<S> saveAll(Iterable<S> iterable);
 }
