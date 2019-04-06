@@ -9,7 +9,7 @@ import java.util.Set;
 
 @Data
 @NoArgsConstructor
-class RawOrder {
+public class RawOrder {
 
     @NotEmpty
     @Valid

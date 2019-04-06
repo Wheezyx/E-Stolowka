@@ -1,5 +1,6 @@
 package pl.prodzajto.estolowkabackend.order;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -30,6 +31,7 @@ public class OrderEntity {
     private OffsetDateTime dateOfOrder;
     @OneToMany
     private Set<DayEntity> selectedDays;
+    @JsonIgnore
     @ManyToOne
     private UserEntity user;
     
