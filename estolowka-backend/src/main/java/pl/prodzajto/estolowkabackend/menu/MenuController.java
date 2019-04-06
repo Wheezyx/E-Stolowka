@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import pl.prodzajto.estolowkabackend.menu.pricelist.PriceList;
 import pl.prodzajto.estolowkabackend.menu.pricelist.PriceListEntity;
 
+import javax.validation.Valid;
 import java.util.Set;
 
 @RestController
@@ -22,7 +23,7 @@ public class MenuController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public void saveMenu(@RequestBody Menu menu) {
+    public void saveMenu(@RequestBody @Valid Menu menu) {
         menuService.saveMenu(menu);
     }
 
@@ -32,7 +33,7 @@ public class MenuController {
     }
 
     @PostMapping("/prices")
-    public PriceListEntity updatePriceList(@RequestBody PriceList priceList) {
+    public PriceListEntity updatePriceList(@RequestBody @Valid PriceList priceList) {
         return menuService.savePriceList(priceList);
     }
 }

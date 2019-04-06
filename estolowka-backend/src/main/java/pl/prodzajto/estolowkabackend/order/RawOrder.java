@@ -3,6 +3,7 @@ package pl.prodzajto.estolowkabackend.order;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.Valid;
 import javax.validation.constraints.NotEmpty;
 import java.util.Set;
 
@@ -11,6 +12,7 @@ import java.util.Set;
 class RawOrder {
 
     @NotEmpty
+    @Valid
     private Set<Day> selectedDays;
     @NotEmpty
     private String userEmail;

@@ -4,33 +4,26 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import pl.prodzajto.estolowkabackend.user.UserEntity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import java.time.OffsetDateTime;
-import java.util.Set;
+import java.time.LocalDate;
 
-@Entity
-@Table(name = "meal_order")
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Data
-public class OrderEntity {
-
+@Entity
+class DayEntity
+{
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private OffsetDateTime dateOfOrder;
-    @OneToMany
-    private Set<DayEntity> selectedDays;
-    @ManyToOne
-    private UserEntity user;
-    
+    private boolean breakfast;
+    private boolean dinner;
+    private boolean supper;
+    private LocalDate selectedDay;
 }
