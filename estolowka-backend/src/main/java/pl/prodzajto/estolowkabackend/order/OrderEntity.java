@@ -16,21 +16,14 @@ import javax.persistence.Table;
 import java.time.OffsetDateTime;
 import java.util.Set;
 
-@Entity
-@Table(name = "meal_order")
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @Data
 public class OrderEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private OffsetDateTime dateOfOrder;
-    @OneToMany
-    private Set<DayEntity> selectedDays;
-    @ManyToOne
-    private UserEntity user;
-    
+    private Set<Day> selectedDays;
+
 }

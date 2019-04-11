@@ -16,7 +16,6 @@ import java.time.LocalDate;
 @NotAllMealsFalse
 public class Day {
     
-    private Long id;
     private boolean breakfast;
     private boolean dinner;
     private boolean supper;
