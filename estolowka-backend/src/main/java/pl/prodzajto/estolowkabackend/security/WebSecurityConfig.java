@@ -30,6 +30,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/order", "/user/change/password").authenticated()
                 .antMatchers("/uploadUsers").hasAuthority("ADMIN")
                 .antMatchers("/user").hasAuthority("ADMIN")
+                .antMatchers("/test").authenticated()
                 .antMatchers(HttpMethod.POST, "/menu", "/menu/prices").hasAuthority("ADMIN")
                 .anyRequest().permitAll()
                 .and()

@@ -7,7 +7,7 @@ import java.util.Set;
 
 @Service
 @AllArgsConstructor
-class OrderServiceImpl implements OrderService {
+public class OrderServiceImpl implements OrderService {
 
     private final OrderCreator orderCreator;
     private final OrderRepository orderRepository;
@@ -17,9 +17,17 @@ class OrderServiceImpl implements OrderService {
         return orderCreator.createOrder(rawOrder);
     }
 
+    public void saveOrder(OrderEntity orderEntity) {
+        orderRepository.save(orderEntity);
+    }
+
     @Override
     public Set<OrderEntity> getUserOrders(String email) {
         return orderRepository.findAllByUserEmail(email);
     }
 
+    @Override
+    public OrderEntity findOrderById(Long id) {
+        return orderRepository.findById(id).orElseThrow(OrderNotFoundException::new);
+    }
 }
