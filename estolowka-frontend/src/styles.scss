@@ -1,0 +1,8 @@
+$color-negative-rating: #f00 !default;
+$color-ok-rating: #00f !default;
+$color-positive-rating: #0f0 !default;
+$color-default-rating: #ff0 !default;
+$default-star-width: 40px !default;
+$default-star-height: 40px !default;
+
+@import "~css-star-rating/scss/star-rating";

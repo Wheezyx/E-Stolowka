@@ -28,7 +28,7 @@ import {MatGridListModule} from '@angular/material/grid-list';
 // import {MatProgressBarModule} from '@angular/material/progress-bar';
 // import {MatRippleModule} from '@angular/material/core';
 // import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
-// import {MatDialogModule} from '@angular/material/dialog';
+import {MatDialogModule} from '@angular/material/dialog';
 // import {MatSnackBarModule} from '@angular/material/snack-bar';
 // import {MatTooltipModule} from '@angular/material/tooltip';
 // import {MatPaginatorModule} from '@angular/material/paginator';
@@ -64,15 +64,13 @@ import {
   // MatProgressBarModule,
   // MatRippleModule,
   // MatBottomSheetModule,
-  // MatDialogModule,
   MatSnackBarModule,
   // MatTooltipModule,
   MatPaginatorModule,
   MatSortModule,
   MatTableModule,
-  MatNativeDateModule
+  MatNativeDateModule,
 } from '@angular/material';
-
 
 @NgModule({
   imports: [
@@ -105,7 +103,7 @@ import {
     // MatProgressBarModule,
     // MatRippleModule,
     // MatBottomSheetModule,
-    // MatDialogModule,
+    MatDialogModule,
     MatSnackBarModule,
     // MatTooltipModule,
     MatPaginatorModule,
@@ -143,7 +141,7 @@ import {
     // MatProgressBarModule,
     // MatRippleModule,
     // MatBottomSheetModule,
-    // MatDialogModule,
+    MatDialogModule,
     MatSnackBarModule,
     // MatTooltipModule,
     MatPaginatorModule,

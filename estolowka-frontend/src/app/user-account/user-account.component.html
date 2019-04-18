@@ -8,7 +8,10 @@
       <div class="singleDay" *ngFor="let singleDay of dayArray">
         <div><span class="date">{{singleDay.selectedDate | date}}</span>
           <div class="meal" *ngFor="let meal of singleDay.meals">
-            <div *ngIf="meal.Selected">{{meal.name}}</div>
+            <div class="orderedMeal" *ngIf="meal.Selected">
+              <div>{{meal.name}}</div>
+              <div class="star-container"><img class="star" (click)="openRatingDialog()" src="../../assets/img/star64.png"> </div>
+            </div>
           </div>
         </div>
       </div>
@@ -35,3 +38,4 @@
     <p class="error" *ngIf="error">{{error}}</p>
   </mat-expansion-panel>
 </div>
+<app-rating-dialog></app-rating-dialog>
