@@ -20,3 +20,7 @@ npm install --save @angular/material @angular/cdk @angular/animations
 npm install angular2-jwt
 npm install
 npm install --save rxjs-compat
+
+#installation for scss
+npm install bootstrap --save
+npm install angular-star-rating css-star-rating --save
