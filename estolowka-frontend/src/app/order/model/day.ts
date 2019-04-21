@@ -1,9 +1,11 @@
+import {MealType} from "./meal-type.enum";
+
 export class Day {
     id: Number
     meals = [
-      {name: 'Śniadanie', Selected: false},
-      {name: 'Obiad', Selected: false},
-      {name: 'Kolacja', Selected: false}
+      {type: MealType.BREAKFAST, Selected: false},
+      {type: MealType.DINNER, Selected: false},
+      {type: MealType.SUPPER, Selected: false}
     ]
     selectedDate: string = ""
   

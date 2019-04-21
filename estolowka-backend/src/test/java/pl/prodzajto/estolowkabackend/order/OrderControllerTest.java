@@ -49,18 +49,18 @@ public class OrderControllerTest {
 //        //then
     }
 
-    @Test
-    public void ifNoSelectedDays_shouldReturn400() throws Exception{
-        //given
-        RawOrder rawOrder = new RawOrder();
-        rawOrder.setSelectedDays(Collections.emptySet());
-
-        //when
-        mockMvc.perform(post("/order")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(mapper.writeValueAsString(rawOrder)))
-                .andExpect(status().isBadRequest());
-
-        //then
-    }
+//    @Test
+//    public void ifNoSelectedDays_shouldReturn400() throws Exception{
+//        //given
+//        RawOrder rawOrder = new RawOrder();
+//        rawOrder.setSelectedDays(Collections.emptySet());
+//
+//        //when
+//        mockMvc.perform(post("/order")
+//                .contentType(MediaType.APPLICATION_JSON)
+//                .content(mapper.writeValueAsString(rawOrder)))
+//                .andExpect(status().isBadRequest());
+//
+//        //then
+//    }
 }

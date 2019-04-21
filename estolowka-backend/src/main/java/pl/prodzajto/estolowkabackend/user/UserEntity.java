@@ -1,7 +1,6 @@
 package pl.prodzajto.estolowkabackend.user;
 
 import lombok.*;
-import pl.prodzajto.estolowkabackend.order.OrderEntity;
 import pl.prodzajto.estolowkabackend.order.UserMealEntity;
 
 import javax.persistence.*;

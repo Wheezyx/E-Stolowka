@@ -1,16 +1,17 @@
 package pl.prodzajto.estolowkabackend.order;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import pl.prodzajto.estolowkabackend.user.UserEntity;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.Objects;
 
 @Entity
 @Table(name = "user_meal")
-@Getter
-@Setter
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
@@ -26,20 +27,4 @@ public class UserMealEntity {
     private LocalDate date;
     private MealType type;
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        UserMealEntity that = (UserMealEntity) o;
-        return Objects.equals(id, that.id) &&
-                Objects.equals(meal, that.meal) &&
-                Objects.equals(user, that.user) &&
-                Objects.equals(date, that.date) &&
-                type == that.type;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, meal, user, date, type);
-    }
 }

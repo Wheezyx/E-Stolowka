@@ -13,7 +13,7 @@ class RawOrder {
 
     @NotEmpty
     @Valid
-    private Set<Day> selectedDays;
+    private Set<Meal> meals;
     @NotEmpty
     private String userEmail;
 }
