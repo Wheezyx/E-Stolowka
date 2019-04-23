@@ -2,12 +2,11 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {environment} from "../../../environments/environment";
-import {Order} from "../model/order";
-import {JsonDay} from "../model/json-day";
 import {Day} from "../model/day";
 import {AuthenticationService} from "../../auth/authentication.service";
 import {v4 as uuid} from 'uuid';
 import {Meal} from "../model/meal";
+import {MealsWrapper} from '../model/meals-wrapper';
 
 @Injectable()
 export class OrderService {
@@ -39,16 +38,7 @@ export class OrderService {
     return meals;
   }
 
-  getOrdersList(email: string): Observable<Order[]> {
-    return this._http.get<Order[]>(environment.orderUrl + '/' + email);
-  }
-
-  convertJsonDayToDay(jsonDay: JsonDay): Day {
-    var day = new Day(uuid());
-    day.selectedDate = jsonDay.selectedDay;
-    day.meals[0].Selected = jsonDay.breakfast;
-    day.meals[1].Selected = jsonDay.dinner;
-    day.meals[2].Selected = jsonDay.supper;
-    return day;
+  getOrdersList(email: string): Observable<MealsWrapper> {
+    return this._http.get<MealsWrapper>(environment.orderUrl + '/' + email);
   }
 }

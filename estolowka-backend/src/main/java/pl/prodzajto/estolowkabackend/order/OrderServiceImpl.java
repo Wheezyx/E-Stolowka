@@ -26,7 +26,7 @@ class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public Set<Set<UserMealDTO>> getUserOrders(String email) {
+    public MealsWrapper getUserOrders(String email) {
 
         UserEntity user = userRepository.findByEmail(email).orElseThrow(UserNotFoundException::new);
 
@@ -36,10 +36,10 @@ class OrderServiceImpl implements OrderService {
                 .collect(Collectors.groupingBy(userMeal -> LocalDate.of(userMeal.getDate().getYear(),
                         userMeal.getDate().getMonth().getValue(), 1)));
 
-        return groupedMeals.values()
+        return new MealsWrapper(groupedMeals.values()
                 .stream()
                 .map(this::mapMeals)
-                .collect(Collectors.toSet());
+                .collect(Collectors.toSet()));
     }
 
     private Set<UserMealDTO> mapMeals(List<UserMealEntity> meals) {
