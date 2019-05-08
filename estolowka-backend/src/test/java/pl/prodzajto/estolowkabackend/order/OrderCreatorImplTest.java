@@ -19,41 +19,41 @@ import static org.junit.Assert.assertTrue;
 @DataJpaTest
 public class OrderCreatorImplTest {
 
-    @Autowired
-    private OrderRepository orderRepository;
-    @Autowired
-    private DayRepository dayRepository;
-    @Autowired
-    private UserRepository userRepository;
-    private OrderCreator orderCreator;
-
-    @Before
-    public void setUp() {
-        orderCreator = new OrderCreatorImpl(orderRepository, dayRepository, userRepository);
-        userRepository.save(UserEntity.builder()
-                .email("admin@gmail.com")
-                                      .password("test1234")
-                                      .build());
-    }
-
-    @Test
-    public void shouldCreateAndSaveOrderWithSelectedDays() {
-        //given
-        RawOrder rawOrder = OrderUtils.getDefaultRawOrder();
-
-        //when
-        OrderEntity orderEntity = orderCreator.createOrder(rawOrder);
-
-        //then
-        assertNotNull(orderEntity);
-        assertNotNull(orderEntity.getDateOfOrder());
-        assertEquals(1L, orderEntity.getId().longValue());
-
-        Set<DayEntity> resultDays = orderEntity.getSelectedDays();
-        assertNotNull(resultDays);
-        assertEquals(rawOrder.getSelectedDays().size(), resultDays.size());
-        assertTrue(resultDays.stream().noneMatch(day -> day.getId() == null));
-    }
+//    @Autowired
+//    private OrderRepository orderRepository;
+//    @Autowired
+//    private DayRepository dayRepository;
+//    @Autowired
+//    private UserRepository userRepository;
+//    private OrderCreator orderCreator;
+//
+//    @Before
+//    public void setUp() {
+//        orderCreator = new OrderCreatorImpl(orderRepository, dayRepository, userRepository);
+//        userRepository.save(UserEntity.builder()
+//                .email("admin@gmail.com")
+//                                      .password("test1234")
+//                                      .build());
+//    }
+//
+//    @Test
+//    public void shouldCreateAndSaveOrderWithSelectedDays() {
+//        //given
+//        RawOrder rawOrder = OrderUtils.getDefaultRawOrder();
+//
+//        //when
+//        OrderEntity orderEntity = orderCreator.createOrder(rawOrder);
+//
+//        //then
+//        assertNotNull(orderEntity);
+//        assertNotNull(orderEntity.getDateOfOrder());
+//        assertEquals(1L, orderEntity.getId().longValue());
+//
+//        Set<DayEntity> resultDays = orderEntity.getSelectedDays();
+//        assertNotNull(resultDays);
+//        assertEquals(rawOrder.getSelectedDays().size(), resultDays.size());
+//        assertTrue(resultDays.stream().noneMatch(day -> day.getId() == null));
+//    }
 
 
 }

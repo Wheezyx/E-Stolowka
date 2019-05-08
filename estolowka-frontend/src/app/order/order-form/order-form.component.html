@@ -13,7 +13,7 @@
       <mat-checkbox
       [formControlName] = "i"
       [(ngModel)] = "order.meals[i].Selected">
-        {{ order.meals[i].name }}         
+        {{ mealTypeNames[order.meals[i].type] }}
       </mat-checkbox>
     </div>
   </div>

@@ -13,24 +13,26 @@ import pl.prodzajto.estolowkabackend.security.UserTokenResolver;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
-import java.util.Set;
 
 @RestController
 @RequestMapping("/order")
 @AllArgsConstructor
-class OrderController {
-
+class OrderController
+{
+    
     private final OrderService orderService;
     private final UserTokenResolver userTokenResolver;
-
+    
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
-    public OrderEntity createOrder(@RequestBody @Valid RawOrder rawOrder) {
-        return orderService.saveOrder(rawOrder);
+    public void createOrder(@RequestBody @Valid RawOrder rawOrder)
+    {
+        orderService.saveOrder(rawOrder);
     }
-
+    
     @GetMapping("/{email}")
-    public Set<OrderEntity> getUserOrders(HttpServletRequest request) {
+    public MealsWrapper getUserOrders(HttpServletRequest request)
+    {
         return orderService.getUserOrders(userTokenResolver.getUserEmailFromToken(request));
     }
 }
