@@ -37,30 +37,30 @@ public class OrderControllerTest {
 
     @Test
     public void shouldCreateOrder() throws Exception {
-//        //given
-//        RawOrder rawOrder = OrderUtils.getDefaultRawOrder();
-//
-//        //when
-//        mockMvc.perform(post("/order")
-//                .contentType(MediaType.APPLICATION_JSON)
-//                .content(mapper.writeValueAsString(rawOrder)))
-//                .andExpect(status().isCreated());
-//
-//        //then
+        //given
+        RawOrder rawOrder = OrderUtils.getDefaultRawOrder();
+
+        //when
+        mockMvc.perform(post("/order")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(mapper.writeValueAsString(rawOrder)))
+                .andExpect(status().isCreated());
+
+        //then
     }
 
-//    @Test
-//    public void ifNoSelectedDays_shouldReturn400() throws Exception{
-//        //given
-//        RawOrder rawOrder = new RawOrder();
-//        rawOrder.setSelectedDays(Collections.emptySet());
-//
-//        //when
-//        mockMvc.perform(post("/order")
-//                .contentType(MediaType.APPLICATION_JSON)
-//                .content(mapper.writeValueAsString(rawOrder)))
-//                .andExpect(status().isBadRequest());
-//
-//        //then
-//    }
+    @Test
+    public void ifNoSelectedDays_shouldReturn400() throws Exception{
+        //given
+        RawOrder rawOrder = new RawOrder();
+        rawOrder.setMeals(Collections.emptySet());
+
+        //when
+        mockMvc.perform(post("/order")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(mapper.writeValueAsString(rawOrder)))
+                .andExpect(status().isBadRequest());
+
+        //then
+    }
 }

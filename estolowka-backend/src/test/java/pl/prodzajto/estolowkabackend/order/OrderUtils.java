@@ -7,23 +7,18 @@ import java.util.Set;
 class OrderUtils
 {
     
-//    static RawOrder getDefaultRawOrder()
-//    {
-//        Set<Day> selectedDays = new HashSet<>();
-//
-//        for(int i = 0; i < 10; i++)
-//        {
-//            Day day = Day.builder()
-//                .breakfast(true)
-//                .dinner(true)
-//                .supper(false)
-//                .selectedDay(LocalDate.now().plusDays(i))
-//                .build();
-//            selectedDays.add(day);
-//        }
-//        RawOrder rawOrder = new RawOrder();
-//        rawOrder.setSelectedDays(selectedDays);
-//        rawOrder.setUserEmail("admin@gmail.com");
-//        return rawOrder;
-//    }
+    static RawOrder getDefaultRawOrder()
+    {
+        Set<Meal> selectedMeals = new HashSet<>();
+
+        for(int i = 0; i < 10; i++)
+        {
+            Meal meal = new Meal(LocalDate.now().plusDays(i), MealType.BREAKFAST);
+            selectedMeals.add(meal);
+        }
+        RawOrder rawOrder = new RawOrder();
+        rawOrder.setMeals(selectedMeals);
+        rawOrder.setUserEmail("admin@gmail.com");
+        return rawOrder;
+    }
 }
