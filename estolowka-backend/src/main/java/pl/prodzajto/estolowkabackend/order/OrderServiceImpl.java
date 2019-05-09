@@ -53,7 +53,7 @@ class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public ResponseEntity<String> rateUserOrder(String email, long id, int rate) {
+    public ResponseEntity<String> rateUserOrder(String email, Long id, Integer rate) {
         UserEntity user = userRepository.findByEmail(email).orElseThrow(UserNotFoundException::new);
 
         UserMealEntity userMeal = userMealRepository.findByUserAndId(user, id).orElseThrow(OrderNotFoundException::new);

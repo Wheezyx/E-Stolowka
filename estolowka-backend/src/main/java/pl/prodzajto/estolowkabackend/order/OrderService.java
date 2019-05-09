@@ -11,6 +11,6 @@ interface OrderService {
 
     List<UserMealDTO> getUserOrdersToRate(String email);
 
-    ResponseEntity<String> rateUserOrder(String email, long id, int rate);
+    ResponseEntity<String> rateUserOrder(String email, Long id, Integer rate);
 
 }

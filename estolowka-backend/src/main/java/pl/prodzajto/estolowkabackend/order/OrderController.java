@@ -4,11 +4,10 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import pl.prodzajto.estolowkabackend.security.UserTokenResolver;
-import pl.prodzajto.estolowkabackend.user.UserNotFoundException;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -27,24 +26,22 @@ class OrderController {
     }
 
     @GetMapping
-    public MealsWrapper getUserOrders(HttpServletRequest request) {
-        return orderService.getUserOrders(userTokenResolver.getUserEmailFromToken(request));
+    public MealsWrapper getUserOrders() {
+        String email = SecurityContextHolder.getContext().getAuthentication().getName();
+        return orderService.getUserOrders(email);
     }
 
     @GetMapping("/rate")
-    public List<UserMealDTO> getUserOrdersToRate(HttpServletRequest request) {
-        String email = userTokenResolver.getUserEmailFromToken(request);
-        if (email == null) {
-            throw new UserNotFoundException();
-        }
+    public List<UserMealDTO> getUserOrdersToRate() {
+        String email = SecurityContextHolder.getContext().getAuthentication().getName();
         return orderService.getUserOrdersToRate(email);
     }
 
     @PostMapping("/{id}/rate")
-    public ResponseEntity<String> rateUserOrder(HttpServletRequest request, @PathVariable long id, @RequestBody @Valid int rate) {
-        String email = userTokenResolver.getUserEmailFromToken(request);
-        if (email == null) {
-            throw new UserNotFoundException();
+    public ResponseEntity<String> rateUserOrder(@PathVariable Long id, @RequestBody Integer rate) {
+        String email = SecurityContextHolder.getContext().getAuthentication().getName();
+        if (rate < 1 || rate > 5) {
+            return new ResponseEntity<>("Rate must be in the range <1,5>", HttpStatus.NOT_ACCEPTABLE);
         }
         return orderService.rateUserOrder(email, id, rate);
     }

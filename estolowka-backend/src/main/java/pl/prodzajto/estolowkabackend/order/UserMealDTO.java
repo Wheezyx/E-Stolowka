@@ -16,5 +16,5 @@ public class UserMealDTO {
     private MealEntity meal;
     private LocalDate date;
     private MealType type;
-    private int rate;
+    private Integer rate;
 }

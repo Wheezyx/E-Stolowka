@@ -7,8 +7,6 @@ import lombok.NoArgsConstructor;
 import pl.prodzajto.estolowkabackend.user.UserEntity;
 
 import javax.persistence.*;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
 import java.time.LocalDate;
 
 @Entity
@@ -28,8 +26,6 @@ public class UserMealEntity {
     private UserEntity user;
     private LocalDate date;
     private MealType type;
-    @Min(1)
-    @Max(5)
     private Integer rate;
 
 }
