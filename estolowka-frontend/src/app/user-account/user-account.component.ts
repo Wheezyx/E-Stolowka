@@ -48,13 +48,12 @@ export class UserAccountComponent implements OnInit {
     return this.authService.getCurrentUserEmail();
   }
 
-
   reload() {
     this.getOrders();
   }
 
-  openRatingDialog() {
-    this.mealRatingDialog.openDialog();
+  openRatingDialog(id: number) {
+    this.mealRatingDialog.openDialog(id);
     this.mealRatingDialog.dialogRef.afterClosed().subscribe(() => {
       this.reload();
     })
@@ -71,4 +70,5 @@ export class UserAccountComponent implements OnInit {
         this.error = error.error.message;
       });
   }
+
 }

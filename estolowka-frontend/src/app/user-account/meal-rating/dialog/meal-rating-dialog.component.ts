@@ -11,8 +11,9 @@ export class MealRatingDialogComponent {
 
   constructor(private dialog: MatDialog) {}
 
-  openDialog(): void {
+  openDialog(orderId: number): void {
     this.dialogRef = this.dialog.open(MealRatingComponent, {
+      data: { id: orderId },
       width: '22%',
       height: '22%'
     });
