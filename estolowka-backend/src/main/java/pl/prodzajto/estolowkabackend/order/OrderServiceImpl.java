@@ -1,6 +1,8 @@
 package pl.prodzajto.estolowkabackend.order;
 
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import pl.prodzajto.estolowkabackend.user.UserEntity;
 import pl.prodzajto.estolowkabackend.user.UserNotFoundException;
@@ -42,6 +44,27 @@ class OrderServiceImpl implements OrderService {
                 .collect(Collectors.toSet()));
     }
 
+    @Override
+    public List<UserMealDTO> getUserOrdersToRate(String email) {
+        UserEntity user = userRepository.findByEmail(email).orElseThrow(UserNotFoundException::new);
+
+        Set<UserMealEntity> userMeals = userMealRepository.findAllByUser(user);
+        return userMeals.stream().map(this::createMealDTO).filter(i -> i.getRate() == null).collect(Collectors.toList());
+    }
+
+    @Override
+    public ResponseEntity<String> rateUserOrder(String email, Long id, Integer rate) {
+        UserEntity user = userRepository.findByEmail(email).orElseThrow(UserNotFoundException::new);
+
+        UserMealEntity userMeal = userMealRepository.findByUserAndId(user, id).orElseThrow(OrderNotFoundException::new);
+        if (userMeal.getRate() != null) {
+            return new ResponseEntity<>("The selected order has been already rated", HttpStatus.CONFLICT);
+        }
+        userMeal.setRate(rate);
+        userMealRepository.save(userMeal);
+        return new ResponseEntity<>("You rate the meal", HttpStatus.ACCEPTED);
+    }
+
     private Set<UserMealDTO> mapMeals(List<UserMealEntity> meals) {
         return meals.stream()
                 .map(this::createMealDTO)
@@ -50,9 +73,11 @@ class OrderServiceImpl implements OrderService {
 
     private UserMealDTO createMealDTO(UserMealEntity userMealEntity) {
         return UserMealDTO.builder()
+                .id(userMealEntity.getId())
                 .date(userMealEntity.getDate())
                 .meal(userMealEntity.getMeal())
                 .type(userMealEntity.getType())
+                .rate(userMealEntity.getRate())
                 .build();
     }
 }

@@ -26,5 +26,6 @@ public class UserMealEntity {
     private UserEntity user;
     private LocalDate date;
     private MealType type;
+    private Integer rate;
 
 }

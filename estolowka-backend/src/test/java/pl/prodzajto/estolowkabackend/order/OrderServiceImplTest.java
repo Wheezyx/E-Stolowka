@@ -10,13 +10,13 @@ import pl.prodzajto.estolowkabackend.user.UserEntity;
 import pl.prodzajto.estolowkabackend.user.UserRepository;
 
 import java.util.Collection;
+import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
-public class OrderServiceImplTest
-{
+public class OrderServiceImplTest {
     private OrderServiceImpl orderService;
     @Autowired
     private UserMealRepository userMealRepository;
@@ -24,18 +24,16 @@ public class OrderServiceImplTest
     private UserRepository userRepository;
     @Autowired
     private MealRepository mealRepository;
-    
+
     @Before
-    public void setUp() throws Exception
-    {
+    public void setUp() throws Exception {
         OrderCreatorImpl orderCreator = new OrderCreatorImpl(userRepository, mealRepository, userMealRepository);
         orderService = new OrderServiceImpl(orderCreator, userMealRepository, userRepository);
         userRepository.save(UserEntity.builder().email("admin@gmail.com").build());
     }
-    
+
     @Test
-    public void shouldSaveOrder()
-    {
+    public void shouldSaveOrder() {
         //given
         RawOrder rawOrder = OrderUtils.getDefaultRawOrder();
         rawOrder.setUserEmail("admin@gmail.com");
@@ -44,8 +42,9 @@ public class OrderServiceImplTest
         //then
         assertEquals(userMealRepository.findAll().size(), rawOrder.getMeals().size());
     }
+
     @Test
-    public void shouldGetMapOfMealsByMonth(){
+    public void shouldGetMapOfMealsByMonth() {
         //given
         RawOrder rawOrder = OrderUtils.getDefaultRawOrder();
         rawOrder.setUserEmail("admin@gmail.com");
@@ -56,6 +55,21 @@ public class OrderServiceImplTest
         long mealsCount = mealsWrapper.getMealsByMonth().stream().mapToLong(Collection::size).sum();
         assertEquals(mealsCount, rawOrder.getMeals().size());
     }
+
+    @Test
+    public void shouldGetListOfOrdersToRate() {
+        //given
+        RawOrder rawOrder = OrderUtils.getDefaultRawOrder();
+        rawOrder.setUserEmail("admin@gmail.com");
+        orderService.saveOrder(rawOrder);
+        //when
+        List<UserMealDTO> ordersToRate = orderService.getUserOrdersToRate("admin@gmail.com");
+        //then
+        int allOrders = rawOrder.getMeals().size();
+        int ordersToRateCount = ordersToRate.size();
+        assertEquals(allOrders, ordersToRateCount);
+    }
+
 }
 
 
