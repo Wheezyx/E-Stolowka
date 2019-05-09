@@ -12,8 +12,9 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserMealDTO {
-
+    private long id;
     private MealEntity meal;
     private LocalDate date;
     private MealType type;
+    private int rate;
 }
