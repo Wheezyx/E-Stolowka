@@ -49,7 +49,7 @@ class OrderServiceImpl implements OrderService {
         UserEntity user = userRepository.findByEmail(email).orElseThrow(UserNotFoundException::new);
 
         Set<UserMealEntity> userMeals = userMealRepository.findAllByUser(user);
-        return userMeals.stream().map(this::createMealDTO).filter(i -> i.getRate() == 0).collect(Collectors.toList());
+        return userMeals.stream().map(this::createMealDTO).filter(i -> i.getRate() == null).collect(Collectors.toList());
     }
 
     @Override
