@@ -9,20 +9,15 @@ class OrderUtils
     
     static RawOrder getDefaultRawOrder()
     {
-        Set<Day> selectedDays = new HashSet<>();
-        
+        Set<Meal> selectedMeals = new HashSet<>();
+
         for(int i = 0; i < 10; i++)
         {
-            Day day = Day.builder()
-                .breakfast(true)
-                .dinner(true)
-                .supper(false)
-                .selectedDay(LocalDate.now().plusDays(i))
-                .build();
-            selectedDays.add(day);
+            Meal meal = new Meal(LocalDate.now().plusDays(i), MealType.BREAKFAST);
+            selectedMeals.add(meal);
         }
         RawOrder rawOrder = new RawOrder();
-        rawOrder.setSelectedDays(selectedDays);
+        rawOrder.setMeals(selectedMeals);
         rawOrder.setUserEmail("admin@gmail.com");
         return rawOrder;
     }

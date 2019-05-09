@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Day } from '../model/day';
 import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
+import {MealType} from "../model/meal-type.enum";
 
 @Component({
   selector: 'app-order-form',
@@ -37,5 +38,13 @@ export class OrderFormComponent implements OnInit {
   getLastDayOfMonth() {
     let today = new Date();
     return new Date(today.getFullYear(), today.getMonth()+1, 0);
+  }
+
+  get mealTypeNames(): { [key: string]: string } {
+    return {
+      'BREAKFAST': 'Śniadanie',
+      'DINNER': 'Obiad',
+      'SUPPER': 'Kolacja'
+    };
   }
 }

@@ -28,12 +28,12 @@ public class MenuController {
     }
 
     @GetMapping("/prices")
-    public PriceListEntity getPriceList() {
+    public PriceList getPriceList() {
         return menuService.getMealPrices();
     }
 
     @PostMapping("/prices")
-    public PriceListEntity updatePriceList(@RequestBody @Valid PriceList priceList) {
-        return menuService.savePriceList(priceList);
+    public void updatePriceList(@RequestBody @Valid PriceList priceList) {
+         menuService.savePriceList(priceList);
     }
 }
