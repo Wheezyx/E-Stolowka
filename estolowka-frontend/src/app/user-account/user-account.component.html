@@ -1,4 +1,5 @@
 <div class="panels-container">
+
     <mat-expansion-panel>
         <mat-expansion-panel-header class="orders-button" (click)="getOrders()">
             <mat-panel-title>Moje zamówienia</mat-panel-title>
@@ -9,13 +10,20 @@
                 <div><span class="date">{{meal.date | date}}</span>
                     <div class="meal">
                         <div>{{meal.type}}</div>
+                        <div class="star-container" *ngIf="!meal.rate else rateTag"><img class="star" (click)="openRatingDialog(meal.id)" src="../../assets/img/star64.png"> </div>
                     </div>
+                  <ng-template #rateTag class="rate-container star-container">
+                    <div>
+                      <p class="rate-value">{{meal.rate}} <img class="rated-star" src="../../assets/img/star64.png"></p>
+
+                    </div>
+                  </ng-template>
                 </div>
             </div>
         </div>
     </mat-expansion-panel>
 
-    <mat-expansion-panel>
+    <mat-expansion-panel class="password-panel">
         <mat-expansion-panel-header>
             <mat-panel-title>Zmień hasło</mat-panel-title>
         </mat-expansion-panel-header>
@@ -35,3 +43,4 @@
         <p class="error" *ngIf="error">{{error}}</p>
     </mat-expansion-panel>
 </div>
+<app-rating-dialog ></app-rating-dialog>

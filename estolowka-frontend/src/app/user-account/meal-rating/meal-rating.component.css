@@ -1,0 +1,35 @@
+h3 {
+    text-align: center;
+    color: rgb(87, 87, 87);
+}
+
+form:focus {
+    outline: none;
+}
+
+form {
+    margin-bottom: 1em;
+}
+
+.rate-btn-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.rate-btn  {
+    width: 40%;
+    height: 40%;
+    border: 1px solid rgb(255, 255, 68);
+    border-radius: 5%;
+    background-color: rgb(255, 255, 173);
+    margin: 2%;
+    padding: 2%;
+    font-size: 1em;
+    outline: none;
+    color: rgb(87, 87, 87);
+}
+
+.rate-btn:hover {
+    background-color: rgb(252, 252, 214);
+}

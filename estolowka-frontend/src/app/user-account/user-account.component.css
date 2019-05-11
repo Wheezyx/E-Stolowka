@@ -5,6 +5,13 @@ mat-expansion-panel {
     margin: 1% auto 0 2%;
 }
 
+.password-panel {
+  background-color: white;
+  opacity: .7;
+  width: 15%;
+  margin: 1% auto 0 2%;
+}
+
 mat-expansion-panel-header {
     background-color: rgb(235, 235, 235);
 }
@@ -12,6 +19,28 @@ mat-expansion-panel-header {
 mat-panel-title {
     font-weight: bold;
     font-size: 1.5em;
+}
+
+.meal {
+    display: flex;
+    justify-content: space-between;
+}
+
+.star-container {
+    width: 3em;
+}
+
+.star, .rated-star {
+    width: 36px;
+    height:  36px;
+}
+
+.rated-star {
+  margin-right: .5em;
+}
+
+.star:hover {
+    cursor: pointer;
 }
 
 .mat-expansion-panel-body {
@@ -43,8 +72,25 @@ mat-panel-title {
 .panels-container {
     display: flex;
 }
+
 .error {
   color: red;
+}
+
+.rate-container {
+  overflow: hidden;
+  z-index: -1;
+  cursor: none;
+}
+
+.rate-value {
+  font-size: 1em;
+  z-index: 100;
+  text-align: center;
+  margin: 0;
+  color: #cca957;
+  font-size: 1.5em;
+  font-weight: bold;
 }
 
 @media (max-width: 1300px) {

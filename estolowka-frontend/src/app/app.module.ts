@@ -24,16 +24,19 @@ import { PasswordComponent } from "./login/recover/password/password.component";
 import { RecoverGuard } from "./auth/recover.guard";
 import { EmailDialogComponent } from "./login/recover/email-form/email-dialog/email-dialog.component";
 import { EmailFormComponent } from "./login/recover/email-form/email-form.component";
-import {MatButtonModule, MatFormFieldModule, MatInputModule, MatSnackBarModule} from "@angular/material";
+import { MatButtonModule, MatFormFieldModule, MatInputModule, MatSnackBarModule } from "@angular/material";
 import { WeeklyMenuComponent } from './order/weekly-menu/weekly-menu.component';
 import { UploadMenuComponent } from './menu/upload-menu/upload-menu.component';
 import { UploadMenuFormComponent } from './menu/upload-menu-form/upload-menu-form.component';
 import { MenuService } from './menu/menu.service';
-import {InformationPageComponent} from './information-page/information-page.component';
-import {UploadMenuPricesFormComponent} from './menu/upload-menu-prices-form/upload-menu-prices-form.component';
+import { InformationPageComponent } from './information-page/information-page.component';
+import { UploadMenuPricesFormComponent } from './menu/upload-menu-prices-form/upload-menu-prices-form.component';
 import { UserComponent } from './user/user.component';
 import { UserService } from './user/service/user.service';
 import { AdminComponent } from './admin/admin.component';
+import { MealRatingComponent } from './user-account/meal-rating/meal-rating.component';
+import { MealRatingDialogComponent } from './user-account/meal-rating/dialog/meal-rating-dialog.component';
+import { StarRatingModule } from 'angular-star-rating';
 
 const appRoutes: Routes = [
   {path: 'login', component: LoginComponent },
@@ -70,7 +73,9 @@ const appRoutes: Routes = [
     InformationPageComponent,
     UploadMenuPricesFormComponent,
     UserComponent,
-    AdminComponent
+    AdminComponent,
+    MealRatingComponent,
+    MealRatingDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -83,7 +88,8 @@ const appRoutes: Routes = [
     MatSnackBarModule,
     MatInputModule,
     NgMaterialCollectionModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    StarRatingModule.forRoot()
   ],
   providers: [
     OrderService,
@@ -98,7 +104,9 @@ const appRoutes: Routes = [
       multi: true
     }
   ],
-  entryComponents: [EmailFormComponent],
+  entryComponents: [
+    EmailFormComponent,
+    MealRatingComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule {

@@ -39,6 +39,10 @@ export class OrderService {
   }
 
   getOrdersList(email: string): Observable<MealsWrapper> {
-    return this._http.get<MealsWrapper>(environment.orderUrl + '/' + email);
+    return this._http.get<MealsWrapper>(environment.orderUrl);
+  }
+
+  rateMeal(id: number, rate: number) {
+    return this._http.post(environment.orderUrl + '/' + id + '/rate', rate)
   }
 }
