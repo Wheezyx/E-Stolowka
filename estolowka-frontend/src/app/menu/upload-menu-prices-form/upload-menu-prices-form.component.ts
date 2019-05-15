@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {MenuService} from "../menu.service";
 import {MatSnackBar, MatSnackBarConfig} from "@angular/material";
-import { CustomErrorHandler } from '../../util/custom-error-handler';
+import {CustomErrorHandler} from '../../util/custom-error-handler';
 
 @Component({
   selector: 'app-upload-menu-prices-form',

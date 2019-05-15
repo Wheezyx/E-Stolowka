@@ -1,6 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { Day } from '../model/day';
-import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
+import {Component, Input, OnInit} from '@angular/core';
+import {Day} from '../model/day';
+import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {OrderListComponent} from "../order-list/order-list.component";
 
 @Component({
@@ -19,7 +19,8 @@ export class OrderFormComponent implements OnInit {
 
   dateFilter = (date: Date) => !this.orderList.isExist(date);
 
-  constructor(private formBuilder: FormBuilder, private orderList: OrderListComponent) { }
+  constructor(private formBuilder: FormBuilder, private orderList: OrderListComponent) {
+  }
 
   get meals(): FormArray { return this.form.get('meals') as FormArray; }
 

@@ -35,9 +35,9 @@ public class OrderServiceImplTest {
         orderService = new OrderServiceImpl(orderCreator, userMealRepository, userRepository);
         userRepository.save(UserEntity.builder().email("admin@gmail.com").build());
     }
-    
+
     @After
-    public void after(){
+    public void after() {
         SecurityContextHolder.getContext().setAuthentication(null);
     }
     

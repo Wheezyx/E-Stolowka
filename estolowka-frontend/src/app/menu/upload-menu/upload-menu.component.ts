@@ -1,8 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { MenuService } from "../menu.service";
-import { MatSnackBar, MatSnackBarConfig } from '@angular/material';
-import { WeeklyMenuItem } from '../model/weekly-menu-item';
-import { CustomErrorHandler } from '../../util/custom-error-handler';
+import {Component, Input, OnInit} from '@angular/core';
+import {MenuService} from "../menu.service";
+import {MatSnackBar, MatSnackBarConfig} from '@angular/material';
+import {WeeklyMenuItem} from '../model/weekly-menu-item';
+import {CustomErrorHandler} from '../../util/custom-error-handler';
 
 @Component({
   selector: 'app-upload-menu',
@@ -15,7 +15,8 @@ export class UploadMenuComponent implements OnInit {
 
   constructor(private menuService: MenuService,
               private snackBar: MatSnackBar,
-              private errorHandler: CustomErrorHandler) { }
+              private errorHandler: CustomErrorHandler) {
+  }
 
   ngOnInit() {
     this.menuItems = this.generateMenuMeals();
@@ -25,7 +26,7 @@ export class UploadMenuComponent implements OnInit {
     for (let i = 0; i < 7; i++) {
       this.menuItems.push(new WeeklyMenuItem());
     }
-  
+
     return this.menuItems;
   }
 
