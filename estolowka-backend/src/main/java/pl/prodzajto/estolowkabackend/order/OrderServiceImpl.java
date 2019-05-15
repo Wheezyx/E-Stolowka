@@ -4,11 +4,14 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 import pl.prodzajto.estolowkabackend.user.UserEntity;
 import pl.prodzajto.estolowkabackend.user.UserNotFoundException;
 import pl.prodzajto.estolowkabackend.user.UserRepository;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -63,6 +66,22 @@ class OrderServiceImpl implements OrderService {
         userMeal.setRate(rate);
         userMealRepository.save(userMeal);
         return new ResponseEntity<>("You rate the meal", HttpStatus.ACCEPTED);
+    }
+
+    @Override
+    public void cancelUserMeal(String email, Long id, LocalDateTime cancellationTime) {
+        UserEntity user = userRepository.findByEmail(email).orElseThrow(UserNotFoundException::new);
+
+        UserMealEntity userMeal = userMealRepository.findByUserAndId(user, id).orElseThrow(OrderNotFoundException::new);
+        LocalDateTime deadlineDateTime = LocalDateTime.of(userMeal.getDate().minusDays(1), LocalTime.of(10, 0, 0));
+        if (checkIfGivenDateAllowsToCancelMeal(cancellationTime, deadlineDateTime)) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "You can not cancel meal");
+        }
+        userMealRepository.delete(userMeal);
+    }
+
+    private boolean checkIfGivenDateAllowsToCancelMeal(LocalDateTime cancellationTime, LocalDateTime deadlineDateTime) {
+        return cancellationTime.isAfter(deadlineDateTime);
     }
 
     private Set<UserMealDTO> mapMeals(List<UserMealEntity> meals) {

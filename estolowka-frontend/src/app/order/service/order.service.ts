@@ -4,7 +4,6 @@ import {Observable} from "rxjs";
 import {environment} from "../../../environments/environment";
 import {Day} from "../model/day";
 import {AuthenticationService} from "../../auth/authentication.service";
-import {v4 as uuid} from 'uuid';
 import {Meal} from "../model/meal";
 import {MealsWrapper} from '../model/meals-wrapper';
 
@@ -44,5 +43,9 @@ export class OrderService {
 
   rateMeal(id: number, rate: number) {
     return this._http.post(environment.orderUrl + '/' + id + '/rate', rate)
+  }
+
+  cancelUserMeal(id: number) {
+    return this._http.post(environment.orderUrl + "/" + id + "/cancel", null);
   }
 }
