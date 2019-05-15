@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {MenuService} from "../menu.service";
 import {MatSnackBar, MatSnackBarConfig} from "@angular/material";
+import { CustomErrorHandler } from '../../util/custom-error-handler';
 
 @Component({
   selector: 'app-upload-menu-prices-form',
@@ -14,7 +15,8 @@ export class UploadMenuPricesFormComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder,
               private menuService: MenuService,
-              private snackBar: MatSnackBar) {
+              private snackBar: MatSnackBar,
+              private errorHandler: CustomErrorHandler) {
   }
 
   ngOnInit() {
@@ -36,7 +38,7 @@ export class UploadMenuPricesFormComponent implements OnInit {
       this.openSuccessMessage();
       this.refresh();
     }, err => {
-      this.openErrorMessage(err);
+      this.errorHandler.handleError(err);
     });
 
   }
@@ -56,12 +58,5 @@ export class UploadMenuPricesFormComponent implements OnInit {
     config.duration = 2000;
     config.panelClass = ['success-msg'];
     this.snackBar.open('Cennik został zaktualizowany!', '', config);
-  }
-
-  openErrorMessage(error: any) {
-    const config = new MatSnackBarConfig;
-    config.duration = 2000;
-    config.panelClass = ['error-msg'];
-    this.snackBar.open('Wystąpił błąd ' + error.message, '', config);
   }
 }

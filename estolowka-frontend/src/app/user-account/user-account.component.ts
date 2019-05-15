@@ -6,6 +6,7 @@ import {UserService} from '../user/service/user.service';
 import {Router} from '@angular/router';
 import {MatSnackBar} from '@angular/material';
 import {Meal} from '../order/model/meal';
+import {CustomErrorHandler} from '../util/custom-error-handler';
 
 @Component({
   selector: 'app-user-account',
@@ -26,7 +27,8 @@ export class UserAccountComponent implements OnInit {
               private authService: AuthenticationService,
               private userService: UserService,
               private router: Router,
-              private snackBar: MatSnackBar) {
+              private snackBar: MatSnackBar,
+              private errorHandler: CustomErrorHandler) {
   }
 
   ngOnInit() {
@@ -56,7 +58,7 @@ export class UserAccountComponent implements OnInit {
     this.mealRatingDialog.openDialog(id);
     this.mealRatingDialog.dialogRef.afterClosed().subscribe(() => {
       this.reload();
-    })
+    });
   }
 
   changePassword() {
@@ -67,7 +69,7 @@ export class UserAccountComponent implements OnInit {
           this.snackBar.open('Hasło zostało zmienione!', '', {duration: 2000});
         });
       }, (error) => {
-        this.error = error.error.message;
+        this.errorHandler.handleError(error);
       });
   }
 

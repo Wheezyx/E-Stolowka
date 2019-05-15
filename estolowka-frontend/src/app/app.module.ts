@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, ErrorHandler } from '@angular/core';
 import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
 import { OrderService } from "./order/service/order.service";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -37,6 +37,7 @@ import { AdminComponent } from './admin/admin.component';
 import { MealRatingComponent } from './user-account/meal-rating/meal-rating.component';
 import { MealRatingDialogComponent } from './user-account/meal-rating/dialog/meal-rating-dialog.component';
 import { StarRatingModule } from 'angular-star-rating';
+import { CustomErrorHandler } from './util/custom-error-handler';
 
 const appRoutes: Routes = [
   {path: 'login', component: LoginComponent },
@@ -102,7 +103,12 @@ const appRoutes: Routes = [
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
       multi: true
-    }
+    },
+    CustomErrorHandler,
+    {
+      provide: ErrorHandler,
+      useClass: CustomErrorHandler,
+    },
   ],
   entryComponents: [
     EmailFormComponent,
