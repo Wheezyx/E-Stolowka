@@ -92,8 +92,8 @@ public class MenuServiceTest
     public void shouldGetLastPriceListOnly()
     {
         //given
-        PriceList oldPriceList = new PriceList(11, 15 ,3);
-        PriceList newPriceList = new PriceList(20, 20 ,20);
+        PriceList oldPriceList = new PriceList(11, 15 ,3, OffsetDateTime.now());
+        PriceList newPriceList = new PriceList(20, 20 ,20,OffsetDateTime.now());
         
         menuService.savePriceList(oldPriceList);
         menuService.savePriceList(newPriceList);
@@ -118,7 +118,7 @@ public class MenuServiceTest
                                                       .build();
         priceListRepository.save(oldPriceList);
         
-        PriceList newPriceList = new PriceList(5.4, 3.2, 2.3);
+        PriceList newPriceList = new PriceList(5.4, 3.2, 2.3, OffsetDateTime.now());
         
         //when
         menuService.savePriceList(newPriceList);

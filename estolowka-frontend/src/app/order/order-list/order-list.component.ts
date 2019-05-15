@@ -17,7 +17,6 @@ export class OrderListComponent {
               private errorHandler: CustomErrorHandler) {}
 
   sendOrder() {
-    this.orders = this.orders.map(day => this.addDay(day));
     this.orderService.sendOrder(this.orders).subscribe(() => {
       console.log(this.orders);
       console.log("Order added");
@@ -29,13 +28,6 @@ export class OrderListComponent {
       this.errorHandler.handleError(err);
     }
   );
-  }
-
-  addDay(day: Day){
-    let date = new Date(day.selectedDate);
-    date.setDate(date.getDate()+1);
-    day.selectedDate = date.toISOString();
-    return day;
   }
 
   isExist(date: Date): boolean {

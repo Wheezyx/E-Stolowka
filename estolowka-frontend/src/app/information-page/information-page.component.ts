@@ -12,6 +12,7 @@ export class InformationPageComponent implements OnInit {
   priceList: PriceList;
 
   constructor(private menuService: MenuService) {
+    this.priceList = {"breakfastPrice":15.0,"dinnerPrice":13.0,"supperPrice":11.0,"updateDate":"2019-05-15"};
   }
 
   ngOnInit() {
@@ -20,6 +21,7 @@ export class InformationPageComponent implements OnInit {
 
   getPriceList() {
     this.menuService.getMenuPrices().subscribe(data => {
+      data.updateDate = data.updateDate.substring(0, 10);
       this.priceList = data;
     });
   }

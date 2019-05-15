@@ -71,7 +71,7 @@ public class MenuService {
         PriceListEntity breakfastPrice = priceListRepository.findFirstByTypeOrderByUpdateDateDesc(MealType.BREAKFAST);
         PriceListEntity dinnerPrice = priceListRepository.findFirstByTypeOrderByUpdateDateDesc(MealType.DINNER);
         PriceListEntity supperPrice = priceListRepository.findFirstByTypeOrderByUpdateDateDesc(MealType.SUPPER);
-        return new PriceList(breakfastPrice.getPrice(), dinnerPrice.getPrice(), supperPrice.getPrice());
+        return new PriceList(breakfastPrice.getPrice(), dinnerPrice.getPrice(), supperPrice.getPrice(), breakfastPrice.getUpdateDate());
     }
 
     public void savePriceList(PriceList priceList) {
