@@ -41,3 +41,8 @@ button:hover {
   color: white;
   font-weight: bold;
 }
+
+::ng-deep snack-bar-container.error-msg {
+  color: rgb(190, 15, 15);
+  font-weight: bold;
+}

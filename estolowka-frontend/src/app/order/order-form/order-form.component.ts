@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Day } from '../model/day';
 import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
-import {MealType} from "../model/meal-type.enum";
+import {OrderListComponent} from "../order-list/order-list.component";
 
 @Component({
   selector: 'app-order-form',
@@ -11,13 +11,15 @@ import {MealType} from "../model/meal-type.enum";
 export class OrderFormComponent implements OnInit {
 
   @Input() order: Day;
-  
+
   minDate = this.getTomorrowDate();
   maxDate = this.getLastDayOfMonth();
 
   form: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) { }
+  dateFilter = (date: Date) => !this.orderList.isExist(date);
+
+  constructor(private formBuilder: FormBuilder, private orderList: OrderListComponent) { }
 
   get meals(): FormArray { return this.form.get('meals') as FormArray; }
 
@@ -25,9 +27,7 @@ export class OrderFormComponent implements OnInit {
     this.form = this.formBuilder.group({
       dateOfOrder: ['', Validators.required],
       meals: this.formBuilder.array(this.order.meals)
-    })
-
-    console.log(this.form)
+    });
   }
 
   getTomorrowDate() {
