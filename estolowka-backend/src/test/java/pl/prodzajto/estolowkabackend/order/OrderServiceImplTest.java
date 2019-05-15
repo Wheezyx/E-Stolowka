@@ -1,10 +1,13 @@
 package pl.prodzajto.estolowkabackend.order;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.test.context.junit4.SpringRunner;
 import pl.prodzajto.estolowkabackend.user.UserEntity;
 import pl.prodzajto.estolowkabackend.user.UserRepository;
@@ -27,11 +30,17 @@ public class OrderServiceImplTest {
 
     @Before
     public void setUp() throws Exception {
+        SecurityContextHolder.getContext().setAuthentication(new UsernamePasswordAuthenticationToken("admin@gmail.com", null, null));
         OrderCreatorImpl orderCreator = new OrderCreatorImpl(userRepository, mealRepository, userMealRepository);
         orderService = new OrderServiceImpl(orderCreator, userMealRepository, userRepository);
         userRepository.save(UserEntity.builder().email("admin@gmail.com").build());
     }
-
+    
+    @After
+    public void after(){
+        SecurityContextHolder.getContext().setAuthentication(null);
+    }
+    
     @Test
     public void shouldSaveOrder() {
         //given
