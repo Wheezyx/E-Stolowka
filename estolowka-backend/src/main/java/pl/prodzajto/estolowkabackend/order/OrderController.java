@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import pl.prodzajto.estolowkabackend.security.UserTokenResolver;
 
 import javax.validation.Valid;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -44,6 +45,13 @@ class OrderController {
             return new ResponseEntity<>("Rate must be in the range <1,5>", HttpStatus.NOT_ACCEPTABLE);
         }
         return orderService.rateUserOrder(email, id, rate);
+    }
+
+    @PostMapping("/{id}/cancel")
+    @ResponseStatus(code = HttpStatus.OK)
+    public void cancelUserOrder(@PathVariable Long id) {
+        String email = SecurityContextHolder.getContext().getAuthentication().getName();
+        orderService.cancelUserMeal(email, id, LocalDateTime.now());
     }
 
 }

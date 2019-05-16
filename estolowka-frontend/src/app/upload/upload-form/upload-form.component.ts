@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {UploadService} from "../upload.service";
-import {MatSnackBar, MatSnackBarConfig}  from '@angular/material';
-import { CustomErrorHandler } from '../../util/custom-error-handler';
+import {MatSnackBar, MatSnackBarConfig} from '@angular/material';
+import {CustomErrorHandler} from '../../util/custom-error-handler';
 
 @Component({
   selector: 'app-upload',

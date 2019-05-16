@@ -18,10 +18,7 @@ import java.time.OffsetDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
@@ -92,8 +89,8 @@ public class MenuServiceTest
     public void shouldGetLastPriceListOnly()
     {
         //given
-        PriceList oldPriceList = new PriceList(11, 15 ,3, OffsetDateTime.now());
-        PriceList newPriceList = new PriceList(20, 20 ,20,OffsetDateTime.now());
+        PriceList oldPriceList = new PriceList(11, 15, 3, OffsetDateTime.now());
+        PriceList newPriceList = new PriceList(20, 20, 20, OffsetDateTime.now());
         
         menuService.savePriceList(oldPriceList);
         menuService.savePriceList(newPriceList);
@@ -117,7 +114,7 @@ public class MenuServiceTest
                                                       .updateDate(OffsetDateTime.now().minusDays(2))
                                                       .build();
         priceListRepository.save(oldPriceList);
-        
+
         PriceList newPriceList = new PriceList(5.4, 3.2, 2.3, OffsetDateTime.now());
         
         //when

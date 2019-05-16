@@ -10,6 +10,11 @@
                 <div><span class="date">{{meal.date | date}}</span>
                     <div class="meal">
                         <div>{{meal.type}}</div>
+                      <div>
+                        <button *ngIf="checkIfGivenDateAllowsToCancelMeal(meal.date)" mat-button color="warn"
+                                (click)="cancelMeal(meal.id)">Cancel
+                        </button>
+                      </div>
                         <div class="star-container" *ngIf="!meal.rate else rateTag"><img class="star" (click)="openRatingDialog(meal.id)" src="../../assets/img/star64.png"> </div>
                     </div>
                   <ng-template #rateTag class="rate-container star-container">

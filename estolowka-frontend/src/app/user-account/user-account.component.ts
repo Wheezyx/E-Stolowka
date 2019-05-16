@@ -54,6 +54,14 @@ export class UserAccountComponent implements OnInit {
     this.getOrders();
   }
 
+  cancelMeal(id: number) {
+    this.orderService.cancelUserMeal(id).subscribe(() => {
+      this.reload();
+    }, (error) => {
+      this.error = error.error.message;
+    });
+  }
+
   openRatingDialog(id: number) {
     this.mealRatingDialog.openDialog(id);
     this.mealRatingDialog.dialogRef.afterClosed().subscribe(() => {
@@ -73,4 +81,12 @@ export class UserAccountComponent implements OnInit {
       });
   }
 
+
+  checkIfGivenDateAllowsToCancelMeal(date: string) {
+    date = date + "T10:00:00";
+    let deadlineDateTime: Date = new Date(date);
+    deadlineDateTime.setDate(deadlineDateTime.getDate() - 1);
+    let cancellationDateTime: Date = new Date();
+    return deadlineDateTime > cancellationDateTime;
+  }
 }

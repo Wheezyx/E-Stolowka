@@ -2,6 +2,7 @@ package pl.prodzajto.estolowkabackend.order;
 
 import org.springframework.http.ResponseEntity;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 interface OrderService {
@@ -13,4 +14,5 @@ interface OrderService {
 
     ResponseEntity<String> rateUserOrder(String email, Long id, Integer rate);
 
+    void cancelUserMeal(String email, Long id, LocalDateTime cancellationTime);
 }

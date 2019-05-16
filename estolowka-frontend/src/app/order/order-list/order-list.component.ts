@@ -1,8 +1,8 @@
-import { Component, Input } from '@angular/core';
-import { Day } from '../model/day';
-import { OrderService } from '../service/order.service';
-import { MatSnackBar, MatSnackBarConfig } from '@angular/material';
-import { CustomErrorHandler } from '../../util/custom-error-handler';
+import {Component, Input} from '@angular/core';
+import {Day} from '../model/day';
+import {OrderService} from '../service/order.service';
+import {MatSnackBar, MatSnackBarConfig} from '@angular/material';
+import {CustomErrorHandler} from '../../util/custom-error-handler';
 
 @Component({
   selector: 'app-order-list',
@@ -14,11 +14,12 @@ export class OrderListComponent {
 
   constructor(private orderService: OrderService,
               private snackBar: MatSnackBar,
-              private errorHandler: CustomErrorHandler) {}
+              private errorHandler: CustomErrorHandler) {
+  }
 
   sendOrder() {
     this.orderService.sendOrder(this.orders).subscribe(() => {
-      console.log(this.orders);
+        console.log(this.orders);
       console.log("Order added");
       this.cleanOrdersPage();
       this.openSuccessMessage();
