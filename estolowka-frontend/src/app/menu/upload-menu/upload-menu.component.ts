@@ -1,7 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { MenuService } from "../menu.service";
-import { MatSnackBar, MatSnackBarConfig } from '@angular/material';
-import { WeeklyMenuItem } from '../model/weekly-menu-item';
+import {Component, Input, OnInit} from '@angular/core';
+import {MenuService} from "../menu.service";
+import {MatSnackBar, MatSnackBarConfig} from '@angular/material';
+import {WeeklyMenuItem} from '../model/weekly-menu-item';
+import {CustomErrorHandler} from '../../util/custom-error-handler';
 
 @Component({
   selector: 'app-upload-menu',
@@ -13,7 +14,9 @@ export class UploadMenuComponent implements OnInit {
   @Input() menuItems: WeeklyMenuItem[] = [];
 
   constructor(private menuService: MenuService,
-              private snackBar: MatSnackBar) { }
+              private snackBar: MatSnackBar,
+              private errorHandler: CustomErrorHandler) {
+  }
 
   ngOnInit() {
     this.menuItems = this.generateMenuMeals();
@@ -23,7 +26,7 @@ export class UploadMenuComponent implements OnInit {
     for (let i = 0; i < 7; i++) {
       this.menuItems.push(new WeeklyMenuItem());
     }
-  
+
     return this.menuItems;
   }
 
@@ -33,7 +36,7 @@ export class UploadMenuComponent implements OnInit {
       },
       err => {
         console.log('error occurred: ' + err.message);
-        this.openErrorMessage(err);
+        this.errorHandler.handleError(err);
       });
   }
 
@@ -42,12 +45,5 @@ export class UploadMenuComponent implements OnInit {
     config.duration = 2000;
     config.panelClass = ['success-msg'];
     this.snackBar.open('Menu zostało zaktualizowane!', '', config);
-  }
-
-  openErrorMessage(error: any) {
-    const config = new MatSnackBarConfig;
-    config.duration = 2000;
-    config.panelClass = ['error-msg'];
-    this.snackBar.open('Wystąpił błąd ' + error.message, '', config);
   }
 }

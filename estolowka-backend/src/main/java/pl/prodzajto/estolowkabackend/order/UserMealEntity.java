@@ -7,23 +7,25 @@ import lombok.NoArgsConstructor;
 import pl.prodzajto.estolowkabackend.user.UserEntity;
 
 import javax.persistence.*;
-import java.time.OffsetDateTime;
-import java.util.Set;
+import java.time.LocalDate;
 
 @Entity
-@Table(name = "meal_order")
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
+@Table(name = "user_meal")
 @Data
-public class OrderEntity {
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+public class UserMealEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private OffsetDateTime dateOfOrder;
-    @OneToMany
-    private Set<Day> selectedDays;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+    private MealEntity meal;
+    @ManyToOne(fetch = FetchType.LAZY)
     private UserEntity user;
+    private LocalDate date;
+    private MealType type;
+    private Integer rate;
+
 }

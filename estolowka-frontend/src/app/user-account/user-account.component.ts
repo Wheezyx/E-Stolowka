@@ -1,12 +1,12 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {OrderService} from '../order/service/order.service';
-import {JsonDay} from "../order/model/json-day";
-import {Day} from '../order/model/day';
-import {Order} from '../order/model/order';
 import {AuthenticationService} from '../auth/authentication.service';
-import {UserService} from "../user/service/user.service";
-import {Router} from "@angular/router";
-import {MatSnackBar} from "@angular/material";
+import {MealRatingDialogComponent} from './meal-rating/dialog/meal-rating-dialog.component';
+import {UserService} from '../user/service/user.service';
+import {Router} from '@angular/router';
+import {MatSnackBar} from '@angular/material';
+import {Meal} from '../order/model/meal';
+import {CustomErrorHandler} from '../util/custom-error-handler';
 
 @Component({
   selector: 'app-user-account',
@@ -14,44 +14,59 @@ import {MatSnackBar} from "@angular/material";
   styleUrls: ['./user-account.component.css']
 })
 export class UserAccountComponent implements OnInit {
-  orders: Order[];
+
+  @ViewChild(MealRatingDialogComponent) mealRatingDialog: MealRatingDialogComponent;
   days: any;
   userEmail = this.getUserEmail();
   isEmpty: boolean = true;
   model: any = {};
   error: string = '';
+  meals: Meal[];
 
   constructor(private orderService: OrderService,
               private authService: AuthenticationService,
               private userService: UserService,
               private router: Router,
-              private snackBar: MatSnackBar) {
+              private snackBar: MatSnackBar,
+              private errorHandler: CustomErrorHandler) {
   }
 
   ngOnInit() {
   }
 
-  createConvertedOrders(jsonDays: JsonDay[]): Day[] {
-    this.days = jsonDays.map((jsonDay) => this.orderService.convertJsonDayToDay(jsonDay));
-    return this.days;
-  }
-
   getOrders(): void {
     this.orderService.getOrdersList(this.userEmail).subscribe((jsonOrders) => {
-      this.orders = jsonOrders;
-      this.days = jsonOrders.map(order => {
-        console.log(this.createConvertedOrders(order.selectedDays));
-        return this.createConvertedOrders(order.selectedDays);
-      });
-      if (this.days.length > 0) {
+      this.meals = jsonOrders.mealsByMonth
+        .reduce((meals, meal) => meals.concat(meal), []);
+      console.log(this.meals);
+      if (this.meals.length > 0) {
         this.isEmpty = false;
+        this.meals.sort((a, b) => a.date.localeCompare(b.date));
       }
-      console.log(this.days);
-    })
+    });
   }
 
   getUserEmail() {
     return this.authService.getCurrentUserEmail();
+  }
+
+  reload() {
+    this.getOrders();
+  }
+
+  cancelMeal(id: number) {
+    this.orderService.cancelUserMeal(id).subscribe(() => {
+      this.reload();
+    }, (error) => {
+      this.error = error.error.message;
+    });
+  }
+
+  openRatingDialog(id: number) {
+    this.mealRatingDialog.openDialog(id);
+    this.mealRatingDialog.dialogRef.afterClosed().subscribe(() => {
+      this.reload();
+    });
   }
 
   changePassword() {
@@ -59,10 +74,19 @@ export class UserAccountComponent implements OnInit {
       .subscribe(() => {
         this.authService.logout();
         this.router.navigateByUrl('/login').then(() => {
-          this.snackBar.open("Hasło zostało zmienione!", '', {duration: 2000});
+          this.snackBar.open('Hasło zostało zmienione!', '', {duration: 2000});
         });
       }, (error) => {
-        this.error = error.error.message;
+        this.errorHandler.handleError(error);
       });
+  }
+
+
+  checkIfGivenDateAllowsToCancelMeal(date: string) {
+    date = date + "T10:00:00";
+    let deadlineDateTime: Date = new Date(date);
+    deadlineDateTime.setDate(deadlineDateTime.getDate() - 1);
+    let cancellationDateTime: Date = new Date();
+    return deadlineDateTime > cancellationDateTime;
   }
 }

@@ -1,10 +1,10 @@
 <form [formGroup]="form">
   <mat-form-field>
     <input matInput
-    [matDatepicker]="orderDatePicker"
-    [min]="minDate" [max]="maxDate"
-    formControlName="dateOfOrder"
-    [(ngModel)]="order.selectedDate">
+           [matDatepicker]="orderDatePicker" [matDatepickerFilter]="dateFilter"
+           [min]="minDate" [max]="maxDate"
+           formControlName="dateOfOrder"
+           [(ngModel)]="order.selectedDate">
     <mat-datepicker-toggle matSuffix [for]="orderDatePicker"></mat-datepicker-toggle>
     <mat-datepicker #orderDatePicker></mat-datepicker>
   </mat-form-field>
@@ -13,7 +13,7 @@
       <mat-checkbox
       [formControlName] = "i"
       [(ngModel)] = "order.meals[i].Selected">
-        {{ order.meals[i].name }}         
+        {{ mealTypeNames[order.meals[i].type] }}
       </mat-checkbox>
     </div>
   </div>

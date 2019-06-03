@@ -53,7 +53,7 @@ public class OrderControllerTest {
     public void ifNoSelectedDays_shouldReturn400() throws Exception{
         //given
         RawOrder rawOrder = new RawOrder();
-        rawOrder.setSelectedDays(Collections.emptySet());
+        rawOrder.setMeals(Collections.emptySet());
 
         //when
         mockMvc.perform(post("/order")

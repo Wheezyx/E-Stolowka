@@ -1,5 +1,7 @@
 package pl.prodzajto.estolowkabackend.order;
 
+import java.util.Set;
+
 interface OrderCreator {
-    OrderEntity createOrder(RawOrder rawOrder);
+    Set<UserMealEntity> createOrder(RawOrder rawOrder);
 }
