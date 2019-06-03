@@ -18,7 +18,9 @@ import java.time.OffsetDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
@@ -82,7 +84,7 @@ public class MenuServiceTest
         
         //then
         assertNotNull(meals);
-        assertNotEquals(7, meals.size());
+        assertEquals(7, meals.size());
     }
     
     @Test
