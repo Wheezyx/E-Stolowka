@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/Wheezyx/E-Stolowka/tree/master.svg?style=svg)](https://circleci.com/gh/Wheezyx/E-Stolowka/tree/master)
+
 # E-Stolowka
 
 #Client side requirements
